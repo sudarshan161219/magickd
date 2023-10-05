@@ -1,0 +1,13 @@
+.container {
+  padding: 10px;
+  height: 35px;
+  display: block;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--softBg);
+}
+.footerTitle {
+  font-size: 0.9rem;
+  text-align: center;
+  color: var(--textColor);
+}

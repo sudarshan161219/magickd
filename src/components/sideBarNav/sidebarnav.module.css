@@ -1,0 +1,34 @@
+.container {
+  padding: 0.9rem;
+  position: fixed;
+  top: 0;
+  width: 50%;
+  height: 100vh;
+  left: 0;
+  background-color: var(--bg);
+  z-index: 10;
+  visibility: hidden;
+  transform: translateX(-500px);
+  transition: ease-in-out 0.4s;
+}
+
+.show{
+    transform: translateX(0px);
+    visibility: visible;
+  transition: ease-in-out 0.4s;
+}
+
+.LogoContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.logo {
+  width: 100px;
+}
+
+.icon {
+  -webkit-tap-highlight-color: transparent;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
