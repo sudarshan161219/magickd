@@ -1,14 +1,15 @@
 import styles from "./footer.module.css"
+import { useLocation } from "react-router-dom";
 import {
-  AiOutlineFacebook,
   AiOutlineTwitter,
   AiOutlineInstagram,
   AiOutlineYoutube,
 } from "react-icons/ai";
-import{BsFacebook} from "react-icons/bs"
+import { BsFacebook } from "react-icons/bs"
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const location = useLocation()
 
 
   const socialLinks = [
@@ -29,6 +30,12 @@ const Footer = () => {
       link: "https://www.youtube.com/channel/UCI6p6prAF85a3XMtpq29QKg?view_as=subscriber",
     },
   ];
+
+
+  if (location.pathname === "/register") {
+    return null
+  }
+
 
   return (
     <div className={styles.container}>

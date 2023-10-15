@@ -32,11 +32,12 @@
   padding: 0.9rem;
   justify-content: space-between;
   transition: ease-in-out 0.3s;
-  background: rgb(97 97 97 / 28%);
+  background-color: var(  --softBg);
+  /* background: rgb(97 97 97 / 28%);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(20.2px);
   -webkit-backdrop-filter: blur(6.2px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1); */
   z-index: 5;
 }
 

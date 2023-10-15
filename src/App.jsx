@@ -4,6 +4,7 @@ import {
   About,
   Contact,
   Portfolio,
+  Register
 } from "./components/export"
 import Main from "./main/Main";
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
         <Route path="/AboutUs" element={<About />} />
         <Route path="/Portfolio" element={<Portfolio />} />
         <Route path="/ContactUs" element={<Contact />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
       <Footer />
     </div>

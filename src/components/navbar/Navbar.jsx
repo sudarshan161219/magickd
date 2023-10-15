@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import styles from "./navbar.module.css"
 import { useEffect, useState } from "react"
 import logo from "../../assets/logo.png"
@@ -10,13 +10,12 @@ import SidebarNav from "../sideBarNav/SidebarNav"
 const Navbar = () => {
   const { toggleMenu, toggleMenuFn } = useAppContext()
   const [scrollPosition, setScrollPosition] = useState(0);
-
+  const location = useLocation()
 
   const handleScroll = () => {
     const position = window.scrollY
     setScrollPosition(position)
   }
-
 
   useEffect(() => {
     if (toggleMenu) {
@@ -30,6 +29,9 @@ const Navbar = () => {
     };
   }, [toggleMenu]);
 
+  if (location.pathname === "/register") {
+    return null
+  }
 
   return (
     <nav
@@ -45,13 +47,13 @@ const Navbar = () => {
 
       <div className={styles.loginProfileContainer}  >
         <ul className={styles.ul}>
-          <li className={styles.li}> <Link to="/"  className={styles.link}>Home</Link> </li>
-          <li className={styles.li}> <Link to="/Portfolio"  className={styles.link}>Portfolio</Link> </li>
-          <li className={styles.li}> <Link to="/Blog"  className={styles.link}>Blog</Link> </li>
-          <li className={styles.li}> <Link to="/AboutUs"  className={styles.link}>About Us</Link> </li>
-          <li className={styles.li}> <Link to="/ContactUs"  className={styles.link}>Contact Us</Link> </li>
+          <li className={styles.li}> <Link to="/" className={styles.link}>Home</Link> </li>
+          <li className={styles.li}> <Link to="/Portfolio" className={styles.link}>Portfolio</Link> </li>
+          <li className={styles.li}> <Link to="/Blog" className={styles.link}>Blog</Link> </li>
+          <li className={styles.li}> <Link to="/AboutUs" className={styles.link}>About Us</Link> </li>
+          <li className={styles.li}> <Link to="/ContactUs" className={styles.link}>Contact Us</Link> </li>
         </ul>
-        <button className={`${styles.btn} ${styles.login}`}>Log in</button>
+        <Link to="/register" className={`${styles.btn} ${styles.login}`}>Log in</Link>
         {/* <button className={`${styles.btn} ${styles.signin}`}>Sign in</button> */}
       </div>
       <SidebarNav />
