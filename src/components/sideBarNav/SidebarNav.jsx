@@ -1,5 +1,5 @@
 import styles from "./sidebarnav.module.css"
-import logo from "../../assets/logo.svg"
+import logo from "../../assets/logo.png"
 import { GrFormClose } from "react-icons/gr"
 import { useAppContext } from "../../context/Context";
 

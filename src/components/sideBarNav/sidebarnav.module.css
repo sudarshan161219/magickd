@@ -12,9 +12,9 @@
   transition: ease-in-out 0.4s;
 }
 
-.show{
-    transform: translateX(0px);
-    visibility: visible;
+.show {
+  transform: translateX(0px);
+  visibility: visible;
   transition: ease-in-out 0.4s;
 }
 
@@ -31,4 +31,10 @@
   -webkit-tap-highlight-color: transparent;
   font-size: 1.4rem;
   cursor: pointer;
+}
+
+@media screen and (min-width: 750px) {
+  .container {
+    display: none;
+  }
 }

@@ -131,9 +131,14 @@ a {
 
 :root {
   --bg: white;
+  --footerBg:#2a2a2a;
+  --footerColor:#fffefe;
   --textColor: black;
-  --softBg: #f0f0f0;
   --softTextColor: #626262;
+  --bannerText:#f0f0f0 ;
+  --softBg: #f0f0f0;
+  --introTextColor:#fff;
+  --introSoftTextColor:#EEEEEE;
   --btnBg: #61677A;
   --btnColor: #EEEEEE;
 }
@@ -160,4 +165,10 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  position: relative;
 }
+
+
+
+
+/* /// */

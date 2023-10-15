@@ -1,0 +1,43 @@
+.container {
+}
+
+.imgTextContainer {
+  position: relative;
+}
+
+.img {
+  width: 100%;
+}
+
+.bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background-color: black;
+  opacity: 0.5;
+}
+
+.textconatiner {
+  position: absolute;
+  padding: 10px;
+  top: 50px;
+  display: grid;
+  gap: 10px;
+  z-index: 1;
+}
+
+.title {
+  color: var(--textColor);
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.desc {
+  color: var(--softTextColor);
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 150%;
+}
