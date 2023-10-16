@@ -1,38 +1,24 @@
 .container {
-}
-
-.imgTextContainer {
-  position: relative;
-}
-
-.img {
-  width: 100%;
-}
-
-.bg {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  background-color: black;
-  opacity: 0.5;
+  gap: 10px;
+  padding: 10px;
+  /* height: 100vh; */
+  display: flex;
+  flex-direction: column
+  ;
 }
 
 .textconatiner {
-  position: absolute;
-  padding: 10px;
-  top: 50px;
   display: grid;
-  gap: 10px;
-  z-index: 1;
+  gap: 16px;
+  text-align: center;
+  justify-items: center;
 }
 
 .title {
   color: var(--textColor);
   font-size: 30px;
   font-weight: 500;
+  line-height: 140%;
 }
 
 .desc {
@@ -40,4 +26,79 @@
   font-size: 17px;
   font-weight: 400;
   line-height: 150%;
+}
+
+.btn {
+  font-family: inherit;
+  width: 150px;
+  font-size: 15px;
+  text-transform: capitalize;
+  color: var(--textColor);
+  border: 1px solid #00000054;
+  padding: 10px 20px;
+  display: inline-block;
+  font-weight: 500;
+  border-radius: 5px;
+  transition: all 0.3s;
+}
+
+.btn:hover {
+  cursor: pointer;
+  background-color: var(--textColor);
+  color: var(--bg);
+}
+
+
+/* --card_width: 250px;
+--row_increment: 10px;
+--card_border_radius: 16px;
+--card_small: 26;
+--card_med: 33;
+--card_large: 45; */
+
+.cardsContainer{
+  margin-top: 2rem;
+  height: 400px;
+  overflow: hidden;
+}
+
+.pin_container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 130px);
+  grid-auto-rows: 6px;
+  justify-content: center;
+}
+
+.card {
+  padding: 0;
+  margin: 5px;
+  border-radius: 20px;
+  background-color: red;
+  overflow: hidden;
+}
+
+.card_small {
+  grid-row-end: span 25;
+}
+
+.card_medium {
+  grid-row-end: span 35;
+}
+
+.card_medium_medium{
+  grid-row-end: span 32;
+}
+
+.card_small_small{
+  grid-row-end: span 13;
+}
+
+.card_large {
+  grid-row-end: span 45;
+}
+
+.img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }

@@ -3,7 +3,7 @@ import { Intro, MainMenu, Testimonials } from "../components/export"
 const Main = () => {
     return (
         <div className={styles.container}  >
-            {/* < Intro /> */}
+            < Intro />
             <MainMenu />
             <Testimonials />
         </div>
