@@ -1,4 +1,9 @@
-
+import insta from "../../src/assets/insta.svg";
+import google from "../../src/assets/google.svg";
+import fb from "../../src/assets/fb.svg";
+import yt from "../../src/assets/yt.svg";
+import x from "../../src/assets/x.svg";
+import th from "../../src/assets/th.svg";
 
 const dataArr = [
   {
@@ -49,6 +54,31 @@ const testimonials = [
   },
 ];
 
+const dummyImgs = [
+  {
+    name: "facebook",
+    img: fb,
+  },
+  {
+    name: "instagram",
+    img: insta,
+  },
+  {
+    name: "google",
+    img: google,
+  },
+  {
+    name: "twitter",
+    img: x,
+  },
+  {
+    name: "youtube",
+    img: yt,
+  },
+  {
+    name: "thread",
+    img: th,
+  },
+];
 
-
-export { dataArr, testimonials };
+export { dataArr, testimonials, dummyImgs };

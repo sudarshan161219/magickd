@@ -41,9 +41,7 @@
 
 @media screen and (min-width:500px) {
 
-  .container{
-    height: 30px;
-  }
+
 
   .infoContainer{
     display: flex;
@@ -53,4 +51,12 @@
   .footerTitle {
     order: unset;
   }
+}
+
+
+@media screen and (min-width:1024px) {
+    .container{
+      /* height: 30px; */
+    }
+
 }
