@@ -36,6 +36,7 @@
 
 .btn {
   font-family: inherit;
+  text-align: center;
   width: 150px;
   font-size: 15px;
   text-transform: capitalize;

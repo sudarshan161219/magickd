@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import styles from './Main.module.css'
+import styles from './section2.module.css'
 import {dataArr} from "../../data/data"
 
 

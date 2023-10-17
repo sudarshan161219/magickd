@@ -1,11 +1,12 @@
 import styles from './main.module.css'
-import { Intro, MainMenu, Testimonials } from "../components/export"
+import {Section1, Section2, Section3, Section4,} from "../components/export"
 const Main = () => {
     return (
         <div className={styles.container}  >
-            < Intro />
-            <MainMenu />
-            <Testimonials />
+            <Section1 />
+            <Section2 />
+            <Section3 />
+            <Section4 />
         </div>
     )
 }

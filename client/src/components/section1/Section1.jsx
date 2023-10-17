@@ -1,4 +1,5 @@
-import styles from './intro.module.css'
+import {Link } from "react-router-dom"
+import styles from './section1.module.css'
 
 const Intro = () => {
     return (
@@ -8,7 +9,7 @@ const Intro = () => {
                 <p className={styles.desc}>
                     {` We're a creative multimedia company that crafts captivating content for all audiences. Additionally, we assist brands and businesses in standing out in the digital age.`}</p>
 
-                <button className={styles.btn}>Explore More</button>
+                <Link to="/explore" className={styles.btn}>Explore More</Link>
             </div>
 
             <div className={styles.imgContainer}>
