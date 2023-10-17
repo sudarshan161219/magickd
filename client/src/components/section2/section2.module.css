@@ -21,8 +21,8 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: end;
+  align-items: end;
 }
 
 .imgContainer::before {
@@ -34,35 +34,72 @@
   opacity: 0.5;
 }
 
-.textContainer {
+.btnIconContainer {
   position: absolute;
   text-align: center;
-  display: grid;
+  display: flex;
   gap: 10px;
-  /* z-index: 1; */
+  bottom: 10px;
+  right: 10px;
 }
 
-.link {
-  font-size: 14px;
+.icons {
+  font-size: 1.8rem;
+  color: var(--bg);
+}
+
+.btn {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.411);
+  border-radius: 100%;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  transition:ease 0.3s ;
+}
+
+.btn:hover .heart {
+  color: tomato;
+}
+
+.btn:hover .download {
+  color:aqua;
+}
+
+
+
+
+.dBtn{
+  font-family: inherit;
+  text-align: center;
+  width: 200px;
+  font-size: 15px;
   text-transform: capitalize;
-  color: #fff;
-  border: 1px solid #fff;
-  padding: 12px 20px;
+  background-color: var(--textColor);
+  color: var(--bg);
+  border: 1px solid #00000054;
+  padding: 10px 20px;
   display: inline-block;
   font-weight: 500;
+  border-radius: 5px;
   transition: all 0.3s;
 }
 
-.link:hover {
-  background-color: var(--bg);
+.dBtn:hover {
+  cursor: pointer;
   color: var(--textColor);
+  background-color: transparent;
 }
 
-.heading {
-  font-size: 1.2rem;
-  font-weight: 500;
-  color: var(--bannerText);
-  text-shadow: 2px 4px 4px rgba(43, 44, 46, 0.6);
+.btnContainer{
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
 }
 
 @media screen and (min-width: 1024px) {
