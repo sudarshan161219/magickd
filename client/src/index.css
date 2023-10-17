@@ -131,16 +131,16 @@ a {
 
 :root {
   --bg: white;
-  --footerBg:#2a2a2a;
-  --footerColor:#fffefe;
+  --footerBg: #2a2a2a;
+  --footerColor: #fffefe;
   --textColor: black;
   --softTextColor: #626262;
-  --bannerText:#f0f0f0 ;
+  --bannerText: #f0f0f0;
   --softBg: #f0f0f0;
-  --introTextColor:#fff;
-  --introSoftTextColor:#EEEEEE;
-  --btnBg: #61677A;
-  --btnColor: #EEEEEE;
+  --introTextColor: #fff;
+  --introSoftTextColor: #eeeeee;
+  --btnBg: #61677a;
+  --btnColor: #eeeeee;
   --card_width: 250px;
   --row_increment: 10px;
   --card_border_radius: 16px;
@@ -149,6 +149,9 @@ a {
   --card_large: 45;
 }
 
+html {
+  height: 100%;
+}
 
 body::-webkit-scrollbar {
   width: 0.4em;
@@ -170,16 +173,17 @@ body {
   background-color: var(--bg);
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: 100%;
   position: relative;
 }
 
-
-
+#root {
+display: contents;
+}
 
 /* /// */
 
-.card{
+.card {
   padding: 10px;
   border-radius: 5px;
   position: absolute;
@@ -193,7 +197,6 @@ body {
   justify-content: center;
   align-items: center;
   transition: all 0.3s linear;
-
 }
 
 .card.activeSlide {
@@ -207,8 +210,8 @@ body {
   transform: translateX(100%);
 }
 
-@media screen and (min-width:700px) {
-  .card{
+@media screen and (min-width: 700px) {
+  .card {
     width: 500px;
     margin: 0 auto;
   }

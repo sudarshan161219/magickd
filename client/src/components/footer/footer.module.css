@@ -5,10 +5,11 @@
   align-items: center;
   justify-content: center;
   background-color: var(--footerBg);
-  position: absolute;
+  /* position: absolute;
   left: 0;
   bottom: -1px;
-  right: 0;
+  right: 0; */
+  margin-top: auto;
 }
 .footerTitle {
   font-size: 0.75rem;

@@ -12,7 +12,7 @@ import { Toaster } from "react-hot-toast"
 
 const App = () => {
   return (
-    <div>
+    <>
       <Navbar />
       <Toaster
         position="top-center"
@@ -28,7 +28,7 @@ const App = () => {
         <Route path="/register" element={<Register />} />
       </Routes>
       <Footer />
-    </div>
+    </>
   )
 }
 
