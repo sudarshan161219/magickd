@@ -1,5 +1,6 @@
 import {
     TOGGLE_MENU,
+    TOGGLE_PROFILE_MENU,
     TOGGLE_SEARCH,
     REGISTER_USER_BEGIN,
     REGISTER_USER_SUCCESS,
@@ -22,6 +23,14 @@ const reducer = (state, action) => {
         }
     }
 
+
+    if (action.type === TOGGLE_PROFILE_MENU) {
+        return {
+            ...state,
+            toggleProfileMenu: !state.toggleProfileMenu
+        }
+    }
+
     if (action.type === TOGGLE_SEARCH) {
         return {
             ...state,
@@ -32,13 +41,13 @@ const reducer = (state, action) => {
 
 
     if (action.type === REGISTER_USER_BEGIN) {
-        return { ...state,  isRLLoadin: true };
+        return { ...state, isRLLoadin: true };
     }
 
     if (action.type === REGISTER_USER_SUCCESS) {
         return {
             ...state,
-             isRLLoadin: false,
+            isRLLoadin: false,
             user: action.payload.user,
         };
     }
@@ -46,19 +55,19 @@ const reducer = (state, action) => {
     if (action.type === REGISTER_USER_ERROR) {
         return {
             ...state,
-             isRLLoadin: false,
+            isRLLoadin: false,
             msg: action.payload.msg
         };
     }
 
     if (action.type === LOGIN_USER_BEGIN) {
-        return { ...state,  isRLLoadin: true };
+        return { ...state, isRLLoadin: true };
     }
 
     if (action.type === LOGIN_USER_SUCCESS) {
         return {
             ...state,
-             isRLLoadin: false,
+            isRLLoadin: false,
             user: action.payload.user,
         };
     }
@@ -66,7 +75,7 @@ const reducer = (state, action) => {
     if (action.type === LOGIN_USER_ERROR) {
         return {
             ...state,
-             isRLLoadin: false,
+            isRLLoadin: false,
         };
     }
 

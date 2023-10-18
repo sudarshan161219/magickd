@@ -1,10 +1,11 @@
-import { useContext, useReducer, createContext } from "react";
+import { useContext, useReducer, createContext,  } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import reducer from "./reducer"
 
 import {
     TOGGLE_MENU,
+    TOGGLE_PROFILE_MENU,
     TOGGLE_SEARCH,
     REGISTER_USER_BEGIN,
     REGISTER_USER_SUCCESS,
@@ -21,6 +22,7 @@ const initialState = {
     isRLLoading: false,
     userLoading: false,
     toggleMenu: false,
+    toggleProfileMenu: false,
     toggleSearch: false,
     user: [],
     msg: ''
@@ -60,6 +62,12 @@ const ContextProvider = ({ children }) => {
     const toggleMenuFn = () => {
         dispatch({ type: TOGGLE_MENU })
     }
+
+
+    const toggleProfileMenuFn = () => {
+        dispatch({ type: TOGGLE_PROFILE_MENU })
+    }
+
 
     const toggleSearchFn = () => {
         dispatch({ type: TOGGLE_SEARCH })
@@ -121,7 +129,7 @@ const ContextProvider = ({ children }) => {
     };
 
     return (
-        <Context.Provider value={{ ...state, toggleMenuFn, toggleSearchFn, loginFn, registerFn, logoutUser }} >
+        <Context.Provider value={{ ...state, toggleMenuFn, toggleSearchFn, loginFn, registerFn, logoutUser,  toggleProfileMenuFn  }} >
             {children}
         </Context.Provider>
     )

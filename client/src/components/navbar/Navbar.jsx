@@ -4,11 +4,10 @@ import { useEffect, useState } from "react"
 import logo from "../../assets/logo.png"
 import { useAppContext } from "../../context/Context";
 import { BiMenu } from "react-icons/bi"
-import SidebarNav from "../sideBarNav/SidebarNav"
-
+import { Ripple } from "../../components/export"
 
 const Navbar = () => {
-  const { toggleMenu, toggleMenuFn } = useAppContext()
+  const { toggleMenu, toggleProfileMenu ,toggleMenuFn, toggleProfileMenuFn } = useAppContext()
   const [scrollPosition, setScrollPosition] = useState(0);
   const location = useLocation()
 
@@ -20,7 +19,7 @@ const Navbar = () => {
   }
 
   useEffect(() => {
-    if (toggleMenu) {
+    if (toggleMenu ||  toggleProfileMenu) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "unset";
@@ -29,7 +28,7 @@ const Navbar = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [toggleMenu]);
+  }, [toggleMenu,  toggleProfileMenu]);
 
   if (location.pathname === "/register") {
     return null
@@ -42,7 +41,7 @@ const Navbar = () => {
       }>
 
       <div className={styles.LogoContainer}>
-        <BiMenu onClick={toggleMenuFn} className={styles.icon} />
+   <Ripple> <BiMenu onClick={toggleMenuFn} className={styles.icon} /></Ripple>  
         <Link to="/" ><img className={styles.logo} src={logo} alt="logo" /></Link>
       </div>
 
@@ -55,15 +54,12 @@ const Navbar = () => {
           <li className={styles.li}> <Link to="/AboutUs" className={styles.link}>About Us</Link> </li>
           <li className={styles.li}> <Link to="/ContactUs" className={styles.link}>Contact Us</Link> </li>
         </ul>
-        {auth ? <Link className={styles.plink} to="/user-profile" ><img className={styles.Plogo} src="https://api.dicebear.com/6.x/adventurer/svg?seed=Cuddles" alt="logo" /></Link> :
+        {auth ? <div onClick={toggleProfileMenuFn} className={styles.plink} to="/user-profile" ><img className={styles.Plogo} src="https://api.dicebear.com/6.x/adventurer/svg?seed=Cuddles" alt="user name" /></div> :
 
           <Link to="/register" className={`${styles.btn} ${styles.login}`}>Log in</Link>
         }
-
-        {/* <button className={`${styles.btn} ${styles.signin}`}>Sign in</button> */}
       </div>
-      <SidebarNav />
-      <div className={`${toggleMenu ? `${styles.show} ${styles.bg}` : `${styles.bg}`}   `} ></div>
+
     </nav>
   )
 }

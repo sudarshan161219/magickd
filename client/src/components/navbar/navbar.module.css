@@ -104,6 +104,7 @@
   outline: #00000054 1px solid;
   overflow: hidden;
   border-radius: 100%;
+  cursor: pointer;
 }
 
 .Plogo {
