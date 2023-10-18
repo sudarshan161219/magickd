@@ -8,6 +8,9 @@ import {
 } from "./components/export"
 import Main from "./main/Main";
 import Explore from "./Explore/Explore";
+import ProtectedRoutes from "./protectedRoute/ProtectedRoutes";
+import SharedLayout from "./profile/SharedLayout"
+import Profile from "./profile/Profile"
 import { Toaster } from "react-hot-toast"
 
 const App = () => {
@@ -26,6 +29,16 @@ const App = () => {
         <Route path="/Portfolio" element={<Portfolio />} />
         <Route path="/ContactUs" element={<Contact />} />
         <Route path="/register" element={<Register />} />
+
+        {/* Protected Routes */}
+        <Route
+          path="/user-profile"
+          element={<ProtectedRoutes>{<SharedLayout />}</ProtectedRoutes>}
+        >
+          <Route path="/user-profile" element={<Profile />} />
+        </Route>
+
+
       </Routes>
       <Footer />
     </>

@@ -31,7 +31,7 @@
   padding: 0.9rem;
   justify-content: space-between;
   transition: ease-in-out 0.3s;
-  background-color: var(  --softBg);
+  background-color: var(--softBg);
   /* background: rgb(97 97 97 / 28%);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(20.2px);
@@ -94,8 +94,20 @@
   display: none;
 }
 
-.link{
+.link {
   color: var(--textColor);
+}
+
+.plink {
+  width: 45px;
+  height: 45px;
+  outline: #00000054 1px solid;
+  overflow: hidden;
+  border-radius: 100%;
+}
+
+.Plogo {
+  width: 100%;
 }
 
 @media screen and (min-width: 750px) {

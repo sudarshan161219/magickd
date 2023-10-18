@@ -12,6 +12,8 @@ const Navbar = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
   const location = useLocation()
 
+  const auth = true
+
   const handleScroll = () => {
     const position = window.scrollY
     setScrollPosition(position)
@@ -53,7 +55,11 @@ const Navbar = () => {
           <li className={styles.li}> <Link to="/AboutUs" className={styles.link}>About Us</Link> </li>
           <li className={styles.li}> <Link to="/ContactUs" className={styles.link}>Contact Us</Link> </li>
         </ul>
-        <Link to="/register" className={`${styles.btn} ${styles.login}`}>Log in</Link>
+        {auth ? <Link className={styles.plink} to="/user-profile" ><img className={styles.Plogo} src="https://api.dicebear.com/6.x/adventurer/svg?seed=Cuddles" alt="logo" /></Link> :
+
+          <Link to="/register" className={`${styles.btn} ${styles.login}`}>Log in</Link>
+        }
+
         {/* <button className={`${styles.btn} ${styles.signin}`}>Sign in</button> */}
       </div>
       <SidebarNav />
