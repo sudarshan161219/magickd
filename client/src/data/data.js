@@ -128,4 +128,16 @@ const dataArrr = [
   },
 ];
 
-export { dataArr, dataArrr, testimonials, dummyImgs };
+const userData = [
+  // {
+    // name: [
+      { n: "Name", value: "sudarshan", editable: true },
+      { n: "User Id", value: "xxxxxxxxxx", editable: false },
+      { n: "userName", value: "defaultName", editable: false },
+      { n: "Password", value: "1!2@3#4$5%6^7&8*", editable: true },
+      { n: "E-mail", value: "test1234@gmail.com", editable: true },
+    // ],
+  // },
+];
+
+export { dataArr, dataArrr, testimonials, dummyImgs, userData };

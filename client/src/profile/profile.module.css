@@ -1,3 +1,41 @@
 .container {
   padding: 10px;
 }
+
+.userInfoContainer {
+  margin: 2rem 0;
+  display: grid;
+  gap: 20px;
+}
+
+.textInfo {
+  display: grid;
+  gap: 8px;
+}
+
+.userInfo {
+  display: grid;
+  gap: 20px;
+  outline: 1px solid #00000038;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.userInfoTable {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #00000038;
+}
+
+.icon {
+  font-size: 1.3rem;
+  color: var(--textColor);
+  cursor: pointer;
+}
+
+.name {
+  font-size: 0.9rem;
+  font-weight: 600;
+}

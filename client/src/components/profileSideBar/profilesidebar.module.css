@@ -10,6 +10,7 @@
   right: 0;
   background-color: var(--bg);
   z-index: 10;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   transform: translate(100%);
   transition: ease-in-out 0.3s;
 }

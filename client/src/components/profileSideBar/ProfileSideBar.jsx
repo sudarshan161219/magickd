@@ -30,10 +30,10 @@ const ProfileSideBar = () => {
 
                 <div className={styles.menu} >
                     <ul className={styles.ul}>
-                        <li className={styles.li}> <Link className={styles.link} to="/" > <MdManageAccounts className={styles.icon} /> Account details</Link> </li>
-                        <li className={styles.li}> <Link className={styles.link} to="/" > <AiOutlineHeart className={styles.icon} /> Saved</Link> </li>
-                        <li className={styles.li}> <Link className={styles.link} to="/" >  <AiOutlineDownload className={styles.icon} />  Downloads</Link> </li>
-                        <li className={styles.li}> <Link className={styles.link} to="/" > <AiOutlineLogout className={styles.icon} /> Log out</Link>
+                        <li className={styles.li}> <Link onClick={toggleProfileMenuFn} className={styles.link} to="/user-profile" > <MdManageAccounts className={styles.icon} /> Account details</Link> </li>
+                        <li className={styles.li}> <Link onClick={toggleProfileMenuFn} className={styles.link} to="/" > <AiOutlineHeart className={styles.icon} /> Saved</Link> </li>
+                        <li className={styles.li}> <Link onClick={toggleProfileMenuFn} className={styles.link} to="/" >  <AiOutlineDownload className={styles.icon} />  Downloads</Link> </li>
+                        <li className={styles.li}> <Link onClick={toggleProfileMenuFn} className={styles.link} to="/" > <AiOutlineLogout className={styles.icon} /> Log out</Link>
                         </li>
                     </ul>
                 </div>

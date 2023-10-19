@@ -39,7 +39,7 @@ const App = () => {
           path="/user-profile"
           element={<ProtectedRoutes>{<SharedLayout />}</ProtectedRoutes>}
         >
-          <Route path="/user-profile" element={<Profile />} />
+          <Route index element={<Profile />} />
         </Route>
 
 
