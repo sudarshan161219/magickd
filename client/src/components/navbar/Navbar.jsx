@@ -4,10 +4,10 @@ import { useEffect, useState } from "react"
 import logo from "../../assets/logo.png"
 import { useAppContext } from "../../context/Context";
 import { BiMenu } from "react-icons/bi"
-import { Ripple } from "../../components/export"
+
 
 const Navbar = () => {
-  const { toggleMenu, toggleProfileMenu ,toggleMenuFn, toggleProfileMenuFn } = useAppContext()
+  const { toggleMenu, toggleProfileMenu, toggleMenuFn, toggleProfileMenuFn } = useAppContext()
   const [scrollPosition, setScrollPosition] = useState(0);
   const location = useLocation()
 
@@ -19,7 +19,7 @@ const Navbar = () => {
   }
 
   useEffect(() => {
-    if (toggleMenu ||  toggleProfileMenu) {
+    if (toggleMenu || toggleProfileMenu) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "unset";
@@ -28,7 +28,7 @@ const Navbar = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [toggleMenu,  toggleProfileMenu]);
+  }, [toggleMenu, toggleProfileMenu]);
 
   if (location.pathname === "/register") {
     return null
@@ -41,7 +41,7 @@ const Navbar = () => {
       }>
 
       <div className={styles.LogoContainer}>
-   <Ripple> <BiMenu onClick={toggleMenuFn} className={styles.icon} /></Ripple>  
+        <BiMenu onClick={toggleMenuFn} className={styles.icon} />
         <Link to="/" ><img className={styles.logo} src={logo} alt="logo" /></Link>
       </div>
 
@@ -58,8 +58,8 @@ const Navbar = () => {
 
           <Link to="/register" className={`${styles.btn} ${styles.login}`}>Log in</Link>
         }
-      </div>
 
+      </div>
     </nav>
   )
 }

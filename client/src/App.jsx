@@ -4,7 +4,9 @@ import {
   About,
   Contact,
   Portfolio,
-  Register
+  Register,
+  SidebarNav,
+  ProfileSideBar
 } from "./components/export"
 import Main from "./main/Main";
 import Explore from "./Explore/Explore";
@@ -17,6 +19,8 @@ const App = () => {
   return (
     <>
       <Navbar />
+      <SidebarNav />
+      <ProfileSideBar />
       <Toaster
         position="top-center"
         reverseOrder={false}

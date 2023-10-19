@@ -28,7 +28,7 @@
   position: sticky;
   top: 0;
   display: flex;
-  padding: 0.9rem;
+  padding: 0.5rem;
   justify-content: space-between;
   transition: ease-in-out 0.3s;
   background-color: var(--softBg);

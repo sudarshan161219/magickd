@@ -1,6 +1,6 @@
 import styles from "./sidebarnav.module.css"
 import logo from "../../assets/logo.png"
-import { AiOutlineClose} from "react-icons/ai"
+import { AiOutlineClose } from "react-icons/ai"
 import { Ripple } from "../../components/export"
 import { useAppContext } from "../../context/Context";
 
@@ -15,8 +15,10 @@ const SidebarNav = () => {
             <div className={`${toggleMenu ? `${styles.showsidebar}  ${styles.sidebar}` : `${styles.sidebar}`}`}>
                 <div className={styles.nav} >
                     <div className={styles.closeContainer} >
+                        <Ripple ><AiOutlineClose onClick={toggleMenuFn} className={styles.icon} /></Ripple>
                         <img className={styles.logo} src={logo} alt="magickd" />
-                        <Ripple ><AiOutlineClose onClick={toggleMenuFn} className={styles.icon} /></Ripple></div>
+
+                    </div>
                 </div>
 
                 <div className={styles.menu} >

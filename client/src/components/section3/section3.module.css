@@ -1,12 +1,12 @@
 .container {
-  padding: 10px;
-  height: 200px;
+  padding: 20px 10px;
+  /* height: 200px; */
   background-color: var(--softBg);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-
+  gap: 20px;
   margin: 5rem 0;
 }
 
@@ -26,12 +26,13 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
+  gap: 20px;
 }
 
 .img {
-  width: 50px;
+  width: 30px;
 }
 
 .infoContainer {
@@ -63,6 +64,16 @@
   background-color: transparent;
 }
 
+@media screen and (min-width: 500px) {
+  .imgContainer {
+    justify-content: space-between;
+    gap: 0px;
+  }
+  .img {
+    width: 50px;
+  }
+}
+
 @media screen and (min-width: 730px) {
   .container {
     height: 300px;
@@ -76,6 +87,6 @@
   }
 
   .img {
-    width: 75px;
+    width: 65px;
   }
 }
