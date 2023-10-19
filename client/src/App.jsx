@@ -11,8 +11,7 @@ import {
 import Main from "./main/Main";
 import Explore from "./Explore/Explore";
 import ProtectedRoutes from "./protectedRoute/ProtectedRoutes";
-import SharedLayout from "./profile/SharedLayout"
-import Profile from "./profile/Profile"
+import { Profile, SharedLayout, Downloads, Saved }  from "./profile/export"
 import { Toaster } from "react-hot-toast"
 
 const App = () => {
@@ -40,6 +39,8 @@ const App = () => {
           element={<ProtectedRoutes>{<SharedLayout />}</ProtectedRoutes>}
         >
           <Route index element={<Profile />} />
+          <Route path="downloads" element={<Downloads />} />
+          <Route path="saved" element={<Saved />} />
         </Route>
 
 
