@@ -1,0 +1,62 @@
+.container {
+  padding: 10px;
+}
+
+.userInfoContainer {
+  margin: 2rem 0;
+  display: grid;
+  gap: 20px;
+}
+
+.table {
+  display: grid;
+  /* gap: 15px; */
+  /* padding: 10px; */
+}
+
+.liText {
+  font-weight: bold;
+  padding: 0.3rem 0.3rem;
+  text-align: left;
+  flex: 1;
+  font-size: 0.88rem;
+  border-right: 1px solid black;
+}
+
+.ul {
+  display: flex;
+  outline: 1px solid black;
+  align-items: center;
+}
+
+.li {
+  padding: 10px 0.3rem;
+  text-align: left;
+  flex: 1;
+  font-size: 0.9rem;
+  border-right: 1px solid black;
+}
+.ulTable {
+  display: flex;
+  outline: 1px solid black;
+  align-items: center;
+}
+
+.msg {
+  margin-top: 5rem;
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  gap: 13px;
+}
+
+.msgHeading {
+  font-size: 2rem;
+  text-align: center;
+  color: var(--softTextColor);
+}
+
+.icon {
+  font-size: 2rem;
+  color: var(--softTextColor);
+}

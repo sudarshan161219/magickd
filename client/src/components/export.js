@@ -13,6 +13,8 @@ import Section4 from "./section4/Section4.jsx";
 import Card from "./cards/Card";
 import ProfileSideBar from "./profileSideBar/ProfileSideBar";
 import Ripple from "./ripple/Ripples.jsx";
+import Profile_1 from "./profile_1/Profile_1";
+import Profile_2 from "./profile_2/Profile_2";
 
 export {
   Navbar,
@@ -30,4 +32,6 @@ export {
   Card,
   ProfileSideBar,
   Ripple,
+  Profile_1,
+  Profile_2,
 };

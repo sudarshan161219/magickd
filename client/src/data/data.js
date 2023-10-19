@@ -129,15 +129,36 @@ const dataArrr = [
 ];
 
 const userData = [
-  // {
-    // name: [
-      { n: "Name", value: "sudarshan", editable: true },
-      { n: "User Id", value: "xxxxxxxxxx", editable: false },
-      { n: "userName", value: "defaultName", editable: false },
-      { n: "Password", value: "1!2@3#4$5%6^7&8*", editable: true },
-      { n: "E-mail", value: "test1234@gmail.com", editable: true },
-    // ],
-  // },
+  { n: "Name", value: "sudarshan", editable: true },
+  { n: "User Id", value: "xxxxxxxxxx", editable: false },
+  { n: "userName", value: "defaultName", editable: false },
+  { n: "Password", value: "1!2@3#4$5%6^7&8*", editable: true },
+  { n: "E-mail", value: "test1234@gmail.com", editable: true },
 ];
 
-export { dataArr, dataArrr, testimonials, dummyImgs, userData };
+const userPurchasehistory = [
+  { n: "xyz_product", date: "dd/mm/yyyy", total: 100, PaymentType: "paypal" },
+  {
+    n: "xyz_product",
+    date: "dd/mm/yyyy",
+    total: 100,
+    PaymentType: "net banking",
+  },
+  { n: "xyz_product", date: "dd/mm/yyyy", total: 100, PaymentType: "upi" },
+  { n: "xyz_product", date: "dd/mm/yyyy", total: 100, PaymentType: "paypal" },
+  {
+    n: "xyz_product",
+    date: "dd/mm/yyyy",
+    total: 100,
+    PaymentType: "net banking",
+  },
+];
+
+export {
+  dataArr,
+  dataArrr,
+  testimonials,
+  dummyImgs,
+  userData,
+  userPurchasehistory,
+};

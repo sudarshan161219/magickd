@@ -1,0 +1,81 @@
+
+.userInfoContainer {
+    margin: 2rem 0;
+    display: grid;
+    gap: 20px;
+  }
+  
+  .textInfo {
+    display: grid;
+    gap: 8px;
+  }
+  
+  .userInfo {
+    display: grid;
+    gap: 20px;
+    outline: 1px solid #00000038;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .userInfoTable {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #00000038;
+  }
+  
+  .icon {
+    font-size: 1.3rem;
+    color: var(--textColor);
+    cursor: pointer;
+  }
+  
+  .name {
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+  
+  .span {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--softTextColor);
+  }
+  
+  .input {
+    border: none;
+    outline: none;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--softTextColor);
+  }
+  
+  .btnContainer {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .btn {
+    padding: 0.2rem 0.5rem;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-family: inherit;
+    font-weight: 500;
+  }
+  
+  .saveBtn {
+    background-color: #45ff74;
+    color: var(--textColor);
+  }
+  
+  .cancleBtn {
+    background-color: transparent;
+    outline: #ff4a4a 1px solid;
+    color: var(--textColor);
+  }
+  
