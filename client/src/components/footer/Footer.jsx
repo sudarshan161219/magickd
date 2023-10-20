@@ -32,7 +32,7 @@ const Footer = () => {
   ];
 
 
-  if (location.pathname === "/register") {
+  if (location.pathname === "/admin/9902576816064162248089752424640/36211454745473623543649735436497/auth" || location.pathname === "/admin/9902576816064162248089752424640/43404787354362343955343952478723/panel") {
     return null
   }
 
