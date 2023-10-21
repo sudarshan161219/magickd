@@ -6,7 +6,10 @@ import {
   Portfolio,
   Register,
   SidebarNav,
-  ProfileSideBar
+  ProfileSideBar,
+  AddItem,
+  Users,
+  MyItems,
 } from "./components/export"
 import Main from "./main/Main";
 import Explore from "./Explore/Explore";
@@ -48,11 +51,15 @@ const App = () => {
 
         {/* Admin Protected Route */}
         <Route
-          path="admin/9902576816064162248089752424640"
+          path="admin/99025773623568154745460635436441622443649708975362114242464"
           element={<ProtectedAdminRoute>{< AdminSharedLayout />}</ProtectedAdminRoute>}
         >
-          <Route path="36211454745473623543649735436497/auth" element={<Auth />} />
-          <Route path="43404787354362343955343952478723/panel" element={<Panel />} />
+          <Route index element={<Panel />} />
+          <Route path="auth" element={<Auth />} />
+          <Route path="add_item" element={<AddItem />} />
+          <Route path="users" element={<Users />} />
+          <Route path="my_Item" element={<MyItems />} />
+
         </Route>
 
       </Routes>

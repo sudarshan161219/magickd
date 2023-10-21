@@ -1,6 +1,7 @@
 import {
     TOGGLE_MENU,
     TOGGLE_PROFILE_MENU,
+    TOGGLE_ADMIN_MENU,
     TOGGLE_SEARCH,
     REGISTER_USER_BEGIN,
     REGISTER_USER_SUCCESS,
@@ -28,6 +29,13 @@ const reducer = (state, action) => {
         return {
             ...state,
             toggleProfileMenu: !state.toggleProfileMenu
+        }
+    }
+
+    if (action.type === TOGGLE_ADMIN_MENU) {
+        return {
+            ...state,
+            toggleAdminMenu: !state.toggleAdminMenu
         }
     }
 

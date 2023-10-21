@@ -1,5 +1,5 @@
 import AdminSharedLayout from "./AdminSharedLayout";
-import Auth from "./adminComponents/auth/Auth";
-import Panel from "./adminComponents/panel/Panel";
+import Auth from "./admin/auth/Auth";
+import Panel from "./admin/panel/Panel";
 
 export { AdminSharedLayout,  Auth, Panel };

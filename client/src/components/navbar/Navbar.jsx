@@ -30,7 +30,13 @@ const Navbar = () => {
     };
   }, [toggleMenu, toggleProfileMenu]);
 
-  if (location.pathname === "/admin/9902576816064162248089752424640/36211454745473623543649735436497/auth" || location.pathname === "/admin/9902576816064162248089752424640/43404787354362343955343952478723/panel") {
+  const admin = location.pathname === "/admin/99025773623568154745460635436441622443649708975362114242464"
+  const admin_auth = location.pathname === "/admin/99025773623568154745460635436441622443649708975362114242464/auth"
+  const admin_add_item = location.pathname === "/admin/99025773623568154745460635436441622443649708975362114242464/add_item"
+  const admin_my_item = location.pathname === "/admin/99025773623568154745460635436441622443649708975362114242464/my_item"
+  const admin_users = location.pathname === "/admin/99025773623568154745460635436441622443649708975362114242464/users"
+
+  if (admin || admin_auth || admin_add_item || admin_my_item || admin_users) {
     return null
   }
 
