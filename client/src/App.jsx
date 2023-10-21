@@ -7,16 +7,18 @@ import {
   Register,
   SidebarNav,
   ProfileSideBar,
-  AddItem,
-  Users,
-  MyItems,
+
 } from "./components/export"
 import Main from "./main/Main";
 import Explore from "./Explore/Explore";
 import ProtectedRoutes from "./protectedRoute/ProtectedRoutes";
 import ProtectedAdminRoute from "./protectedRoute/ProtectedAdminRoute";
 import { Profile, SharedLayout, Downloads, Saved } from "./profile/export"
-import { AdminSharedLayout, Auth, Panel } from "./adminpanel/export"
+import {
+  AdminSharedLayout, Auth, Panel, AddItem,
+  Users,
+  MyItems,
+} from "./adminpanel/export"
 import { Toaster } from "react-hot-toast"
 
 const App = () => {
@@ -25,6 +27,7 @@ const App = () => {
       <Navbar />
       <SidebarNav />
       <ProfileSideBar />
+      <Register />
       <Toaster
         position="top-center"
         reverseOrder={false}
@@ -36,7 +39,7 @@ const App = () => {
         <Route path="/AboutUs" element={<About />} />
         <Route path="/Portfolio" element={<Portfolio />} />
         <Route path="/ContactUs" element={<Contact />} />
-        <Route path="/register" element={<Register />} />
+        {/* <Route path="/register" element={<Register />} /> */}
 
         {/* user Protected Routes */}
         <Route

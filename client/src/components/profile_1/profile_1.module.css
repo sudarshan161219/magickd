@@ -63,19 +63,21 @@
     border: none;
     outline: none;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-family: inherit;
     font-weight: 500;
+    border-radius: 2px;
   }
   
   .saveBtn {
-    background-color: #45ff74;
-    color: var(--textColor);
+    background-color: #2e7d32;
+    outline: #2e7d32 1px solid;
+    color: var(--bg);
   }
   
   .cancleBtn {
     background-color: transparent;
-    outline: #ff4a4a 1px solid;
-    color: var(--textColor);
+    outline: #d32f2f 1px solid;
+    color: #d32f2f;
   }
   

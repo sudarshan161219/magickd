@@ -17,9 +17,6 @@ import Profile_1 from "./profile_1/Profile_1";
 import Profile_2 from "./profile_2/Profile_2";
 import AdminSidebar from "./adminSidebar/AdminSidebar";
 
-import AddItem from "./adminComponents/addItem/AddItem";
-import Users from "./adminComponents/users/Users";
-import MyItems from "./adminComponents//myItems/MyItems";
 
 export {
   Navbar,
@@ -40,7 +37,5 @@ export {
   Profile_1,
   Profile_2,
   AdminSidebar,
-  AddItem,
-  Users,
-  MyItems,
+
 };

@@ -102,10 +102,20 @@
   justify-content: center;
 }
 
-@media screen and (min-width: 1024px) {
-  .cards {
-    display: grid;
-    grid-gap: 10px;
-    grid-template-columns: repeat(auto-fill, minmax(330px, 2fr));
+.ImageList{
+  column-count: 2;
+}
+
+@media screen and (min-width:700px) {
+  .ImageList{
+    column-count: 3;
   }
+}
+
+@media screen and (min-width: 1024px) {
+
+  .ImageList{
+    column-count: 4;
+  }
+
 }

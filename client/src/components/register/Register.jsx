@@ -38,13 +38,9 @@ const Register = () => {
 
     return (
         <div className={styles.main}>
-
-
             <div className={styles.container}>
-                {/* <div className={styles.imgContainer} >
-                <Image src="/loginPage.jpg" alt="signin/signup" width="64" height="64" />
-            </div> */}
                 <div className={styles.formContainer} >
+                    <div>close</div>
                     <h1 className={styles.title}> {isMember ? "Welcome Back!" : "Create Account"}</h1>
                     <div className={styles.authGoogle_faceBook} >
                         <button className={`${styles.btn} ${styles.socialBtn}`}>
@@ -95,6 +91,7 @@ const Register = () => {
 
             </div>
         </div>
+
     )
 }
 
