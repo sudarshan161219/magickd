@@ -32,11 +32,6 @@
   justify-content: space-between;
   transition: ease-in-out 0.3s;
   background-color: var(--softBg);
-  /* background: rgb(97 97 97 / 28%);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(20.2px);
-  -webkit-backdrop-filter: blur(6.2px);
-  border: 1px solid rgba(255, 255, 255, 0.1); */
   z-index: 5;
 }
 
@@ -46,12 +41,14 @@
   align-items: center;
 }
 
-.btn {
+.btn,
+.login {
   font-family: inherit;
   text-align: center;
-  width: 50px;
+  /* width: 50px; */
   font-size: 15px;
   text-transform: capitalize;
+  background-color: transparent;
   color: var(--textColor);
   border: 1px solid #00000054;
   padding: 5px 10px;
@@ -61,7 +58,8 @@
   transition: all 0.3s;
 }
 
-.btn:hover {
+.btn:hover,
+.login:hover {
   cursor: pointer;
   background-color: var(--textColor);
   color: var(--bg);
@@ -99,8 +97,8 @@
 }
 
 .plink {
-  width: 45px;
-  height: 45px;
+  width: 35px;
+  height: 35px;
   outline: #00000054 1px solid;
   overflow: hidden;
   border-radius: 100%;

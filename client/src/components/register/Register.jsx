@@ -2,19 +2,22 @@ import { useState } from 'react'
 import styles from "./register.module.css"
 import { FcGoogle } from "react-icons/fc"
 import { BsFacebook } from "react-icons/bs"
-import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
+import { AiOutlineEye, AiOutlineEyeInvisible, AiOutlineCloseCircle } from "react-icons/ai"
 import { useAppContext } from "../../context/Context"
 
+import { Ripple } from '../export'
+import logo from "../../assets/logo.png"
 
 const Register = () => {
-    const { loginFn, registerFn } = useAppContext()
+    const { loginFn, registerFn, toggleAuthModal, toggleAuthModalFn, user } = useAppContext()
     const [show, setShow] = useState(false)
     const [isMember, setIsMember] = useState(false)
+
+
 
     const handleShowPassword = () => {
         setShow(!show)
     }
-
 
 
     const handleSubmit = (e) => {
@@ -36,43 +39,46 @@ const Register = () => {
         setIsMember(!isMember)
     }
 
+    const handleGoogle = () => {
+        window.open("http://localhost:5000/api/auth/google", "_self")
+    }
+
+
+
+
     return (
-        <div className={styles.main}>
+        <div className={`${toggleAuthModal ? `${styles.show} ${styles.main}` : `${styles.main}`}`}>
             <div className={styles.container}>
                 <div className={styles.formContainer} >
-                    <div>close</div>
+                    <div className={styles.iconContainer}>
+                        <img src={logo} className={styles.logo} alt="magickd" />
+                        <Ripple ><AiOutlineCloseCircle onClick={ toggleAuthModalFn} className={styles.icon} /></Ripple> </div>
                     <h1 className={styles.title}> {isMember ? "Welcome Back!" : "Create Account"}</h1>
                     <div className={styles.authGoogle_faceBook} >
-                        <button className={`${styles.btn} ${styles.socialBtn}`}>
+                        <button onClick={handleGoogle} className={`${styles.btn} ${styles.socialBtn}`}>
                             <FcGoogle className={styles.socialIcon} />
-                            {`Sign ${isMember ? "in" : "up"} with Google`}
+                            {`Continue with Google`}
 
                         </button>
                         <button className={`${styles.btn} ${styles.socialBtn}`}>
                             <BsFacebook className={`${styles.socialIcon}  ${styles.socialFacebookIcon}`} />
-                            {`Sign ${isMember ? "in" : "up"} with Facebook`}
+                            {`Continue with Facebook`}
                         </button>
                     </div>
 
 
                     <span className={styles.span}>- OR - </span>
-
                     <form onSubmit={handleSubmit} className={styles.form}>
-
                         {isMember ? null : <div className={styles.group}>
                             <input name='name' className={styles.input} type="text" required />
                             <span className={styles.bar}></span>
                             <label className={styles.label}>Name</label>
                         </div>}
-
-
                         <div className={styles.group}>
                             <input name='email' className={styles.input} type="text" required />
                             <span className={styles.bar}></span>
                             <label className={styles.label}>Email Address</label>
                         </div>
-
-
                         <div className={`${styles.group} ${styles.passwordContainer}`}>
                             <input name='password' className={styles.input} type={show ? "text" : "password"} required />
                             <span className={styles.bar}></span>

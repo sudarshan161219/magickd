@@ -8,8 +8,12 @@ import { useAppContext } from "../../context/Context"
 
 const ProfileSideBar = () => {
 
-    const { toggleProfileMenu, toggleProfileMenuFn } = useAppContext()
+    const { toggleProfileMenu, toggleProfileMenuFn, user, logoutUser } = useAppContext()
+    // const { name, userImg } = user
 
+    if (!user) {
+        return null
+    }
     return (
         <div className={styles.container}>
             <div className={`${toggleProfileMenu ? `${styles.showBg}  ${styles.bg}` : `${styles.bg}`}`}></div>
@@ -20,9 +24,9 @@ const ProfileSideBar = () => {
 
 
                     <div className={styles.profileInfoContainer} >
-                        <img className={styles.userImg} src="https://api.dicebear.com/6.x/adventurer/svg?seed=Cuddles" alt="user name" />
+                        <img className={styles.userImg} src={user.userImg} alt={name} />
                         <div className={styles.userIno} >
-                            <h2 className={styles.title}>Sudarshan</h2>
+                            <h2 className={styles.title}>{user.name}</h2>
                             <p className={styles.desc}>user ID: xxxxxxxxxx</p>
                         </div>
                     </div>
@@ -33,8 +37,20 @@ const ProfileSideBar = () => {
                         <li className={styles.li}> <Link onClick={toggleProfileMenuFn} className={styles.link} to="/user-profile" > <MdManageAccounts className={styles.icon} /> Account details</Link> </li>
                         <li className={styles.li}> <Link onClick={toggleProfileMenuFn} className={styles.link} to="/user-profile/saved" > <AiOutlineHeart className={styles.icon} /> Saved</Link> </li>
                         <li className={styles.li}> <Link onClick={toggleProfileMenuFn} className={styles.link} to="/user-profile/downloads" >  <AiOutlineDownload className={styles.icon} />  Downloads</Link> </li>
-                        <li className={styles.li}> <Link onClick={toggleProfileMenuFn} className={styles.link} to="/" > <AiOutlineLogout className={styles.icon} /> Log out</Link>
-                        </li>
+                        {
+                            user.method === 'LocalAuth' ?
+
+                                <li className={styles.li}>
+                                    <Link onClick={toggleProfileMenuFn} className={styles.link} to="/" >
+                                        <AiOutlineLogout className={styles.icon} /> Log out</Link>
+                                </li>
+                                :
+
+                                <li className={styles.li}>
+                                    <Link onClick={toggleProfileMenuFn} className={styles.link} to="/" >
+                                        <AiOutlineLogout className={styles.icon} /> Log out</Link>
+                                </li>
+                        }
                     </ul>
                 </div>
             </div>

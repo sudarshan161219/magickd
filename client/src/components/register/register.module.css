@@ -3,29 +3,33 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
-  z-index: 100;
+  z-index: -1;
   left: 0;
   right: 0;
   justify-content: center;
-    background: rgb(97 97 97 / 28%);
+  background: rgb(97 97 97 / 28%);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(20.2px);
   -webkit-backdrop-filter: blur(6.2px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   padding: 10px;
-  transition: ease-in 0.4s;
+  opacity: 0;
+  visibility: hidden;
+  transition: ease-in 0.3s;
 }
 
+.show {
+  opacity: 1;
+  visibility: visible;
+  z-index: 100;
+}
 
-.container{
-  padding: 10px 10px 20px 10px;
+.container {
+  padding: 0 10px 20px 10px;
   background-color: var(--bg);
   border-radius: 5px;
-  /* height: 650px; */
-  /* overflow: scroll; */
+  position: relative;
 }
-
-
 
 .imgContainer {
   display: none;
@@ -33,7 +37,7 @@
 
 .title {
   color: var(--textColor);
-  font-size: 2.5rem;
+  font-size: 2rem;
 }
 
 .formContainer {
@@ -72,7 +76,7 @@
   display: flex;
   align-items: center;
   gap: 0.2rem;
-  font-size: 1rem;
+  font-size: 0.9rem;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   width: 100%;
   cursor: pointer;
@@ -104,10 +108,10 @@
 }
 .input:focus {
   outline: none;
-} 
+}
 
 /* LABEL ======================================= */
- .label {
+.label {
   color: #999;
   font-size: 16px;
   font-weight: 500;
@@ -118,7 +122,7 @@
   transition: 0.3s ease all;
   -moz-transition: 0.3s ease all;
   -webkit-transition: 0.3s ease all;
-} 
+}
 
 /* active state */
 .input:focus ~ .label,
@@ -126,10 +130,10 @@
   top: -5px;
   font-size: 12px;
   color: var(--softTextColor);
-} 
+}
 
 /* BOTTOM BARS ================================= */
- .bar {
+.bar {
   position: relative;
   display: block;
   width: 100%;
@@ -154,7 +158,7 @@
 }
 
 /* active state */
- .input:focus ~ .bar:before,
+.input:focus ~ .bar:before,
 .input:focus ~ .bar:after {
   width: 50%;
 }
@@ -204,25 +208,53 @@
 .btn:active {
   transform: scale(0.99);
   transition: ease 0.2s;
-}  
+}
 
- @media screen and (min-width: 500px) {
-  .authGoogle_faceBook {
-    flex-direction: row;
-    gap: 1rem;
-    justify-content: center;
-  }
+.iconContainer {
+  display: flex;
+  position: sticky;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px;
+  top: 0;
+  background-color: var(--bg);
+}
 
+.icon {
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.logo {
+  height: 35px;
+}
+
+@media screen and (min-width: 500px) {
   .socialBtn {
-    width: max-content;
+    width: 100%;
     gap: 0.7rem;
   }
   .socialIcon {
     font-size: 1.1rem;
   }
 
+  .main {
+    align-items: center;
+    padding: 0;
+  }
+
   .container {
     width: 400px;
-    margin: 0 auto;
+    height: 580px;
+    overflow-y: scroll;
   }
-} 
+
+  .container::-webkit-scrollbar {
+    width: 0.2em;
+  }
+
+  .container::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  }
+
+}

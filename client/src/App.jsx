@@ -12,13 +12,7 @@ import {
 import Main from "./main/Main";
 import Explore from "./Explore/Explore";
 import ProtectedRoutes from "./protectedRoute/ProtectedRoutes";
-import ProtectedAdminRoute from "./protectedRoute/ProtectedAdminRoute";
 import { Profile, SharedLayout, Downloads, Saved } from "./profile/export"
-import {
-  AdminSharedLayout, Auth, Panel, AddItem,
-  Users,
-  MyItems,
-} from "./adminpanel/export"
 import { Toaster } from "react-hot-toast"
 
 const App = () => {
@@ -50,21 +44,7 @@ const App = () => {
           <Route path="downloads" element={<Downloads />} />
           <Route path="saved" element={<Saved />} />
         </Route>
-
-
-        {/* Admin Protected Route */}
-        <Route
-          path="admin/99025773623568154745460635436441622443649708975362114242464"
-          element={<ProtectedAdminRoute>{< AdminSharedLayout />}</ProtectedAdminRoute>}
-        >
-          <Route index element={<Panel />} />
-          <Route path="auth" element={<Auth />} />
-          <Route path="add_item" element={<AddItem />} />
-          <Route path="users" element={<Users />} />
-          <Route path="my_Item" element={<MyItems />} />
-
-        </Route>
-
+        <Route path="*" element={<h1>no page found</h1>} />
       </Routes>
       <Footer />
     </>

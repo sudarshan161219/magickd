@@ -7,11 +7,11 @@ import { BiMenu } from "react-icons/bi"
 
 
 const Navbar = () => {
-  const { toggleMenu, toggleProfileMenu, toggleMenuFn, toggleProfileMenuFn } = useAppContext()
+  const { toggleMenu, toggleProfileMenu, toggleMenuFn, toggleProfileMenuFn, toggleAuthModalFn, toggleAuthModal, user } = useAppContext()
   const [scrollPosition, setScrollPosition] = useState(0);
   const location = useLocation()
 
-  const auth = true
+
 
   const handleScroll = () => {
     const position = window.scrollY
@@ -19,7 +19,7 @@ const Navbar = () => {
   }
 
   useEffect(() => {
-    if (toggleMenu || toggleProfileMenu) {
+    if (toggleMenu || toggleProfileMenu || toggleAuthModal) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "unset";
@@ -28,7 +28,7 @@ const Navbar = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [toggleMenu, toggleProfileMenu]);
+  }, [toggleMenu, toggleProfileMenu, toggleAuthModal]);
 
   const admin = location.pathname === "/admin/99025773623568154745460635436441622443649708975362114242464"
   const admin_auth = location.pathname === "/admin/99025773623568154745460635436441622443649708975362114242464/auth"
@@ -60,9 +60,8 @@ const Navbar = () => {
           <li className={styles.li}> <Link to="/AboutUs" className={styles.link}>About Us</Link> </li>
           <li className={styles.li}> <Link to="/ContactUs" className={styles.link}>Contact Us</Link> </li>
         </ul>
-        {auth ? <div onClick={toggleProfileMenuFn} className={styles.plink} to="/user-profile" ><img className={styles.Plogo} src="https://api.dicebear.com/6.x/adventurer/svg?seed=Cuddles" alt="user name" /></div> :
-
-          <Link to="/register" className={`${styles.btn} ${styles.login}`}>Log in</Link>
+        {user && user.name ? <div onClick={toggleProfileMenuFn} className={styles.plink} to="/user-profile" ><img className={styles.Plogo} src={user.userImg} alt={user.name} /></div> :
+          <button onClick={toggleAuthModalFn} className={styles.login}>Log in</button>
         }
 
       </div>
