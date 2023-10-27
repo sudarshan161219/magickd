@@ -3,8 +3,8 @@ import dotenv from "dotenv";
 dotenv.config();
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 import QUser from "../models/QUser.mjs";
-import jwt from "jsonwebtoken";
-import { Strategy as JwtStrategy, ExtractJwt } from "passport-jwt";
+// import jwt from "jsonwebtoken";
+// import { Strategy as JwtStrategy, ExtractJwt } from "passport-jwt";
 
 passport.use(
   new GoogleStrategy(
@@ -20,11 +20,6 @@ passport.use(
         });
 
         if (userAlreadyExist) {
-          const token = jwt.sign(
-            { id: userAlreadyExist._id },
-            process.env.ACCESS_TOKEN_SECRET,
-            { expiresIn: process.env.JWT_LONG_LIFETIME } // Adjust the expiration as needed
-          );
           return done(null, userAlreadyExist);
         }
 
@@ -35,37 +30,12 @@ passport.use(
           method: "OAuth",
         });
 
-        const token = jwt.sign(
-          { id: user._id },
-          process.env.ACCESS_TOKEN_SECRET,
-          { expiresIn: process.env.JWT_LONG_LIFETIME } // Adjust the expiration as needed
-        );
-
-        return done(null, { user, token });
+        return done(null, { user });
       } catch (err) {
         return done(err);
       }
     }
   )
-);
-
-const jwtOptions = {
-  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-  secretOrKey: process.env.ACCESS_TOKEN_SECRET,
-};
-
-passport.use(
-  new JwtStrategy(jwtOptions, async (jwtPayload, done) => {
-    try {
-      const user = await QUser.findById(jwtPayload.id);
-      if (!user) {
-        return done(null, false);
-      }
-      return done(null, user);
-    } catch (err) {
-      return done(err, false);
-    }
-  })
 );
 
 passport.serializeUser(function (user, done) {

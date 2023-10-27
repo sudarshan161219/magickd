@@ -33,6 +33,9 @@ import {
     UPLOAD_ITEM_ERROR,
     LOGOUT_USER,
     QLOGOUT_USER ,
+    GET_PRODUCT_BEGIN,
+    GET_PRODUCT_SUCCESS,
+    GET_PRODUCT_ERROR,
 } from "./action"
 
 
@@ -97,13 +100,13 @@ const reducer = (state, action) => {
     }
 
     if (action.type === QAUTH_BEGIN) {
-        return { ...state, userLoading: true };
+        return { ...state,  isRLLoading: true };
     }
 
     if (action.type === QAUTH_SUCCESS) {
         return {
             ...state,
-            userLoading: false,
+            isRLLoading: false,
             user: action.payload.user,
         };
     }
@@ -111,20 +114,20 @@ const reducer = (state, action) => {
     if (action.type === QAUTH_ERROR) {
         return {
             ...state,
-            userLoading: false,
+            isRLLoading: false,
             msg: action.payload.msg
         };
     }
 
 
     if (action.type === REGISTER_USER_BEGIN) {
-        return { ...state, isRLLoadin: true };
+        return { ...state,isRLLoading: true };
     }
 
     if (action.type === REGISTER_USER_SUCCESS) {
         return {
             ...state,
-            isRLLoadin: false,
+            isRLLoading: false,
             user: action.payload.user,
             toggleAuthModal: false
         };
@@ -133,19 +136,19 @@ const reducer = (state, action) => {
     if (action.type === REGISTER_USER_ERROR) {
         return {
             ...state,
-            isRLLoadin: false,
+            isRLLoading: false,
             msg: action.payload.msg
         };
     }
 
     if (action.type === LOGIN_USER_BEGIN) {
-        return { ...state, isRLLoadin: true };
+        return { ...state,isRLLoading: true };
     }
 
     if (action.type === LOGIN_USER_SUCCESS) {
         return {
             ...state,
-            isRLLoadin: false,
+            isRLLoading: false,
             user: action.payload.user,
             toggleAuthModal: false
         };
@@ -154,7 +157,7 @@ const reducer = (state, action) => {
     if (action.type === LOGIN_USER_ERROR) {
         return {
             ...state,
-            isRLLoadin: false,
+            isRLLoading: false,
         };
     }
 
@@ -277,6 +280,26 @@ const reducer = (state, action) => {
             userLoading: false
         };
     }
+
+
+    if (action.type === GET_PRODUCT_BEGIN) {
+        return { ...state, isLoading: true };
+    }
+
+    if (action.type === GET_PRODUCT_SUCCESS) {
+        return {
+            ...state,
+            isLoading: false,
+            products: action.payload.products,
+            totalProducts: action.payload.totalProducts,
+            numofPages: action.payload.numofPages,
+        };
+    }
+
+    if (action.type === GET_PRODUCT_ERROR) {
+        return { ...state, isLoading: true, showAlert: false };
+    }
+
 
     throw new Error(`no such action : ${action.type}`);
 }

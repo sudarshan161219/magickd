@@ -11,7 +11,7 @@ const ProtectedRoute = ({ children }) => {
     return <h1>Loading...</h1>
   }
 
-  if (!user) {
+  if (user.length === 0) {
     return <Navigate to="/" />
   }
 

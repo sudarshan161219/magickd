@@ -6,6 +6,7 @@ import cookieParser from "cookie-parser";
 import "express-async-errors";
 import helmet from "helmet";
 import xss from "xss-clean";
+import cors from "cors";
 import mongoSanitize from "express-mongo-sanitize";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
@@ -13,14 +14,18 @@ import path from "path";
 import connectDB from "./Db/connectDb.mjs";
 import authRoute from "./route/authRoute.mjs";
 import qauthRoute from "./route/qauthRoute.mjs";
+import userRoute from "./route/userRoute.mjs";
+import quserRoute from "./route/quserRoute.mjs";
+import passport from "passport";
+import session from "express-session";
+import cookieSession  from 'cookie-session'
 //* middleware imports
 import notFoundMiddleware from "./middlewares/not-found.mjs";
 import errorHandlerMiddleware from "./middlewares/error-handler.mjs";
 import auth from "./middlewares/auth.mjs";
 import qauth from "./middlewares/qauth.mjs";
 import morgan from "morgan";
-import passport from "passport";
-import session from "express-session";
+
 import "./passportAuth/passportAuth.js";
 
 const PORT = process.env.PORT || 3000;
@@ -39,25 +44,26 @@ app.use(
     },
   })
 );
+
 app.use(xss());
 app.use(mongoSanitize());
 app.use(express.urlencoded({ extended: false, limit: "50mb" }));
 app.use(express.static(path.resolve(__dirname, "../client/dist")));
-app.use(cookieParser());
+
 app.use(
-  session({
-    secret: "keyboard_+cat",
-    resave: true,
-    saveUninitialized: true,
-  })
+  cookieSession({ name: "session", keys: [process.env.SESSION], maxAge: 24 * 60 * 60 * 100 })
 );
 app.use(passport.initialize());
 app.use(passport.session());
-
+app.use(passport.authenticate("session"));
+app.use(cookieParser());
 //* api routes
 app.use("/api/user", authRoute);
 app.use("/api/auth", qauthRoute);
-// app.use("/api/quser", qauth, quserRoute);
+app.use("/api/user", auth, userRoute);
+app.use("/api/auth",  quserRoute);
+
+
 
 // // //* HTTP GET Request
 app.get("*", (req, res) => {

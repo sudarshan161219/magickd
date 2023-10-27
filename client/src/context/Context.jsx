@@ -22,7 +22,11 @@ import {
     GET_CURRENT_USER_SUCCESS,
     GET_CURRENT_USER_ERROR,
     LOGOUT_USER,
-    QLOGOUT_USER
+    QLOGOUT_USER,
+    GET_PRODUCT_BEGIN,
+    GET_PRODUCT_SUCCESS,
+    GET_PRODUCT_ERROR,
+
 } from "./action"
 
 
@@ -36,6 +40,17 @@ const initialState = {
     toggleAuthModal: false,
     toggleSearch: false,
     user: [],
+
+    product: [],
+    search: '',
+    category: 'all',
+    sort: 'latest',
+    // tag: ' all',
+    price: 0,
+    products: [],
+    totalproducts: 0,
+    numofPages: 1,
+    page: 1,
 }
 
 const Context = createContext({})
@@ -56,7 +71,8 @@ const ContextProvider = ({ children }) => {
         },
         (error) => {
             if (error.response.status === 401) {
-                logoutUser();
+                // logoutUser();
+                console.log('  logoutUser()');
             }
             return Promise.reject(error)
         }
@@ -91,7 +107,7 @@ const ContextProvider = ({ children }) => {
         dispatch({ type: QAUTH_BEGIN });
         try {
             const { data } = await authFetch.get(
-                "/api/auth/login/success"
+                "/api/auth/login/success", { withCredentials: true }
             );
 
             if (data) {
@@ -101,7 +117,6 @@ const ContextProvider = ({ children }) => {
                     payload: { user },
                 });
             }
-
         } catch (error) {
 
             dispatch({
@@ -156,17 +171,6 @@ const ContextProvider = ({ children }) => {
         }
     };
 
-
-    const logoutUser = async () => {
-        try {
-            await authFetch.post("/api/userlogout");
-            dispatch({ type: LOGOUT_USER });
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
-
     const getCurrentUser = async () => {
         dispatch({ type: GET_CURRENT_USER_BEGIN });
         try {
@@ -181,16 +185,25 @@ const ContextProvider = ({ children }) => {
             dispatch({ type: GET_CURRENT_USER_ERROR })
             if (signal.aborted) return;
             if (error.response && error.response.status === 401) {
-                logoutUser()
+                console.log('  logoutUser()');
                 return;
             }
+        }
+    };
+
+    const logoutUser = async () => {
+        try {
+            await authFetch.post("/api/user/logout");
+            dispatch({ type: LOGOUT_USER });
+        } catch (error) {
+            console.log(error);
         }
     };
 
 
     const QlogoutUser = async () => {
         try {
-            await authFetch.get("/api/auth/logout");
+            await authFetch.get("/api/auth/qauth_logout");
             dispatch({ type: QLOGOUT_USER });
         } catch (error) {
             console.log(error);
@@ -199,17 +212,32 @@ const ContextProvider = ({ children }) => {
 
 
 
+    const getProductFn = async () => { 
+        dispatch({ type: GET_PRODUCT_BEGIN });
+        try {
+            const { data } = await authFetch.get( '/api/auth/getItem');
+            const { products, totalProducts, numofPages } = data;
+            dispatch({
+                type: GET_PRODUCT_SUCCESS,
+                payload: { products, totalProducts, numofPages },
+            });
+            // dispatch({ type: CLEAR_VALUES });
+        } catch (error) {
+            dispatch({
+                type: GET_PRODUCT_ERROR,
+            });
+        }
+    }
+
 
     useEffect(() => {
+        qAuthFn()
         getCurrentUser();
-        if (state.user.method === "qauth") {
-            qAuthFn()
-        }
     }, [])
 
 
     return (
-        <Context.Provider value={{ ...state, toggleMenuFn, toggleSearchFn, loginFn, registerFn, logoutUser, toggleAdminMenuFn, toggleProfileMenuFn, toggleAuthModalFn, QlogoutUser }} >
+        <Context.Provider value={{ ...state, toggleMenuFn, toggleSearchFn, loginFn, registerFn, logoutUser, toggleAdminMenuFn, toggleProfileMenuFn, toggleAuthModalFn, QlogoutUser, getProductFn }} >
             {children}
         </Context.Provider>
     )

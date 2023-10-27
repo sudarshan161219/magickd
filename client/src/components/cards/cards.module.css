@@ -1,65 +1,68 @@
-
 .img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
-  .imgContainer {
-    position: relative;
-    height: 270px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: end;
-    align-items: end;
-  }
-  
-  .imgContainer::before {
-    content: "";
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    background-color: black;
-    opacity: 0.5;
-  }
-  
-  .btnIconContainer {
-    position: absolute;
-    text-align: center;
-    display: flex;
-    gap: 10px;
-    bottom: 10px;
-    right: 10px;
-  }
-  
-  .icons {
-    font-size: 1.8rem;
-    color: var(--bg);
-  }
-  
-  .btn {
-    border: none;
-    outline: none;
-    background-color: transparent;
-    cursor: pointer;
-    background-color: rgba(0, 0, 0, 0.411);
-    border-radius: 100%;
-    width: 40px;
-    height: 40px;
-    display: grid;
-    align-items: center;
-    justify-content: center;
-    transition:ease 0.3s ;
-  }
-  
-  .btn:hover .heart {
-    color: tomato;
-  }
-  
-  .btn:hover .download {
-    color:aqua;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  align-items: end;
+  justify-content: end;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 5px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  background-color: rgba(255, 93, 93, 0.562);
+}
+
+.p {
+  color: var(--bg);
+  font-size: 1rem;
+  padding: 0 0.5rem;
+}
+
+.topoverlay {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  background-color: rgba(48, 47, 47, 0.562);
+}
+
+.icon {
+  color: var(--bg);
+  font-size: 1.1rem;
+}
+
+@media screen and (min-width: 1024px) {
+  .topoverlay,
+  .overlay {
+    opacity: 0;
+    z-index: -1;
+    transition: 0.2s ease-in;
   }
 
-  
-  
+  .card:hover {
+    cursor: pointer;
+  }
+
+  .card:hover > .topoverlay {
+    opacity: 1;
+    z-index: 1;
+  }
+
+  .card:hover > .overlay {
+    opacity: 1;
+    z-index: 1;
+  }
+}

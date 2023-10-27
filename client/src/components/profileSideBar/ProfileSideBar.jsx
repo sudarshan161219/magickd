@@ -8,12 +8,25 @@ import { useAppContext } from "../../context/Context"
 
 const ProfileSideBar = () => {
 
-    const { toggleProfileMenu, toggleProfileMenuFn, user, logoutUser } = useAppContext()
+    const { toggleProfileMenu, toggleProfileMenuFn, user, logoutUser, QlogoutUser } = useAppContext()
     // const { name, userImg } = user
+
+    const handleLogout = () => {
+        logoutUser()
+        toggleProfileMenuFn()
+    }
+
+
+    const handleQLogout = () => {
+        QlogoutUser ()
+        toggleProfileMenuFn()
+    }
+
 
     if (!user) {
         return null
     }
+
     return (
         <div className={styles.container}>
             <div className={`${toggleProfileMenu ? `${styles.showBg}  ${styles.bg}` : `${styles.bg}`}`}></div>
@@ -41,13 +54,13 @@ const ProfileSideBar = () => {
                             user.method === 'LocalAuth' ?
 
                                 <li className={styles.li}>
-                                    <Link onClick={toggleProfileMenuFn} className={styles.link} to="/" >
+                                    <Link onClick={handleLogout} className={styles.link} to="/" >
                                         <AiOutlineLogout className={styles.icon} /> Log out</Link>
                                 </li>
                                 :
 
                                 <li className={styles.li}>
-                                    <Link onClick={toggleProfileMenuFn} className={styles.link} to="/" >
+                                    <Link onClick={ handleQLogout} className={styles.link} to="/" >
                                         <AiOutlineLogout className={styles.icon} /> Log out</Link>
                                 </li>
                         }

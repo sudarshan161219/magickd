@@ -17,7 +17,15 @@ router.route("/login/failed").get((req, res) => {
 });
 
 router.route("/login/success").get(loginSuccess);
-router.route("/qauth_logout").post(logout);
+router.route("/qauth_logout").get(logout);
+// router.route("/qauth_logout").get((req, res) => {
+//   req.session.destroy(function() {
+//     res.clearCookie('connect.sid');
+//     res.redirect(CLIENT_URL);
+// });
+// });
+
+
 
 router
   .route("/google")
@@ -30,9 +38,9 @@ router.route("/google/callback").get(
   })
 );
 
-router.get("/logout", (req, res) => {
-  req.logout(); // Logout the user and clear session data
-  res.json({ message: "Logged out successfully" });
-});
+// router.get("/logout", (req, res) => {
+//   req.logout(); // Logout the user and clear session data
+//   res.json({ message: "Logged out successfully" });
+// });
 
 export default router;
