@@ -9,6 +9,7 @@ import {
   getSavedItem,
   getallItem,
   getProduct,
+  getpurchasedProduct,
 } from "../controllers/productController.mjs";
 import auth from "../middlewares/auth.mjs";
 
@@ -22,5 +23,6 @@ router.route("/save/:Id").post(auth, saveItem);
 router.route("/unsave/:Id").post(auth, unsaveItem);
 
 router.route("/saved-items").get(auth, getSavedItem);
+router.route("/purchased-items").get(auth, getpurchasedProduct);
 
 export default router;

@@ -1,5 +1,6 @@
 import { StatusCodes } from "http-status-codes";
 import Product from "../models/Product.mjs";
+import Purchase from "../models/Purchase.mjs";
 import { BadRequestError, UnauthenticatedError } from "../errors/export.mjs";
 
 const getItem = async (req, res) => {
@@ -176,4 +177,26 @@ const getProduct = async (req, res) => {
   res.status(StatusCodes.OK).json({ singleproduct });
 };
 
-export { getItem, saveItem, unsaveItem, getSavedItem, getallItem, getProduct };
+const getpurchasedProduct = async (req, res) => {
+  try {
+    const userId = req.user.userId;
+
+    // Retrieve products where 'purchase' is true
+    const purchasedProduct = await Product.find({ purchase: true });
+
+    res.status(StatusCodes.OK).json({ purchasedProduct });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+export {
+  getItem,
+  saveItem,
+  unsaveItem,
+  getSavedItem,
+  getallItem,
+  getProduct,
+  getpurchasedProduct,
+};

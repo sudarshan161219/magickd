@@ -2,6 +2,7 @@ import dotenv from "dotenv";
 import crypto from "crypto";
 dotenv.config();
 import Purchase from "../models/Purchase.mjs";
+import Product from "../models/Product.mjs";
 import { instance } from "../utils/paymentInstance.mjs";
 
 const checkout = async (req, res) => {
@@ -22,11 +23,8 @@ const checkout = async (req, res) => {
 };
 
 const paymentVerification = async (req, res) => {
-  const {
-    razorpay_payment_id,
-    razorpay_order_id,
-    razorpay_signature,
-  } = req.body;
+  const { razorpay_payment_id, razorpay_order_id, razorpay_signature } =
+    req.body;
 
   const userId = req.user.userId;
   const productId = req.params.Id;
@@ -43,7 +41,6 @@ const paymentVerification = async (req, res) => {
   const isAuthentic = expectedSignature === razorpay_signature;
 
   if (isAuthentic) {
-
     const purchase = await Purchase.create({
       user: userId,
       product: productId,
@@ -53,7 +50,21 @@ const paymentVerification = async (req, res) => {
       status: "completed",
     });
 
+    const updatedProduct = await Product.findByIdAndUpdate(
+      productId, // The first argument is the ID of the document you want to update
+      {
+        purchase: true,
+      },
+      { new: true } // This option returns the updated document
+    );
+
     purchase.save();
+
+    if (updatedProduct) {
+      console.log("Product updated successfully:", updatedProduct);
+    } else {
+      console.error("Product not found or update failed.");
+    }
 
     res.redirect(
       `http://localhost:5173/payment_success?reference=${razorpay_payment_id}`
@@ -63,14 +74,6 @@ const paymentVerification = async (req, res) => {
       .status(400)
       .json({ message: "Something went wrong, please try again later!" });
   }
-
-  res.status(200).json({ success: true });
-
-  // try {
-  // } catch (error) {
-  //   console.error(error);
-  //   res.status(500).json({ message: "Internal server error" });
-  // }
 };
 
 const getKey = async (req, res) => {

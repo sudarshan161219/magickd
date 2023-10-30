@@ -12,7 +12,6 @@ const Navbar = () => {
   const location = useLocation()
 
 
-
   const handleScroll = () => {
     const position = window.scrollY
     setScrollPosition(position)
@@ -30,7 +29,9 @@ const Navbar = () => {
     };
   }, [toggleMenu, toggleProfileMenu, toggleAuthModal]);
 
-
+  if (location.pathname === "/payment_success") {
+    return null
+  }
 
   return (
     <nav

@@ -9,6 +9,7 @@ const ProductSchema = new Schema(
     category: { type: String },
     imageUrl: { type: String },
     purchaseHistory: [{ date: Date, buyer: String }],
+    purchase:{type:Boolean},
     savedByUsers: [String],
     downloads: [{ date: Date, user: String }],
     tags: [String],

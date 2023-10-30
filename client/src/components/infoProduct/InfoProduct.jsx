@@ -67,15 +67,15 @@ const InfoProduct = () => {
             const { data: { key } } = await axios.get("/api/payment/get_key")
             const { data: { order } } = await axios.post('/api/payment/checkout', { price });
 
-     
+
             const options = {
-                key: key, 
-                amount: order.amount, 
+                key: key,
+                amount: order.amount,
                 currency: "INR",
                 name: "Magickd",
                 description: "Test Transaction",
                 image: logo,
-                order_id: order.id, 
+                order_id: order.id,
                 "callback_url": `http://localhost:5000/api/payment/verification/${id}`,
                 prefill: {
                     name: "Gaurav Kumar",
@@ -102,7 +102,7 @@ const InfoProduct = () => {
         return <h1>Loading.......</h1>;
     }
 
-    const { imageUrl, name, description, category, tags, price } = singleProduct;
+    const { imageUrl, name, description, category, tags, price, purchase, driveName, driveId } = singleProduct;
 
     return (
         <div className={styles.container}>
@@ -128,9 +128,17 @@ const InfoProduct = () => {
                                 <AiOutlineHeart className={styles.icon} />Save
                             </button>
                         )}
-                        <button onClick={() => handleDownload(price)}>
-                            <AiOutlineDownload className={styles.icon} /> Download
-                        </button>
+
+                        {purchase && purchase ? <a
+                            href={`https://drive.google.com/uc?export=download&id=${driveId}`}
+                            download={driveName}
+                        >
+                            Download File
+                        </a> : <button onClick={() => handleDownload(price)}>
+                            <AiOutlineDownload className={styles.icon} /> Buy
+                        </button>}
+
+
                     </div>
                 </div>
             </div>

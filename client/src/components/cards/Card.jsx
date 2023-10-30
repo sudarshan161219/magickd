@@ -102,30 +102,49 @@ const Card = ({ item }) => {
                         <AiOutlineDownload className={styles.icon} />
                     </IconButton>
                     :
-                    <Link to={`/item/${item._id}`} >
-                        <IconButton color="primary" aria-label="add to shopping cart">
-                            <AiOutlineDownload className={styles.icon} />
-                        </IconButton>
-                    </Link>
+                    (
+                        // eslint-disable-next-line react/prop-types
+                        item.purchase && item.purchase ?
+                            <a
+                                href={`https://drive.google.com/uc?export=download&id=${item.driveId}`}
+                                download={item.driveName}
+                            >
+                                <IconButton color="primary" aria-label="add to shopping cart">
+                                    <AiOutlineDownload className={styles.icon} />
+                                </IconButton>
+                            </a>
+
+                            :
+                            // eslint-disable-next-line react/prop-types
+                            <Link to={`/item/${item._id}`} >
+                                <IconButton color="primary" aria-label="add to shopping cart">
+                                    <AiOutlineDownload className={styles.icon} />
+                                </IconButton>
+                            </Link>)
                 }
 
 
 
             </div>
             <img className={styles.img} src={item.imageUrl} alt={item.name} />
-            <div className={styles.overlay} >
-                {user && user.length === 0 ? <IconButton onClick={handleModal} color="primary" aria-label="add to shopping cart">
-                    <p className={styles.p}>buy</p>
-                </IconButton> :
 
-                    // eslint-disable-next-line react/prop-types
-                    <Link to={`/item/${item._id}`} >
-                        <IconButton color="primary" aria-label="add to shopping cart">
+            {
+                // eslint-disable-next-line react/prop-types
+                item.purchase && item.purchase ? null :
+
+                    <div className={styles.overlay} >
+                        {user && user.length === 0 ? <IconButton onClick={handleModal} color="primary" aria-label="add to shopping cart">
                             <p className={styles.p}>buy</p>
-                        </IconButton>
-                    </Link>
-                }
-            </div>
+                        </IconButton> :
+
+                            // eslint-disable-next-line react/prop-types
+                            <Link to={`/item/${item._id}`} >
+                                <IconButton color="primary" aria-label="add to shopping cart">
+                                    <p className={styles.p}>buy</p>
+                                </IconButton>
+                            </Link>
+                        }
+                    </div>}
         </div >
     )
 }

@@ -18,6 +18,8 @@ import Profile_2 from "./profile_2/Profile_2";
 import AdminSidebar from "./adminSidebar/AdminSidebar";
 import Loading from "./loading/Loading.jsx";
 import InfoProduct from "./infoProduct/InfoProduct";
+import PaymentSuccess from "./paymentSuccess/PaymentSuccess.jsx"
+
 export {
   Navbar,
   Footer,
@@ -39,4 +41,5 @@ export {
   AdminSidebar,
   Loading,
   InfoProduct,
+  PaymentSuccess
 };
