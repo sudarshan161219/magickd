@@ -18,7 +18,7 @@ const ProfileSideBar = () => {
 
 
     const handleQLogout = () => {
-        QlogoutUser ()
+        QlogoutUser()
         toggleProfileMenuFn()
     }
 
@@ -37,19 +37,33 @@ const ProfileSideBar = () => {
 
 
                     <div className={styles.profileInfoContainer} >
-                        <img className={styles.userImg} src={user.userImg} alt={name} />
+                        {/* <img className={styles.userImg} src={user.userImg} alt={user.name} /> */}
+                        <div onClick={toggleProfileMenuFn} className={styles.plink} to="/user-profile" >
+                            {user.userImg === null ? <h1>{user.name.charAt(0)}</h1> : <img className={styles.Plogo} src={user.userImg} alt={user.name} />}
+                        </div>
                         <div className={styles.userIno} >
                             <h2 className={styles.title}>{user.name}</h2>
-                            <p className={styles.desc}>user ID: xxxxxxxxxx</p>
+                            {/* <p className={styles.desc}>user ID: xxxxxxxxxx</p> */}
                         </div>
                     </div>
                 </div>
 
                 <div className={styles.menu} >
                     <ul className={styles.ul}>
-                        <li className={styles.li}> <Link onClick={toggleProfileMenuFn} className={styles.link} to="/user-profile" > <MdManageAccounts className={styles.icon} /> Account details</Link> </li>
-                        <li className={styles.li}> <Link onClick={toggleProfileMenuFn} className={styles.link} to="/user-profile/saved" > <AiOutlineHeart className={styles.icon} /> Saved</Link> </li>
-                        <li className={styles.li}> <Link onClick={toggleProfileMenuFn} className={styles.link} to="/user-profile/downloads" >  <AiOutlineDownload className={styles.icon} />  Downloads</Link> </li>
+
+                        <li className={styles.li}>
+                            <Link onClick={toggleProfileMenuFn} className={styles.link} to="/user-profile" > <MdManageAccounts className={styles.icon} /> Account details</Link>
+                        </li>
+
+                        <li className={styles.li}>
+                            <Link onClick={toggleProfileMenuFn} className={styles.link} to="/user-profile/saved" > <AiOutlineHeart className={styles.icon} /> Saved</Link>
+                        </li>
+
+                        <li className={styles.li}>
+                            <Link onClick={toggleProfileMenuFn} className={styles.link} to="/user-profile/downloads" >
+                                <AiOutlineDownload className={styles.icon} />  Downloads
+                            </Link>
+                        </li>
                         {
                             user.method === 'LocalAuth' ?
 
@@ -60,7 +74,7 @@ const ProfileSideBar = () => {
                                 :
 
                                 <li className={styles.li}>
-                                    <Link onClick={ handleQLogout} className={styles.link} to="/" >
+                                    <Link onClick={handleQLogout} className={styles.link} to="/" >
                                         <AiOutlineLogout className={styles.icon} /> Log out</Link>
                                 </li>
                         }

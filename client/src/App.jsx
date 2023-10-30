@@ -7,7 +7,7 @@ import {
   Register,
   SidebarNav,
   ProfileSideBar,
-
+  InfoProduct
 } from "./components/export"
 import Main from "./main/Main";
 import Explore from "./Explore/Explore";
@@ -33,6 +33,8 @@ const App = () => {
         <Route path="/AboutUs" element={<About />} />
         <Route path="/Portfolio" element={<Portfolio />} />
         <Route path="/ContactUs" element={<Contact />} />
+        <Route path="/item/:id" element={<InfoProduct />} />
+
         {/* <Route path="/register" element={<Register />} /> */}
 
         {/* user Protected Routes */}

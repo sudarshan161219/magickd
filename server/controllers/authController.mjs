@@ -124,6 +124,51 @@ const getUser = async (req, res) => {
   res.status(StatusCodes.OK).json({ user });
 };
 
+const getQUser = async (req, res) => {
+  const user = await QUser.findOne({ _id: req.user.userId });
+  res.status(StatusCodes.OK).json({ user });
+};
+
+const loginSuccess = async (req, res) => {
+  if (req.user) {
+    const Access_Token = req.user.createAccess_TokenJWT();
+    attachCookie({ res, Access_Token });
+    return res.status(StatusCodes.OK).json({
+      user: req.user,
+    });
+  } else {
+    throw new UnauthenticatedError("Authentication Invalid");
+  }
+};
+
+const loginSuccessfb = async (req, res) => {
+  if (req.user) {
+    const Access_Token = req.user.createAccess_TokenJWT();
+    attachCookie({ res, Access_Token });
+    return res.status(StatusCodes.OK).json({
+      user: req.user,
+    });
+  } else {
+    throw new UnauthenticatedError("Authentication Invalid");
+  }
+};
+
+const logoutt = (req, res) => {
+  const sessionName = "session";
+  // const cookies = req.cookies;
+
+  if (req.session ) {
+    const sessionKeys = req.sessionKeys || [];
+
+    for (const key of sessionKeys) {
+      res.clearCookie(`${sessionName}.${key}`);
+    }
+    res.clearCookie("jwt", { httpOnly: true, sameSite: "None", secure: true });
+    req.session = null;
+  }
+  res.send("Cookies and session cleared.");
+};
+
 
 
 export {
@@ -134,4 +179,8 @@ export {
   logout,
   refreshToken,
   getUser,
+  loginSuccess,
+  loginSuccessfb,
+  logoutt,
+  getQUser
 };

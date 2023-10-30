@@ -41,12 +41,34 @@
 
 .icon {
   color: var(--bg);
+  font-size: 1.3rem;
+}
+
+.top1overlay {
+  position: absolute;
+  top: 5px;
+  left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  background-color: #4d4d4d10;
+}
+
+.name {
+  color: var(--bg);
   font-size: 1.1rem;
+  text-shadow: 2px 2px #1f1c1c;
+}
+
+.heart {
+  color: tomato;
 }
 
 @media screen and (min-width: 1024px) {
   .topoverlay,
-  .overlay {
+  .overlay,
+  .top1overlay {
     opacity: 0;
     z-index: -1;
     transition: 0.2s ease-in;
@@ -62,6 +84,11 @@
   }
 
   .card:hover > .overlay {
+    opacity: 1;
+    z-index: 1;
+  }
+
+  .card:hover > .top1overlay {
     opacity: 1;
     z-index: 1;
   }

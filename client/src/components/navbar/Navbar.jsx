@@ -52,7 +52,11 @@ const Navbar = () => {
           <li className={styles.li}> <Link to="/AboutUs" className={styles.link}>About Us</Link> </li>
           <li className={styles.li}> <Link to="/ContactUs" className={styles.link}>Contact Us</Link> </li>
         </ul>
-        {user && user.name ? <div onClick={toggleProfileMenuFn} className={styles.plink} to="/user-profile" ><img className={styles.Plogo} src={user.userImg} alt={user.name} /></div> :
+        {user && user ?
+          <div onClick={toggleProfileMenuFn} className={styles.plink} to="/user-profile" >
+            {user.userImg === null ? <h1>{user.name.charAt(0)}</h1> : <img className={styles.Plogo} src={user.userImg} alt={user.name} />}
+          </div>
+          :
           <button onClick={toggleAuthModalFn} className={styles.login}>Log in</button>
         }
 

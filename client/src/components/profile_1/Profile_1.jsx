@@ -14,8 +14,8 @@ const Profile_1 = () => {
     // const { name, email, method } = user
 
 
-    const [namevalue, setNamevalue] = useState( user.name)
-    const [emailvalue, setEmailvalue] = useState( user.email)
+    const [namevalue, setNamevalue] = useState(user.name)
+    const [emailvalue, setEmailvalue] = useState(user.email)
     const [passwordvalue, setPasswordvalue] = useState()
     const [editingIndex, setEditingIndex] = useState(-1);
 
@@ -34,7 +34,7 @@ const Profile_1 = () => {
                     <div className={styles.textInfo}>
                         <strong className={styles.name} >Name</strong>
                         {
-                            toggleEditUser ? <input onChange={handleInputChange} className={styles.input} type="text" value={namevalue} /> : <span className={styles.span}>{ user.name}</span>}
+                            toggleEditUser ? <input onChange={handleInputChange} className={styles.input} type="text" value={namevalue} /> : <span className={styles.span}>{user.name}</span>}
 
                     </div>
 
@@ -58,7 +58,7 @@ const Profile_1 = () => {
             </div>
 
 
-            <div className={styles.userInfo} >
+            {/* <div className={styles.userInfo} >
                 <div className={styles.userInfoTable}  >
                     <div className={styles.textInfo}>
                         <strong className={styles.name} >User Id</strong>
@@ -66,26 +66,26 @@ const Profile_1 = () => {
 
                     </div>
                 </div>
-            </div>
+            </div> */}
 
 
             <div className={styles.userInfo} >
                 <div className={styles.userInfoTable}  >
                     <div className={styles.textInfo}>
                         <strong className={styles.name} >User Name</strong>
-                        <span className={styles.span}>{ user.name}</span>
+                        <span className={styles.span}>{user.name}</span>
                     </div>
                 </div>
             </div>
 
 
-            { user.method === "OAuth" ? null :
+            {user.method === "OAuth" ? null :
                 <div className={styles.userInfo} >
                     <div className={styles.userInfoTable}  >
                         <div className={styles.textInfo}>
                             <strong className={styles.name} >Password</strong>
                             {
-                                toggleEditUser ? <input className={styles.input} type="text" value={namevalue} /> : <span className={styles.span}>{ user.name}</span>}
+                                toggleEditUser ? <input className={styles.input} type="text" value={namevalue} /> : <span className={styles.span}>{user.name}</span>}
 
                         </div>
 
@@ -109,17 +109,17 @@ const Profile_1 = () => {
                 </div>
 
             }
+            {user.email === null ? null :
+                <div className={styles.userInfo} >
+                    <div className={styles.userInfoTable}  >
+                        <div className={styles.textInfo}>
+                            <strong className={styles.name} >E-mail</strong>
+                            {
+                                toggleEditUser ? <input className={styles.input} type="text" value={emailvalue} /> : <span className={styles.span}>{user.email}</span>}
 
-            <div className={styles.userInfo} >
-                <div className={styles.userInfoTable}  >
-                    <div className={styles.textInfo}>
-                        <strong className={styles.name} >E-mail</strong>
-                        {
-                            toggleEditUser ? <input className={styles.input} type="text" value={emailvalue} /> : <span className={styles.span}>{ user.email}</span>}
+                        </div>
 
-                    </div>
-
-                    {/* <>
+                        {/* <>
                         {toggleEditUser ?
 
                             <div className={styles.btnContainer}>
@@ -134,10 +134,10 @@ const Profile_1 = () => {
                         }
                     </> */}
 
+                    </div>
+
                 </div>
-
-            </div>
-
+ }
 
         </div >
     )

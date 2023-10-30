@@ -2,6 +2,7 @@ import passport from "passport";
 import dotenv from "dotenv";
 dotenv.config();
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
+import User from "../models/User.mjs";
 import QUser from "../models/QUser.mjs";
 // import jwt from "jsonwebtoken";
 // import { Strategy as JwtStrategy, ExtractJwt } from "passport-jwt";
@@ -11,7 +12,8 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "/api/auth/google/callback",
+      callbackURL: 'http://localhost:5000/api/user/auth/google/callback',
+      scope: ["profile", "email"]
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
@@ -23,6 +25,14 @@ passport.use(
           return done(null, userAlreadyExist);
         }
 
+        // const user = await User.create({
+        //   name: profile._json.name,
+        //   userImg: profile._json.picture,
+        //   email: profile._json.email,
+        //   method: "OAuth",
+        // });
+
+
         const user = await QUser.create({
           name: profile._json.name,
           userImg: profile._json.picture,
@@ -30,7 +40,8 @@ passport.use(
           method: "OAuth",
         });
 
-        return done(null, { user });
+
+        return done(null,  user );
       } catch (err) {
         return done(err);
       }

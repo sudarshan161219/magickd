@@ -16,8 +16,8 @@ import Ripple from "./ripple/Ripples.jsx";
 import Profile_1 from "./profile_1/Profile_1";
 import Profile_2 from "./profile_2/Profile_2";
 import AdminSidebar from "./adminSidebar/AdminSidebar";
-
-
+import Loading from "./loading/Loading.jsx";
+import InfoProduct from "./infoProduct/InfoProduct";
 export {
   Navbar,
   Footer,
@@ -37,5 +37,6 @@ export {
   Profile_1,
   Profile_2,
   AdminSidebar,
-
+  Loading,
+  InfoProduct,
 };

@@ -32,10 +32,19 @@ import {
     UPLOAD_ITEM_SUCCESS,
     UPLOAD_ITEM_ERROR,
     LOGOUT_USER,
-    QLOGOUT_USER ,
+    QLOGOUT_USER,
     GET_PRODUCT_BEGIN,
     GET_PRODUCT_SUCCESS,
     GET_PRODUCT_ERROR,
+    SAVE_PRODUCT_BEGIN,
+    SAVE_PRODUCT_SUCCESS,
+    SAVE_PRODUCT_ERROR,
+    SAVED_PRODUCT_BEGIN,
+    SAVED_PRODUCT_SUCCESS,
+    SAVED_PRODUCT_ERROR,
+    GET_SINGLE_PRODUCT_BEGIN,
+    GET_SINGLE_PRODUCT_SUCCESS,
+    GET_SINGLE_PRODUCT_ERROR
 } from "./action"
 
 
@@ -100,7 +109,7 @@ const reducer = (state, action) => {
     }
 
     if (action.type === QAUTH_BEGIN) {
-        return { ...state,  isRLLoading: true };
+        return { ...state, isRLLoading: true };
     }
 
     if (action.type === QAUTH_SUCCESS) {
@@ -121,7 +130,7 @@ const reducer = (state, action) => {
 
 
     if (action.type === REGISTER_USER_BEGIN) {
-        return { ...state,isRLLoading: true };
+        return { ...state, isRLLoading: true };
     }
 
     if (action.type === REGISTER_USER_SUCCESS) {
@@ -142,7 +151,7 @@ const reducer = (state, action) => {
     }
 
     if (action.type === LOGIN_USER_BEGIN) {
-        return { ...state,isRLLoading: true };
+        return { ...state, isRLLoading: true };
     }
 
     if (action.type === LOGIN_USER_SUCCESS) {
@@ -299,6 +308,43 @@ const reducer = (state, action) => {
     if (action.type === GET_PRODUCT_ERROR) {
         return { ...state, isLoading: true, showAlert: false };
     }
+
+
+
+    if (action.type === SAVED_PRODUCT_BEGIN) {
+        return { ...state, isLoading: true };
+    }
+
+    if (action.type === SAVED_PRODUCT_SUCCESS) {
+        return {
+            ...state,
+            isLoading: false,
+            savedItems: action.payload.savedItems
+        };
+    }
+
+    if (action.type === SAVED_PRODUCT_ERROR) {
+        return { ...state, isLoading: false };
+    }
+
+
+
+    if (action.type === GET_SINGLE_PRODUCT_BEGIN) {
+        return { ...state, isLoading: true };
+    }
+
+    if (action.type === GET_SINGLE_PRODUCT_SUCCESS) {
+        return {
+            ...state,
+            isLoading: false,
+            singleProduct: action.payload.singleproduct
+        };
+    }
+
+    if (action.type === GET_SINGLE_PRODUCT_ERROR) {
+        return { ...state, isLoading: false };
+    }
+
 
 
     throw new Error(`no such action : ${action.type}`);

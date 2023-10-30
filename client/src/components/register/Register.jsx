@@ -9,7 +9,7 @@ import { Ripple } from '../export'
 import logo from "../../assets/logo.png"
 
 const Register = () => {
-    const { loginFn, registerFn, toggleAuthModal, toggleAuthModalFn, user, isRLLoading } = useAppContext()
+    const { loginFn, registerFn, toggleAuthModal, toggleAuthModalFn,  isRLLoading } = useAppContext()
     const [show, setShow] = useState(false)
     const [isMember, setIsMember] = useState(false)
 
@@ -40,7 +40,11 @@ const Register = () => {
     }
 
     const handleGoogle = () => {
-        window.open("http://localhost:5000/api/auth/google", "_self")
+        window.open("http://localhost:5000/api/user/auth/google/callback", "_self")
+    }
+
+    const handleFacebook = () => {
+        window.open("http://localhost:5000/api/user/auth/oauth2/redirect/facebook", "_self")
     }
 
 
@@ -64,7 +68,7 @@ const Register = () => {
                                 {`Continue with Google`}
 
                             </button>
-                            <button className={`${styles.btn} ${styles.socialBtn}`}>
+                            <button onClick={handleFacebook} className={`${styles.btn} ${styles.socialBtn}`}>
                                 <BsFacebook className={`${styles.socialIcon}  ${styles.socialFacebookIcon}`} />
                                 {`Continue with Facebook`}
                             </button>

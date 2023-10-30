@@ -13,12 +13,11 @@ import { fileURLToPath } from "url";
 import path from "path";
 import connectDB from "./Db/connectDb.mjs";
 import authRoute from "./route/authRoute.mjs";
-import qauthRoute from "./route/qauthRoute.mjs";
-import userRoute from "./route/userRoute.mjs";
-import quserRoute from "./route/quserRoute.mjs";
+import productRoute from "./route/productRoute.mjs";
+import paymentRoute from "./route/paymentRoute.mjs";
 import passport from "passport";
 import session from "express-session";
-import cookieSession  from 'cookie-session'
+import cookieSession from "cookie-session";
 //* middleware imports
 import notFoundMiddleware from "./middlewares/not-found.mjs";
 import errorHandlerMiddleware from "./middlewares/error-handler.mjs";
@@ -27,6 +26,7 @@ import qauth from "./middlewares/qauth.mjs";
 import morgan from "morgan";
 
 import "./passportAuth/passportAuth.js";
+import "./passportAuth/facebookAuth.js";
 
 const PORT = process.env.PORT || 3000;
 const uri = process.env.MONGO_URI;
@@ -51,19 +51,21 @@ app.use(express.urlencoded({ extended: false, limit: "50mb" }));
 app.use(express.static(path.resolve(__dirname, "../client/dist")));
 
 app.use(
-  cookieSession({ name: "session", keys: [process.env.SESSION], maxAge: 24 * 60 * 60 * 100 })
+  cookieSession({
+    name: "session",
+    keys: [process.env.SESSION],
+    maxAge: 24 * 60 * 60 * 100,
+  })
 );
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.authenticate("session"));
 app.use(cookieParser());
+
 //* api routes
+app.use("/api", productRoute);
+app.use("/api/payment", auth, paymentRoute);
 app.use("/api/user", authRoute);
-app.use("/api/auth", qauthRoute);
-app.use("/api/user", auth, userRoute);
-app.use("/api/auth",  quserRoute);
-
-
 
 // // //* HTTP GET Request
 app.get("*", (req, res) => {

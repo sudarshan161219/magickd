@@ -2,26 +2,34 @@ import styles from './saved.module.css'
 import { AiOutlineDownload, AiOutlineDelete } from "react-icons/ai"
 import { userFav } from "../../data/data"
 import { Ripple } from "../../components/export"
+import { useAppContext } from '../../context/Context'
+import { Card } from '../../components/export'
+import { useEffect } from 'react'
 
 const Saved = () => {
+    const { getSavedProductFn, savedItems } = useAppContext()
+
+    useEffect(() => {
+        getSavedProductFn()
+    }, [])
+
+
     return (
         <div className={styles.container}>
             <div className={styles.header}>
-                <h1 className={styles.title}  >Saved ({userFav.length})</h1>
+                <h1 className={styles.title}  >Saved ({savedItems.length})</h1>
             </div>
+            {/* 
+            {savedItems.length === 0 ?
 
-            <ul className={styles.savedContainer} >
-                {userFav.map((item, idx) => (
-                    <li className={styles.li} key={idx}>
-                        <img className={styles.img} src={item.img} alt={item.name} />
+                <h1>No items </h1> : */}
 
-                        <div className={styles.iconContainerF}>
-                            <Ripple > <AiOutlineDelete className={styles.icon} /></Ripple>
-                            <Ripple > <AiOutlineDownload className={styles.icon} /></Ripple>
-                        </div>
-                    </li>
+            <div className={styles.cards}>
+                {savedItems.map((item, idx) => (
+                    <Card item={item} key={idx} />
                 ))}
-            </ul>
+            </div>
+            {/* // } */}
 
         </div>
     )

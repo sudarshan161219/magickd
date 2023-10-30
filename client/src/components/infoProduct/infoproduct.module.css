@@ -1,0 +1,158 @@
+.container {
+  margin-top: 2rem;
+  padding: 10px;
+  display: grid;
+  gap: 100px;
+}
+
+.infoContainer,
+.thriContainer {
+  display: grid;
+  gap: 25px;
+}
+
+.img {
+  width: 100%;
+}
+
+.textContainer {
+  display: grid;
+  gap: 13px;
+}
+.textContainer > h2 {
+  font-size: 1.5rem;
+  color: var(--textColor);
+  font-weight: 500;
+}
+
+.textContainer > p {
+  font-size: 1rem;
+  color: var(--softTextColor);
+  font-weight: 400;
+  line-height: 150%;
+}
+
+.btnContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btnContainer > button {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 0.6rem 0;
+  border: none;
+  font-size: 1rem;
+  border-radius: 5px;
+}
+.btnContainer > button:nth-child(1) {
+  background-color: var(--bg);
+  color: var(--textColor);
+  outline: var(--softTextColor) 1px solid;
+}
+
+.btnContainer > button:nth-child(2) {
+  background-color: brown;
+  outline: brown 1px solid;
+  color: var(--bg);
+}
+
+.btnContainer > button:nth-child(1):active {
+  background-color: var(--textColor);
+  color: var(--bg);
+  transform: scale(0.97);
+  transition: ease 0.1s;
+}
+
+.btnContainer > button:nth-child(2):active {
+  background-color: var(--bg);
+  color: var(--textColor);
+  transform: scale(0.97);
+  transition: ease 0.1s;
+}
+
+.tags {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 2fr));
+}
+
+.tagsContainer {
+  display: grid;
+  gap: 13px;
+}
+
+.heart {
+  color: tomato;
+}
+
+@media screen and (min-width: 820px) {
+  .infoContainer {
+    width: 500px;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .infoContainer {
+    width: 100%;
+    display: flex;
+    /* margin: 0 auto; */
+  }
+
+  .imgContainer,
+  .thriContainer {
+    flex: 1;
+  }
+
+  .tagsContainer{
+    padding: 2rem;
+  }
+}
+
+@media screen and (min-width: 1020px) {
+  .infoContainer {
+    width: 900px;
+    margin: 0 auto;
+  }
+
+  .textContainer > h2 {
+    font-size: 2rem;
+  }
+
+  .textContainer > p {
+    font-size: 1rem;
+    line-height: 160%;
+  }
+
+  .btnContainer > button:nth-child(1):hover {
+    background-color: var(--textColor);
+    color: var(--bg);
+    cursor: pointer;
+    transition: ease-in 0.3s;
+  }
+
+  .btnContainer > button:nth-child(2):hover {
+    background-color: var(--bg);
+    color: var(--textColor);
+    cursor: pointer;
+    transition: ease-in 0.3s;
+  }
+}
+
+@media screen and (min-width: 1120px) {
+  .infoContainer {
+    width: 1000px;
+    gap: 60px;
+  }
+}
+
+@media screen and (min-width: 1220px) {
+  .infoContainer {
+    width: 90%;
+  }
+}

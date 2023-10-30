@@ -1,10 +1,9 @@
 import mongoose from "mongoose";
 const { Schema, model } = mongoose;
-import jwt from "jsonwebtoken";
-import validator from "validator";
+import jwt from "jsonwebtoken";;
 import dotenv from "dotenv";
 dotenv.config();
-import findOrCreate from "mongoose-findorcreate";
+
 
 const QUserSchema = new Schema({
   name: {
@@ -13,8 +12,6 @@ const QUserSchema = new Schema({
 
   email: {
     type: String,
-
-
   },
 
   userImg: {
@@ -22,7 +19,6 @@ const QUserSchema = new Schema({
   },
   method: { type: String },
 });
-
 
 //* creating jwt token Access_Token
 QUserSchema.methods.createAccess_TokenJWT = function () {

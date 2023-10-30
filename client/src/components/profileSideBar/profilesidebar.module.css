@@ -110,6 +110,26 @@
   font-weight: 600;
 }
 
+.plink {
+  width: 35px;
+  height: 35px;
+  outline: #00000054 1px solid;
+  overflow: hidden;
+  border-radius: 100%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.671);
+}
+
+.Plogo {
+  width: 100%;
+}
+
+.plink > h1 {
+  color: var(--bg);
+}
 @media screen and (min-width: 500px) {
   .sidebar {
     width: 320px;

@@ -26,7 +26,15 @@ import {
     GET_PRODUCT_BEGIN,
     GET_PRODUCT_SUCCESS,
     GET_PRODUCT_ERROR,
-
+    SAVE_PRODUCT_BEGIN,
+    SAVE_PRODUCT_SUCCESS,
+    SAVE_PRODUCT_ERROR,
+    SAVED_PRODUCT_BEGIN,
+    SAVED_PRODUCT_SUCCESS,
+    SAVED_PRODUCT_ERROR,
+    GET_SINGLE_PRODUCT_BEGIN,
+    GET_SINGLE_PRODUCT_SUCCESS,
+    GET_SINGLE_PRODUCT_ERROR
 } from "./action"
 
 
@@ -40,6 +48,9 @@ const initialState = {
     toggleAuthModal: false,
     toggleSearch: false,
     user: [],
+    savedItems: [],
+    singleProduct: [],
+    // save:false,
 
     product: [],
     search: '',
@@ -107,7 +118,53 @@ const ContextProvider = ({ children }) => {
         dispatch({ type: QAUTH_BEGIN });
         try {
             const { data } = await authFetch.get(
-                "/api/auth/login/success", { withCredentials: true }
+                "/api/user/login/success", { withCredentials: true }
+            );
+
+            if (data) {
+                const { user } = data;
+                dispatch({
+                    type: QAUTH_SUCCESS,
+                    payload: { user },
+                });
+            }
+        } catch (error) {
+
+            dispatch({
+                type: QAUTH_ERROR,
+                payload: { error },
+            });
+        }
+    };
+
+    const qFbAuthFn = async () => {
+        dispatch({ type: QAUTH_BEGIN });
+        try {
+            const { data } = await authFetch.get(
+                "/api/user/login/fb/success", { withCredentials: true }
+            );
+
+            if (data) {
+                const { user } = data;
+                dispatch({
+                    type: QAUTH_SUCCESS,
+                    payload: { user },
+                });
+            }
+        } catch (error) {
+
+            dispatch({
+                type: QAUTH_ERROR,
+                payload: { error },
+            });
+        }
+    };
+
+    const qQAuthFn = async () => {
+        dispatch({ type: QAUTH_BEGIN });
+        try {
+            const { data } = await authFetch.get(
+                "/api/user/getQuser", { signal }
             );
 
             if (data) {
@@ -203,7 +260,7 @@ const ContextProvider = ({ children }) => {
 
     const QlogoutUser = async () => {
         try {
-            await authFetch.get("/api/auth/qauth_logout");
+            await authFetch.get("/api/user/qauth_logout");
             dispatch({ type: QLOGOUT_USER });
         } catch (error) {
             console.log(error);
@@ -212,10 +269,10 @@ const ContextProvider = ({ children }) => {
 
 
 
-    const getProductFn = async () => { 
+    const getProductFn = async () => {
         dispatch({ type: GET_PRODUCT_BEGIN });
         try {
-            const { data } = await authFetch.get( '/api/auth/getItem');
+            const { data } = await authFetch.get('/api/getItem');
             const { products, totalProducts, numofPages } = data;
             dispatch({
                 type: GET_PRODUCT_SUCCESS,
@@ -230,14 +287,51 @@ const ContextProvider = ({ children }) => {
     }
 
 
+    const getSavedProductFn = async () => {
+        dispatch({ type: SAVED_PRODUCT_BEGIN });
+        try {
+            const { data } = await authFetch.get('/api/saved-items');
+            const { savedItems } = data;
+            dispatch({
+                type: SAVED_PRODUCT_SUCCESS,
+                payload: { savedItems },
+            });
+        } catch (error) {
+            dispatch({
+                type: SAVED_PRODUCT_ERROR,
+            });
+        }
+    }
+
+
+    const getSingleProduct = async (id) => {
+        dispatch({ type: GET_SINGLE_PRODUCT_BEGIN })
+
+        try {
+            const { data } = await authFetch.get(`/api/getProduct/${id}`);
+            const { singleproduct } = data;
+            dispatch({
+                type: GET_SINGLE_PRODUCT_SUCCESS,
+                payload: { singleproduct },
+            });
+            // dispatch({ type: CLEAR_VALUES });
+        } catch (error) {
+            dispatch({
+                type: GET_SINGLE_PRODUCT_ERROR,
+            });
+        }
+    }
+
     useEffect(() => {
         qAuthFn()
+        qFbAuthFn()
         getCurrentUser();
+        qQAuthFn()
     }, [])
 
 
     return (
-        <Context.Provider value={{ ...state, toggleMenuFn, toggleSearchFn, loginFn, registerFn, logoutUser, toggleAdminMenuFn, toggleProfileMenuFn, toggleAuthModalFn, QlogoutUser, getProductFn }} >
+        <Context.Provider value={{ ...state, toggleMenuFn, toggleSearchFn, loginFn, registerFn, logoutUser, toggleAdminMenuFn, toggleProfileMenuFn, toggleAuthModalFn, QlogoutUser, getProductFn, getSavedProductFn, getSingleProduct }} >
             {children}
         </Context.Provider>
     )

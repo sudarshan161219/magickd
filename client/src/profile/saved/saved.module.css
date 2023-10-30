@@ -37,6 +37,11 @@
   cursor: pointer;
 }
 
+.cards {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+}
 
 
 @media screen and (min-width: 1000px) {
