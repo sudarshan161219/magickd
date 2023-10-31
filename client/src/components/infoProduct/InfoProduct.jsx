@@ -8,6 +8,7 @@ import { useAppContext } from "../../context/Context";
 import Recommended from "../recommended/Recommended";
 import logo from "../../assets/logo.png"
 import styles from "./infoproduct.module.css";
+import gif from "../../assets/loading.svg"
 
 const InfoProduct = () => {
     const { getSingleProduct, isLoading, singleProduct, user } = useAppContext();
@@ -99,7 +100,11 @@ const InfoProduct = () => {
         }
     }
     if (isLoading) {
-        return <h1>Loading.......</h1>;
+        return (
+            <div className={styles.loadingContainer}>
+                <img className={styles.gif} src={gif} alt="loading" />
+            </div>
+        )
     }
 
     const { imageUrl, name, description, category, tags, price, purchase, driveName, driveId } = singleProduct;
@@ -121,15 +126,30 @@ const InfoProduct = () => {
                     <div className={styles.btnContainer}>
                         {saved ? (
                             <button onClick={handleSave}>
-                                <AiTwotoneHeart className={`${styles.icon} ${styles.heart}`} />Save
+
+                                {isLOading ?
+                                    <img src={gif} className={styles.btnGif} alt="loading" /> :
+
+                                    <AiTwotoneHeart className={`${styles.icon} ${styles.heart}`} />
+                                }
+
+                                {isLOading ? null : ' Saved'}
+
                             </button>
                         ) : (
                             <button onClick={handleSave}>
-                                <AiOutlineHeart className={styles.icon} />Save
+                                {isLOading ?
+                                    <img src={gif} className={styles.btnGif} alt="loading" /> :
+
+                                    <AiOutlineHeart className={styles.icon} />
+                                }
+
+                                {isLOading ? null : 'Save'}
                             </button>
                         )}
 
                         {purchase && purchase ? <a
+                            className={styles.adownload}
                             href={`https://drive.google.com/uc?export=download&id=${driveId}`}
                             download={driveName}
                         >

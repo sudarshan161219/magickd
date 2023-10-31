@@ -20,6 +20,7 @@ import {
     LOGIN_USER_ERROR,
     GET_CURRENT_USER_BEGIN,
     GET_CURRENT_USER_SUCCESS,
+    GET_CURRENT_QUSER_SUCCESS,
     GET_CURRENT_USER_ERROR,
     LOGOUT_USER,
     QLOGOUT_USER,
@@ -34,7 +35,10 @@ import {
     SAVED_PRODUCT_ERROR,
     GET_SINGLE_PRODUCT_BEGIN,
     GET_SINGLE_PRODUCT_SUCCESS,
-    GET_SINGLE_PRODUCT_ERROR
+    GET_SINGLE_PRODUCT_ERROR,
+    PURCHASED_PRODUCT_BEGIN,
+    PURCHASED_PRODUCT_SUCCESS,
+    PURCHASED_PRODUCT_ERROR,
 } from "./action"
 
 
@@ -49,6 +53,7 @@ const initialState = {
     toggleSearch: false,
     user: [],
     savedItems: [],
+    purchasedItems: [],
     singleProduct: [],
     // save:false,
 
@@ -232,12 +237,22 @@ const ContextProvider = ({ children }) => {
         dispatch({ type: GET_CURRENT_USER_BEGIN });
         try {
             const { data } = await authFetch('/api/user/getUser', { signal });
-            const { user } = data;
+            const { user, qUser } = data;
 
-            dispatch({
-                type: GET_CURRENT_USER_SUCCESS,
-                payload: { user },
-            });
+
+            if (user === null) {
+                dispatch({
+                    type: GET_CURRENT_QUSER_SUCCESS,
+                    payload: { qUser },
+                });
+            }
+
+            if (qUser === null) {
+                dispatch({
+                    type: GET_CURRENT_USER_SUCCESS,
+                    payload: { user },
+                });
+            }
         } catch (error) {
             dispatch({ type: GET_CURRENT_USER_ERROR })
             if (signal.aborted) return;
@@ -304,6 +319,22 @@ const ContextProvider = ({ children }) => {
     }
 
 
+    const getPurchasedProductFn = async () => {
+        dispatch({ type: PURCHASED_PRODUCT_BEGIN });
+        try {
+            const { data } = await authFetch.get('/api/purchased-items');
+            const { purchasedProduct } = data;
+            dispatch({
+                type: PURCHASED_PRODUCT_SUCCESS,
+                payload: { purchasedProduct },
+            });
+        } catch (error) {
+            dispatch({
+                type: PURCHASED_PRODUCT_ERROR,
+            });
+        }
+    }
+
     const getSingleProduct = async (id) => {
         dispatch({ type: GET_SINGLE_PRODUCT_BEGIN })
 
@@ -323,15 +354,12 @@ const ContextProvider = ({ children }) => {
     }
 
     useEffect(() => {
-        qAuthFn()
-        qFbAuthFn()
         getCurrentUser();
-        qQAuthFn()
     }, [])
 
 
     return (
-        <Context.Provider value={{ ...state, toggleMenuFn, toggleSearchFn, loginFn, registerFn, logoutUser, toggleAdminMenuFn, toggleProfileMenuFn, toggleAuthModalFn, QlogoutUser, getProductFn, getSavedProductFn, getSingleProduct }} >
+        <Context.Provider value={{ ...state, toggleMenuFn, toggleSearchFn, loginFn, registerFn, logoutUser, toggleAdminMenuFn, toggleProfileMenuFn, toggleAuthModalFn, QlogoutUser, getProductFn, getSavedProductFn, getSingleProduct, getPurchasedProductFn }} >
             {children}
         </Context.Provider>
     )

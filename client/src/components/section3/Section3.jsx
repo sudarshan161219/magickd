@@ -14,7 +14,7 @@ const Section3 = () => {
 
             <div className={styles.infoContainer} >
                 <p className={styles.desc}>Need a personalized package for your business?</p>
-                <Link className={styles.btn} to="/request_a_quote">Request a Quote</Link>
+                <Link className={styles.btn} to="/ContactUs">Request a Quote</Link>
             </div>
 
         </div>

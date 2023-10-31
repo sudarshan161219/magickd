@@ -24,6 +24,7 @@ import {
     LOGIN_ADMIN_ERROR,
     GET_CURRENT_USER_BEGIN,
     GET_CURRENT_USER_SUCCESS,
+    GET_CURRENT_QUSER_SUCCESS,
     GET_CURRENT_USER_ERROR,
     GET_ADMIN_BEGIN,
     GET_ADMIN_SUCCESS,
@@ -44,7 +45,10 @@ import {
     SAVED_PRODUCT_ERROR,
     GET_SINGLE_PRODUCT_BEGIN,
     GET_SINGLE_PRODUCT_SUCCESS,
-    GET_SINGLE_PRODUCT_ERROR
+    GET_SINGLE_PRODUCT_ERROR,
+    PURCHASED_PRODUCT_BEGIN,
+    PURCHASED_PRODUCT_SUCCESS,
+    PURCHASED_PRODUCT_ERROR,
 } from "./action"
 
 
@@ -217,10 +221,20 @@ const reducer = (state, action) => {
     }
 
     if (action.type === GET_CURRENT_USER_SUCCESS) {
+
         return {
             ...state,
             userLoading: false,
-            user: action.payload.user
+            user: action.payload.user,
+        }
+    }
+
+    if (action.type === GET_CURRENT_QUSER_SUCCESS) {
+
+        return {
+            ...state,
+            userLoading: false,
+            user: action.payload.qUser,
         }
     }
 
@@ -324,6 +338,22 @@ const reducer = (state, action) => {
     }
 
     if (action.type === SAVED_PRODUCT_ERROR) {
+        return { ...state, isLoading: false };
+    }
+
+    if (action.type === PURCHASED_PRODUCT_BEGIN) {
+        return { ...state, isLoading: true };
+    }
+
+    if (action.type === PURCHASED_PRODUCT_SUCCESS) {
+        return {
+            ...state,
+            isLoading: false,
+            purchasedItems: action.payload.purchasedProduct 
+        };
+    }
+
+    if (action.type === PURCHASED_PRODUCT_ERROR) {
         return { ...state, isLoading: false };
     }
 

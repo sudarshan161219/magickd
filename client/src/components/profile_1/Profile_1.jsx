@@ -58,17 +58,6 @@ const Profile_1 = () => {
             </div>
 
 
-            {/* <div className={styles.userInfo} >
-                <div className={styles.userInfoTable}  >
-                    <div className={styles.textInfo}>
-                        <strong className={styles.name} >User Id</strong>
-                        <span className={styles.span}>xxxxxx123</span>
-
-                    </div>
-                </div>
-            </div> */}
-
-
             <div className={styles.userInfo} >
                 <div className={styles.userInfoTable}  >
                     <div className={styles.textInfo}>
@@ -79,18 +68,18 @@ const Profile_1 = () => {
             </div>
 
 
-            {user.method === "OAuth" ? null :
-                <div className={styles.userInfo} >
+            {/* {user.method === "OAuth" ? null : */}
+                {/* <div className={styles.userInfo} >
                     <div className={styles.userInfoTable}  >
                         <div className={styles.textInfo}>
                             <strong className={styles.name} >Password</strong>
                             {
                                 toggleEditUser ? <input className={styles.input} type="text" value={namevalue} /> : <span className={styles.span}>{user.name}</span>}
 
-                        </div>
+                        </div> */}
 
                         <>
-                            {toggleEditUser ?
+                            {/* {toggleEditUser ?
 
                                 <div className={styles.btnContainer}>
                                     <button className={`${styles.saveBtn} ${styles.btn}`}>Save</button>
@@ -101,14 +90,14 @@ const Profile_1 = () => {
                                 <Ripple >
                                     <AiOutlineEdit onClick={toggleUserEditFn} className={styles.icon} />
                                 </Ripple>
-                            }
+                            } */}
                         </>
 
-                    </div>
+                    {/* </div>
 
-                </div>
+                </div> */}
 
-            }
+            {/* } */}
             {user.email === null ? null :
                 <div className={styles.userInfo} >
                     <div className={styles.userInfoTable}  >

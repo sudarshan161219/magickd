@@ -19,7 +19,7 @@ const Profile = () => {
 
     return (
         <div className={styles.container}>
-            <Box className={styles.box} sx={{ minWidth: 120 }} >
+            {/* <Box className={styles.box} sx={{ minWidth: 120 }} >
                 <FormControl fullWidth>
                     <Select
                         value={select}
@@ -31,12 +31,12 @@ const Profile = () => {
                         <MenuItem onClick={() => setToggle(!toggle)} value={2}>Purchase History</MenuItem>
                     </Select>
                 </FormControl>
-            </Box>
+            </Box> */}
 
+{/* 
+            <div className={styles.contentContainer}>{toggle ? <Profile_2 /> : <Profile_1 />} </div> */}
 
-            <div className={styles.contentContainer}>{toggle ? <Profile_2 /> : <Profile_1 />} </div>
-
-
+            <div className={styles.contentContainer}><Profile_1 /> </div>
 
         </div >
     )

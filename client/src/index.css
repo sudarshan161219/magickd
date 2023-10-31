@@ -1,3 +1,6 @@
+
+
+        
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 html,
@@ -178,7 +181,7 @@ body {
 }
 
 #root {
-display: contents;
+  display: contents;
 }
 
 /* /// */
@@ -216,4 +219,48 @@ display: contents;
     margin: 0 auto;
   }
 }
+/* App.css */
+.chip-bar-container {
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+}
 
+.chip-bar {
+  display: inline-flex;
+  padding: 10px;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.chip {
+  background-color: #0073e6;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.chip.selected {
+  background-color: #004e9e;
+}
+
+/* Style for the "Next" and "Previous" buttons */
+.category-chip-bar > button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 10px;
+}
+
+/* Style for the button container */
+.cbutton-container {
+  display: flex;
+  align-items: center;
+}

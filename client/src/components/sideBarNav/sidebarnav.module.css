@@ -55,7 +55,7 @@
   border-bottom: #b6b1b1 1px solid;
 }
 
-.closeContainer{
+.closeContainer {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -67,6 +67,27 @@
   color: var(--textColor);
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
+}
+
+.ul {
+  display: grid;
+  margin-top: 1rem;
+  /* gap: 10px; */
+}
+.ul > li {
+  padding: 0.9rem  0.9rem  0.9rem  1.5rem;
+}
+
+.link {
+  color: var(--textColor);
+  font-size: 1.1rem;
+  font-weight: 400;
+}
+
+
+.ul > li:hover {
+  cursor: pointer;
+  background-color: var(--softBg);
 }
 
 @media screen and (min-width: 750px) {

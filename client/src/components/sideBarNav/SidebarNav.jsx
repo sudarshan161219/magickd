@@ -1,4 +1,5 @@
 import styles from "./sidebarnav.module.css"
+import { Link } from "react-router-dom"
 import logo from "../../assets/logo.png"
 import { AiOutlineClose } from "react-icons/ai"
 import { Ripple } from "../../components/export"
@@ -23,7 +24,11 @@ const SidebarNav = () => {
 
                 <div className={styles.menu} >
                     <ul className={styles.ul}>
-
+                        <li ><Link onClick={toggleMenuFn} className={styles.link} to="/">Home</Link> </li>
+                        {/* <li ><Link onClick={toggleMenuFn} className={styles.link} to="/Portfolio">Portfolio</Link> </li>
+                        <li ><Link onClick={toggleMenuFn} className={styles.link} to="/Blog">Blog</Link> </li> */}
+                        <li ><Link onClick={toggleMenuFn} className={styles.link} to="/AboutUs">About Us</Link> </li>
+                        <li ><Link onClick={toggleMenuFn} className={styles.link} to="/ContactUs">Contact Us</Link> </li>
                     </ul>
                 </div>
             </div>

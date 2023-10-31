@@ -1,6 +1,8 @@
 import { Router } from "express";
 import passport from "passport";
 const router = Router();
+import jwt from "jsonwebtoken";
+import attachCookie from "../utils/attachCookie.mjs";
 
 //*--> Import all controllers  <--*//
 import {
@@ -14,7 +16,7 @@ import {
   loginSuccess,
   logoutt,
   loginSuccessfb,
-  getQUser
+  getQUser,
 } from "../controllers/authController.mjs";
 import loginLimiter from "../middlewares/loginLimiter.mjs";
 import auth from "../middlewares/auth.mjs";
@@ -41,15 +43,32 @@ router.route("/login/failed").get((req, res) => {
 router.route("/login/success").get(loginSuccess);
 router.route("/qauth_logout").get(logoutt);
 
+// function generateUserToken(req, res) {
+//     const Access_Token = req.user.createAccess_TokenJWT();
+//     attachCookie({ res, Access_Token });
+// }
+
 router
   .route("/auth/google")
   .get(passport.authenticate("google", { scope: ["profile", "email"] }));
 
-router.route("/auth/google/callback").get(
-  passport.authenticate("google", {
-    successRedirect: "http://localhost:5173",
-    failureRedirect: "/login/failed",
-  })
+// router.route("/auth/google/callback").get(
+//   passport.authenticate("google", {
+//     session: false,
+//     successRedirect: "http://localhost:5173",
+//     failureRedirect: "/login/failed",
+//   })
+// );
+
+// Google OAuth callback route
+router.get(
+  "/auth/google/callback",
+  passport.authenticate("google", { session: false }),
+  (req, res) => {
+    const Access_Token = req.user.createAccess_TokenJWT();
+    attachCookie({ res, Access_Token });
+    res.redirect("http://localhost:5173"); 
+  }
 );
 
 router.route("/login/fb/success").get(loginSuccessfb);

@@ -32,6 +32,8 @@ const Navbar = () => {
   if (location.pathname === "/payment_success") {
     return null
   }
+// console.log(Object.keys(user).length === 0);
+
 
   return (
     <nav
@@ -47,13 +49,21 @@ const Navbar = () => {
 
       <div className={styles.loginProfileContainer}  >
         <ul className={styles.ul}>
-          <li className={styles.li}> <Link to="/" className={styles.link}>Home</Link> </li>
-          <li className={styles.li}> <Link to="/Portfolio" className={styles.link}>Portfolio</Link> </li>
-          <li className={styles.li}> <Link to="/Blog" className={styles.link}>Blog</Link> </li>
+          <li className={styles.li}> <Link to="/" className={styles.link}>Home</Link> 
+          </li>
+
+          {/* <li className={styles.li}>
+             <Link to="/Portfolio" className={styles.link}>Portfolio</Link>
+           </li>
+          <li className={styles.li}> 
+          <Link to="/Blog" className={styles.link}>Blog</Link> 
+          </li> */}
+
+
           <li className={styles.li}> <Link to="/AboutUs" className={styles.link}>About Us</Link> </li>
           <li className={styles.li}> <Link to="/ContactUs" className={styles.link}>Contact Us</Link> </li>
         </ul>
-        {user && user ?
+        {user &&  Object.keys(user).length !== 0 ?
           <div onClick={toggleProfileMenuFn} className={styles.plink} to="/user-profile" >
             {user.userImg === null ? <h1>{user.name.charAt(0)}</h1> : <img className={styles.Plogo} src={user.userImg} alt={user.name} />}
           </div>

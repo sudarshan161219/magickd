@@ -4,7 +4,19 @@
   display: grid;
   gap: 100px;
 }
+.loadingContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 5rem;
+}
 
+.gif {
+  width: 50px;
+}
+
+.btnGif {
+  width: 25px;
+}
 .infoContainer,
 .thriContainer {
   display: grid;
@@ -49,6 +61,22 @@
   font-size: 1rem;
   border-radius: 5px;
 }
+
+.adownload {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 0.6rem 0;
+  border: none;
+  font-size: 1rem;
+  border-radius: 5px;
+  background-color: brown;
+  outline: brown 1px solid;
+  color: var(--bg);
+}
+
 .btnContainer > button:nth-child(1) {
   background-color: var(--bg);
   color: var(--textColor);
@@ -69,6 +97,13 @@
 }
 
 .btnContainer > button:nth-child(2):active {
+  background-color: var(--bg);
+  color: var(--textColor);
+  transform: scale(0.97);
+  transition: ease 0.1s;
+}
+
+.adownload:active {
   background-color: var(--bg);
   color: var(--textColor);
   transform: scale(0.97);
@@ -109,7 +144,7 @@
     flex: 1;
   }
 
-  .tagsContainer{
+  .tagsContainer {
     padding: 2rem;
   }
 }
@@ -137,6 +172,13 @@
   }
 
   .btnContainer > button:nth-child(2):hover {
+    background-color: var(--bg);
+    color: var(--textColor);
+    cursor: pointer;
+    transition: ease-in 0.3s;
+  }
+
+  .adownload:hover {
     background-color: var(--bg);
     color: var(--textColor);
     cursor: pointer;

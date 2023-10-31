@@ -1,23 +1,44 @@
+import { useEffect } from "react"
+import { Link } from 'react-router-dom';
 import styles from "./downloads.module.css"
-import { AiOutlineDownload } from "react-icons/ai"
-import { userDownloads } from "../../data/data"
-import { Ripple } from "../../components/export"
+import { Card } from '../../components/export'
+import { useAppContext } from "../../context/Context"
+import Loading from '../../components/skeletonLoading/Loading'
+
 
 const Downloads = () => {
+    const { getPurchasedProductFn, purchasedItems, isLoading } = useAppContext()
+
+    useEffect(() => {
+        getPurchasedProductFn()
+    }, [])
+
+
+
     return (
         <div className={styles.container}>
             <div className={styles.header}>
-                <h1 className={styles.title}  >Downloads ({userDownloads.length})</h1>
+                <h1 className={styles.title}  >Download ({isLoading ? 0 : purchasedItems.length})</h1>
             </div>
 
-            <ul className={styles.downloadsContainer} >
-                {userDownloads.map((item, idx) => (
-                    <li className={styles.li} key={idx}>
-                        <img className={styles.img} src={item.img} alt={item.name} />
-                        <Ripple ><AiOutlineDownload className={styles.icon} /></Ripple>
-                    </li>
-                ))}
-            </ul>
+
+
+            {
+                isLoading ?
+                    <div className={styles.container}>
+                        <div className={styles.cards}>
+                            <Loading />
+                        </div>
+                    </div>
+
+                    :
+                    <div className={styles.cards}>
+                        {purchasedItems.map((item, idx) => (
+                            <Link key={idx} to={`/item/${item._id}`} ><Card item={item} /></Link>
+                        ))}
+                    </div>
+
+            }
 
         </div>
     )

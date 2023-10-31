@@ -6,29 +6,29 @@
 .inputSelectContainer {
   display: flex;
   align-items: center;
-  
+  gap: 5px;
+  width: 100%;
 }
 
-
-.inputContainer{
-    width: 70%;
-    display: flex;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: start;
+.inputContainer {
+  width: 70%;
+  display: flex;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: start;
 }
-.icon{
+.icon {
   position: absolute;
   left: 5px;
   color: var(--softTextColor);
 }
 
-.input{
+.input {
   width: 100%;
   border: 0;
   outline: 1px solid #0000003f;
-  padding: 0.7rem 0.5em 0.7rem  2rem;
+  padding: 0.7rem 0.5em 0.7rem 2rem;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
   display: flex;
@@ -37,7 +37,6 @@
   font-size: 1rem;
 }
 
-
 select {
   /* Reset Select */
   appearance: none;
@@ -45,12 +44,11 @@ select {
   box-shadow: none;
   outline: none;
   /* Personalize */
-  padding:0.77rem 0.5em;
+  padding: 0.77rem 0.5em;
   color: var(--textColor);
   background-image: none;
   cursor: pointer;
   width: 100%;
-
 }
 /* Remove IE arrow */
 select::-ms-expand {
@@ -67,8 +65,8 @@ select::-ms-expand {
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
 }
-.aicon{
-  padding-right:0.5rem ;
+.aicon {
+  padding-right: 0.5rem;
   color: var(--softTextColor);
 }
 
@@ -76,11 +74,11 @@ select::-ms-expand {
   margin-top: 5rem;
   display: grid;
   grid-gap: 10px;
-  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
 }
 
-@media screen and (min-width:750px) {
-  .inputSelectContainer{
+@media screen and (min-width: 750px) {
+  .inputSelectContainer {
     width: 650px;
     margin: 0 auto;
   }

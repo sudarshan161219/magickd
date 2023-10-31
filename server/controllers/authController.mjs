@@ -120,8 +120,21 @@ const logout = async (req, res) => {
 };
 
 const getUser = async (req, res) => {
-  const user = await User.findOne({ _id: req.user.userId });
-  res.status(StatusCodes.OK).json({ user });
+  // const user = await User.findOne({ _id: req.user.userId });
+  // res.status(StatusCodes.OK).json({ user });
+  try {
+    const [user, qUser] = await Promise.all([
+      User.findOne({ _id: req.user.userId }),
+      QUser.findOne({ _id: req.user.userId })
+    ]);
+
+    res.status(StatusCodes.OK).json({ user, qUser });
+  } catch (error) {
+    // Handle any potential errors here
+    console.error(error);
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ error: 'An error occurred' });
+  }
+
 };
 
 const getQUser = async (req, res) => {

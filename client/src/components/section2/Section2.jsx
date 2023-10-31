@@ -7,11 +7,11 @@ import Loading from "../skeletonLoading/Loading"
 
 const MainMenu = () => {
 
-    const { getProductFn, products, isLoading } = useAppContext()
+    const { getProductFn, products, isLoading, user } = useAppContext()
 
     useEffect(() => {
         getProductFn()
-    }, [])
+    }, [user])
 
     if (isLoading) {
         return (
@@ -27,10 +27,10 @@ const MainMenu = () => {
         <div className={styles.container}>
             <div className={styles.cards}>
                 {products.map((item, idx) => (
-                    <Card key={idx} item={item} />
+                    <Link key={idx} to={`/item/${item._id}`} ><Card item={item} /></Link>
                 ))}
             </div>
-<img src="https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=299031086409524&height=200&width=200&ext=1701197524&hash=AeT4gE8WsEMqmlK3NuE" alt="" />
+            <img src="https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=299031086409524&height=200&width=200&ext=1701197524&hash=AeT4gE8WsEMqmlK3NuE" alt="" />
             <div className={styles.btnContainer} > <Link to="/explore" className={styles.dBtn}>See More</Link></div>
         </div>
     )
