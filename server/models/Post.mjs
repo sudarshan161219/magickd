@@ -1,12 +1,23 @@
 import mongoose from "mongoose";
 const { Schema, model } = mongoose;
-
+// name || !description || !coverImg || !author || !content || !tags || !category
 const PostSchema = new Schema(
   {
-    title: {
+    name: {
       type: String,
-      required: [true, "Please title name"],
+      required: [true, "Please provide title"],
+      minlength: 5,
+    },
+
+    description: {
+      type: String,
+      required: [true, "Please provide description"],
       minlength: 10,
+    },
+
+    authorName:{
+      type: String,
+      required: [true, "Please provide author"],
     },
 
     coverImg: {
@@ -18,43 +29,16 @@ const PostSchema = new Schema(
       required: [true, "Please provide content"],
     },
 
-    postTags: {
+   tags: {
       type: Array,
     },
-
-    likes: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "User",
-      },
-    ],
-
-    dislikes: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "User",
-      },
-    ],
-
-    savepost: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "User",
-      },
-    ],
 
     category: {
       type: String,
     },
 
-    comments: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Comment",
-      },
-    ],
-    views: { type: Number, default: 0 },
-    author: { type: Schema.Types.ObjectId, ref: "User" },
+
+    author: { type: Schema.Types.ObjectId, ref: "Admin" },
   },
 
   { timestamps: true }

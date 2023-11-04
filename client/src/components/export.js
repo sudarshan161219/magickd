@@ -19,11 +19,11 @@ import AdminSidebar from "./adminSidebar/AdminSidebar";
 import Loading from "./loading/Loading.jsx";
 import InfoProduct from "./infoProduct/InfoProduct";
 import PaymentSuccess from "./paymentSuccess/PaymentSuccess.jsx";
-
+import BlogCard from "./blogCard/BlogCard.jsx"
 import Page_one from "./legalPages/Page_one.jsx";
 import Page_two from "./legalPages/Page_two.jsx";
 import Page_three from "./legalPages/Page_three.jsx";
-
+import Post from "./post/Post.jsx"
 export {
   Navbar,
   Footer,
@@ -49,4 +49,6 @@ export {
   Page_one,
   Page_two,
   Page_three,
+  BlogCard,
+  Post
 };

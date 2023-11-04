@@ -174,7 +174,7 @@ const getsearchedItem = async (req, res) => {
 
     if (req.query.search) {
       const searchQuery = new RegExp(req.query.search, "i");
-      filter.$or = [{ category: searchQuery }, { tags: searchQuery }];
+      filter.$or = [{ category:category }, { tags: searchQuery }];
     }
 
     const allProductPromise = Product.find(filter)

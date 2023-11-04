@@ -12,6 +12,7 @@ import {
   Page_one,
   Page_two,
   Page_three,
+  Post
 } from "./components/export"
 import Main from "./main/Main";
 import Explore from "./Explore/Explore";
@@ -35,6 +36,7 @@ const App = () => {
         <Route path="/" element={<Main />} />
         <Route path="/explore" element={<Explore />} />
         <Route path="/Blog" element={<Blog />} />
+        <Route path="/post/:id" element={<Post />} />
         <Route path="/AboutUs" element={<About />} />
         <Route path="/Portfolio" element={<Portfolio />} />
         <Route path="/ContactUs" element={<Contact />} />

@@ -81,6 +81,7 @@ const Navbar = () => {
   const pathName2 = "/Privacy-Policy"
   const pathName3 = '/Cookie-Policy'
   const pathName4 = "/payment_success"
+  const pathName5 = "/Blog"
 
   if (location.pathname === pathName4) {
     return null
@@ -109,7 +110,7 @@ const Navbar = () => {
       </div>
 
       {
-        location.pathname === pathName1 || location.pathname === pathName2 || location.pathname === pathName3 ? null :
+        location.pathname === pathName1 || location.pathname === pathName2 || location.pathname === pathName3 ||  location.pathName5? null :
           <div className={styles.search} >
             <AiOutlineSearch className={styles.icon} />
             <input className={styles.input} type="text" onChange={handleInputChange} placeholder="Search Images" name="" id="" />

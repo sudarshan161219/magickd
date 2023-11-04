@@ -15,6 +15,7 @@ import connectDB from "./Db/connectDb.mjs";
 import authRoute from "./route/authRoute.mjs";
 import productRoute from "./route/productRoute.mjs";
 import paymentRoute from "./route/paymentRoute.mjs";
+import postRoute from "./route/postRoute.mjs";
 import passport from "passport";
 import session from "express-session";
 import cookieSession from "cookie-session";
@@ -64,6 +65,7 @@ app.use(cookieParser());
 
 //* api routes
 app.use("/api", productRoute);
+app.use("/api/post", postRoute)
 app.use("/api/payment", auth, paymentRoute);
 app.use("/api/user", authRoute);
 

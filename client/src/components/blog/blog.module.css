@@ -14,8 +14,36 @@
   margin-bottom: 2rem;
 }
 
+.headingpContainer {
+  display: grid;
+  justify-content: center;
+  gap: 20px;
+  text-align: center;
+  margin: 3rem 0;
+}
 
-.title{
-    font-size: 1.5rem;
-    color: var(--textColor);
+.headingpContainer > h1 {
+  font-size: 2rem;
+  font-style: 500;
+}
+
+.headingpContainer > p {
+  font-size: 1.1rem;
+  line-height: 150%;
+  font-style: 400;
+}
+
+.title {
+  font-size: 1.5rem;
+  color: var(--textColor);
+}
+
+@media screen and (min-width: 1024px) {
+  .headingpContainer > h1 {
+    font-size: 2.5rem;
+  }
+
+  .headingpContainer > p {
+    font-size: 1.2rem;
+  }
 }

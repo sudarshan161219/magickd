@@ -87,6 +87,11 @@ select::-ms-expand {
   font-weight: 500;
   color: var(--textColor);
 }
+
+.tabs{
+  display: flex;
+  justify-content: center;
+}
 @media screen and (min-width: 750px) {
   .container {
     padding: 10px 2rem;
@@ -97,3 +102,11 @@ select::-ms-expand {
     margin: 0 auto;
   }
 }
+
+
+/* @media screen and (min-width:650px) {
+  .tabs{
+    width: 600px;
+    margin: 0 auto;
+  }
+} */

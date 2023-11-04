@@ -23,7 +23,7 @@ const Downloads = () => {
                     :
                     <div className={styles.cards}>
                         {purchasedItems.map((item, idx) => (
-                            <Link key={idx} to={`/item/${item._id}`} ><Card item={item} /></Link>
+                    <Card key={idx} item={item} />
                         ))}
                     </div>
             }
