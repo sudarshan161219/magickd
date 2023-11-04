@@ -23,13 +23,13 @@ const SidebarNav = () => {
                 </div>
 
                 <div className={styles.menu} >
-                    <ul className={styles.ul}>
-                        <li ><Link onClick={toggleMenuFn} className={styles.link} to="/">Home</Link> </li>
-                        {/* <li ><Link onClick={toggleMenuFn} className={styles.link} to="/Portfolio">Portfolio</Link> </li>
-                        <li ><Link onClick={toggleMenuFn} className={styles.link} to="/Blog">Blog</Link> </li> */}
-                        <li ><Link onClick={toggleMenuFn} className={styles.link} to="/AboutUs">About Us</Link> </li>
-                        <li ><Link onClick={toggleMenuFn} className={styles.link} to="/ContactUs">Contact Us</Link> </li>
-                    </ul>
+                    <div className={styles.ul}>
+                        <Link onClick={toggleMenuFn} className={styles.link} to="/">Home</Link>
+                        <Link onClick={toggleMenuFn} className={styles.link} to="/Portfolio">Portfolio</Link>
+                        <Link onClick={toggleMenuFn} className={styles.link} to="/Blog">Blog</Link>
+                        <Link onClick={toggleMenuFn} className={styles.link} to="/AboutUs">About Us</Link>
+                        <Link onClick={toggleMenuFn} className={styles.link} to="/ContactUs">Contact Us</Link>
+                    </div>
                 </div>
             </div>
         </div>

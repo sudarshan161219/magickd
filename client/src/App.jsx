@@ -8,7 +8,10 @@ import {
   SidebarNav,
   ProfileSideBar,
   InfoProduct,
-  PaymentSuccess
+  PaymentSuccess,
+  Page_one,
+  Page_two,
+  Page_three,
 } from "./components/export"
 import Main from "./main/Main";
 import Explore from "./Explore/Explore";
@@ -37,6 +40,9 @@ const App = () => {
         <Route path="/ContactUs" element={<Contact />} />
         <Route path="/item/:id" element={<InfoProduct />} />
         <Route path="/payment_success" element={<PaymentSuccess />} />
+        <Route path="/Terms-and-Conditions" element={<Page_one />} />
+        <Route path="/Privacy-Policy" element={<Page_two />} />
+        <Route path="/Cookie-Policy" element={<Page_three />} />
         {/* <Route path="/register" element={<Register />} /> */}
 
         {/* user Protected Routes */}

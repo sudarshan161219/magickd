@@ -18,7 +18,11 @@ import Profile_2 from "./profile_2/Profile_2";
 import AdminSidebar from "./adminSidebar/AdminSidebar";
 import Loading from "./loading/Loading.jsx";
 import InfoProduct from "./infoProduct/InfoProduct";
-import PaymentSuccess from "./paymentSuccess/PaymentSuccess.jsx"
+import PaymentSuccess from "./paymentSuccess/PaymentSuccess.jsx";
+
+import Page_one from "./legalPages/Page_one.jsx";
+import Page_two from "./legalPages/Page_two.jsx";
+import Page_three from "./legalPages/Page_three.jsx";
 
 export {
   Navbar,
@@ -41,5 +45,8 @@ export {
   AdminSidebar,
   Loading,
   InfoProduct,
-  PaymentSuccess
+  PaymentSuccess,
+  Page_one,
+  Page_two,
+  Page_three,
 };

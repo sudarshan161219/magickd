@@ -1,6 +1,5 @@
 .container {
   padding: 10px;
-  /* margin-bottom: 10rem; */
 }
 
 .inputSelectContainer {
@@ -71,13 +70,28 @@ select::-ms-expand {
 }
 
 .cards {
-  margin-top: 5rem;
+  margin: 2.2rem 0;
   display: grid;
   grid-gap: 10px;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
 }
+.headingContainer {
+  margin: 2.2rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
+.headingContainer > h1 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--textColor);
+}
 @media screen and (min-width: 750px) {
+  .container {
+    padding: 10px 2rem;
+  }
+
   .inputSelectContainer {
     width: 650px;
     margin: 0 auto;

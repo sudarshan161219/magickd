@@ -264,3 +264,21 @@ body {
   display: flex;
   align-items: center;
 }
+
+
+/* .css-3dzjca-MuiPaper-root-MuiPopover-paper-MuiMenu-paper{
+  width: 200px;
+} */
+
+
+/* li.css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root{
+  justify-content: center;
+} */
+
+ul.css-6hp17o-MuiList-root-MuiMenu-list{
+  padding: 0;
+}
+
+@media screen and (min-width: 750px) {
+
+}

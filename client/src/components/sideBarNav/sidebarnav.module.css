@@ -82,10 +82,11 @@
   color: var(--textColor);
   font-size: 1.1rem;
   font-weight: 400;
+  padding: 0.9rem  0.9rem  0.9rem  1.5rem;
 }
 
 
-.ul > li:hover {
+.ul > .link:hover {
   cursor: pointer;
   background-color: var(--softBg);
 }

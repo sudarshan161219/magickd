@@ -20,7 +20,10 @@
   align-items: center;
   justify-content: center;
   border-radius: 5px;
-  background-color: rgba(255, 93, 93, 0.562);
+  background-color: rgba(48, 44, 44, 0.562);
+  width: 40px;
+  padding: 0.2rem 0;
+  outline: 1px solid rgba(202, 198, 198, 0.562);
 }
 
 .p {
@@ -38,6 +41,7 @@
   justify-content: center;
   border-radius: 5px;
   background-color: rgba(48, 47, 47, 0.562);
+  z-index: 5;
 }
 
 .icon {

@@ -349,7 +349,7 @@ const reducer = (state, action) => {
         return {
             ...state,
             isLoading: false,
-            purchasedItems: action.payload.purchasedProduct 
+            purchasedItems: action.payload.purchasedProduct
         };
     }
 
@@ -367,7 +367,8 @@ const reducer = (state, action) => {
         return {
             ...state,
             isLoading: false,
-            singleProduct: action.payload.singleproduct
+            singleProduct: action.payload.singleproduct,
+            categoryProducts: action.payload.productsInCategory
         };
     }
 

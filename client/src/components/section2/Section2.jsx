@@ -27,7 +27,7 @@ const MainMenu = () => {
         <div className={styles.container}>
             <div className={styles.cards}>
                 {products.map((item, idx) => (
-                    <Link key={idx} to={`/item/${item._id}`} ><Card item={item} /></Link>
+                    <Card key={idx} item={item} />
                 ))}
             </div>
             <img src="https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=299031086409524&height=200&width=200&ext=1701197524&hash=AeT4gE8WsEMqmlK3NuE" alt="" />

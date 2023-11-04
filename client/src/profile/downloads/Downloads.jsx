@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+
 import { Link } from 'react-router-dom';
 import styles from "./downloads.module.css"
 import { Card } from '../../components/export'
@@ -7,22 +7,12 @@ import Loading from '../../components/skeletonLoading/Loading'
 
 
 const Downloads = () => {
-    const { getPurchasedProductFn, purchasedItems, isLoading } = useAppContext()
-
-    useEffect(() => {
-        getPurchasedProductFn()
-    }, [])
-
+    const {purchasedItems, isLoading } = useAppContext()
 
 
     return (
         <div className={styles.container}>
-            <div className={styles.header}>
-                <h1 className={styles.title}  >Download ({isLoading ? 0 : purchasedItems.length})</h1>
-            </div>
-
-
-
+            <h1 className={styles.title}  >Download ({isLoading ? 0 : purchasedItems.length})</h1>
             {
                 isLoading ?
                     <div className={styles.container}>
@@ -30,16 +20,13 @@ const Downloads = () => {
                             <Loading />
                         </div>
                     </div>
-
                     :
                     <div className={styles.cards}>
                         {purchasedItems.map((item, idx) => (
                             <Link key={idx} to={`/item/${item._id}`} ><Card item={item} /></Link>
                         ))}
                     </div>
-
             }
-
         </div>
     )
 }

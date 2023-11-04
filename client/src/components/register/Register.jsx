@@ -68,10 +68,10 @@ const Register = () => {
                                 {`Continue with Google`}
 
                             </button>
-                            <button onClick={handleFacebook} className={`${styles.btn} ${styles.socialBtn}`}>
+                            {/* <button onClick={handleFacebook} className={`${styles.btn} ${styles.socialBtn}`}>
                                 <BsFacebook className={`${styles.socialIcon}  ${styles.socialFacebookIcon}`} />
                                 {`Continue with Facebook`}
-                            </button>
+                            </button> */}
                         </div>
 
 

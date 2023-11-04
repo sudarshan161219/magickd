@@ -10,7 +10,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
-
+import { useLocation } from 'react-router-dom';
 import {
     BiSolidDownArrow
 } from 'react-icons/bi'
@@ -26,6 +26,12 @@ const Explore = () => {
     const [maxPrice, setMaxPrice] = useState('');
     const [isLoading, setIsLoading] = useState(false)
 
+    const location = useLocation();
+    const searchParams = new URLSearchParams(location.search);
+    const searchQuery = searchParams.get('category');
+
+
+
     const fetchProducts = async () => {
         setIsLoading(true)
         try {
@@ -35,7 +41,7 @@ const Explore = () => {
                     limit: 5,
                     search,
                     sortBy,
-                    category,
+                    category: searchQuery ? searchQuery : null,
                     tag,
                     minPrice,
                     maxPrice,
@@ -51,11 +57,12 @@ const Explore = () => {
 
     useEffect(() => {
         fetchProducts();
-    }, [search, sortBy, category, tag]);
+    }, [search, sortBy, category, tag, searchQuery]);
+
 
     return (
         <div className={styles.container}>
-            <div className={styles.inputSelectContainer}>
+            {/* <div className={styles.inputSelectContainer}>
 
                 <TextField
                     fullWidth
@@ -68,7 +75,7 @@ const Explore = () => {
 
                 <FormControl sx={{ minWidth: 120 }} size="small">
                     <Select
-                         value={sortBy}
+                        value={sortBy}
                         onChange={(e) => setSortBy(e.target.value)}
                         displayEmpty
                         inputProps={{ 'aria-label': 'Without label' }}
@@ -78,56 +85,35 @@ const Explore = () => {
                     </Select>
                 </FormControl>
 
+            </div> */}
+
+
+            <div className={styles.headingContainer}>
+                <h1>{searchQuery ? searchQuery : 'Explore'}</h1>
+                <FormControl sx={{ minWidth: 120 }} size="small">
+                    <Select
+                        value={sortBy}
+                        onChange={(e) => setSortBy(e.target.value)}
+                        displayEmpty
+                        inputProps={{ 'aria-label': 'Without label' }}
+                    >
+                        <MenuItem value={'latest'}>Latest</MenuItem>
+                        <MenuItem value={'oldest'}>Oldest</MenuItem>
+                    </Select>
+                </FormControl>
             </div>
 
 
-
-
-
-            {/* </div> */}
-
-
-            {/* <input
-                    type="text"
-                    placeholder="Category"
-                    value={category}
-                    onChange={(e) => setCategory(e.target.value)}
-                />
-                <input
-                    type="text"
-                    placeholder="Tag"
-                    value={tag}
-                    onChange={(e) => setTag(e.target.value)}
-                /> */}
-
-            {/* <input
-                type="number"
-                placeholder="Min Price"
-                value={minPrice}
-                onChange={(e) => setMinPrice(e.target.value)}
-                className="input-field"
-            />
-            <input
-                type="number"
-                placeholder="Max Price"
-                value={maxPrice}
-                onChange={(e) => setMaxPrice(e.target.value)}
-                className="input-field"
-            /> */}
-
-
             {isLoading ?
-
                 <div className={styles.container}>
                     <div className={styles.cards}>
                         <Loading />
                     </div>
                 </div>
-
                 :
                 <div className={styles.cards}>
                     {products.map((item) => (
-                        <Link key={item._id} to={`/item/${item._id}`}><Card item={item} /></Link>
+                        <Card key={item._id} item={item} />
                     ))}
                 </div>
             }

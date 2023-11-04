@@ -7,12 +7,12 @@ import { useAppContext } from "../../context/Context";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
-
+import { BsArrowUpRight } from "react-icons/bs"
 // eslint-disable-next-line react/prop-types
 const Card = ({ item }) => {
     const { user, toggleAuthModalFn, } = useAppContext()
     const [saved, setSaved] = useState(false)
-    const [isSaved, setIssaved] = useState(false);
+    // const [isSaved, setIssaved] = useState(false);
     const [isLoading, setIsLoading] = useState(false)
 
     const handleModal = () => {
@@ -74,6 +74,7 @@ const Card = ({ item }) => {
         <div className={styles.card}>
 
             <div className={styles.top1overlay}>{<h1 className={styles.name}>{item.name}</h1>}</div>
+            <Link  to={`/item/${item._id}`} className={styles.overlay}> <BsArrowUpRight  className={styles.icon }/></Link>
             <div className={styles.topoverlay} >
 
                 {user && user.length === 0 ?
@@ -106,7 +107,9 @@ const Card = ({ item }) => {
                         // eslint-disable-next-line react/prop-types
                         item.purchase && item.purchase ?
                             <a
+                                // eslint-disable-next-line react/prop-types
                                 href={`https://drive.google.com/uc?export=download&id=${item.driveId}`}
+                                // eslint-disable-next-line react/prop-types
                                 download={item.driveName}
                             >
                                 <IconButton color="primary" aria-label="add to shopping cart">
@@ -127,24 +130,6 @@ const Card = ({ item }) => {
 
             </div>
             <img className={styles.img} src={item.imageUrl} alt={item.name} />
-
-            {
-                // eslint-disable-next-line react/prop-types
-                item.purchase && item.purchase ? null :
-
-                    <div className={styles.overlay} >
-                        {user && user.length === 0 ? <IconButton onClick={handleModal} color="primary" aria-label="add to shopping cart">
-                            <p className={styles.p}>buy</p>
-                        </IconButton> :
-
-                            // eslint-disable-next-line react/prop-types
-                            <Link to={`/item/${item._id}`} >
-                                <IconButton color="primary" aria-label="add to shopping cart">
-                                    <p className={styles.p}>buy</p>
-                                </IconButton>
-                            </Link>
-                        }
-                    </div>}
         </div >
     )
 }

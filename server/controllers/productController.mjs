@@ -164,17 +164,96 @@ const getallItem = async (req, res) => {
   }
 };
 
+const getsearchedItem = async (req, res) => {
+  try {
+    const page = Number(req.query.page) || 1;
+    const limit = Number(req.query.limit) || 15;
+    const skip = (page - 1) * limit;
+
+    const filter = {};
+
+    if (req.query.search) {
+      const searchQuery = new RegExp(req.query.search, "i");
+      filter.$or = [{ category: searchQuery }, { tags: searchQuery }];
+    }
+
+    const allProductPromise = Product.find(filter)
+      .select("category _id")
+      .skip(skip)
+      .limit(limit);
+
+    const totalProductPromise = Product.countDocuments(filter);
+
+    const [products, totalProducts] = await Promise.all([
+      allProductPromise,
+      totalProductPromise,
+    ]);
+
+    const numofPages = Math.ceil(totalProducts / limit);
+
+    return res.status(StatusCodes.OK).json({
+      products,
+      totalProducts,
+      numofPages,
+    });
+  } catch (error) {
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+      error: "Server error",
+    });
+  }
+};
+
+// const getProduct = async (req, res) => {
+//   const { Id } = req.params;
+//   const singleproduct = await Product.findById({ _id: Id }).populate(
+//     "savedByUsers"
+//   );
+
+//   if (!singleproduct) {
+//     throw new NotFoundError(`No post with id : ${Id}`);
+//   }
+
+//   res.status(StatusCodes.OK).json({ singleproduct });
+// };
+
 const getProduct = async (req, res) => {
   const { Id } = req.params;
-  const singleproduct = await Product.findById({ _id: Id }).populate(
-    "savedByUsers"
-  );
 
-  if (!singleproduct) {
-    throw new NotFoundError(`No post with id : ${Id}`);
+  if (Id) {
+    const singleproduct = await Product.findById({ _id: Id }).populate(
+      "savedByUsers"
+    );
+
+    const productsInCategory = await Product.find({
+      category: singleproduct.category,
+    })
+      .populate("savedByUsers")
+      .limit(10);
+
+    if (!singleproduct) {
+      throw new NotFoundError(`No product with id: ${Id}`);
+    }
+
+    res.status(StatusCodes.OK).json({ singleproduct, productsInCategory });
   }
+};
 
-  res.status(StatusCodes.OK).json({ singleproduct });
+const getProductCategory = async (req, res) => {
+  const { category } = req.params;
+
+  if (category) {
+    const productsInCategory = await Product.find({
+      category: category,
+    })
+      .populate("savedByUsers")
+      .limit(10);
+
+    if (!productsInCategory) {
+      throw new NotFoundError(`No product with id: ${Id}`);
+    }
+
+    res.status(StatusCodes.OK).json({ productsInCategory });
+  }
 };
 
 const getpurchasedProduct = async (req, res) => {
@@ -182,7 +261,7 @@ const getpurchasedProduct = async (req, res) => {
     const userId = req.user.userId;
 
     // Retrieve products where 'purchase' is true
-    const purchasedProduct = await Product.find({ purchase: true });
+    const purchasedProduct = await Product.find({ purchaseByUser: userId });
 
     res.status(StatusCodes.OK).json({ purchasedProduct });
   } catch (error) {
@@ -199,4 +278,6 @@ export {
   getallItem,
   getProduct,
   getpurchasedProduct,
+  getsearchedItem,
+  getProductCategory,
 };

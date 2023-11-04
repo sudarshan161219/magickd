@@ -1,34 +1,27 @@
-import insta from "../../src/assets/insta.svg";
-import google from "../../src/assets/google.svg";
-import fb from "../../src/assets/fb.svg";
-import yt from "../../src/assets/yt.svg";
-import x from "../../src/assets/x.svg";
-import th from "../../src/assets/th.svg";
-
-const dataArr = [
+const dummyImgs = [
   {
-    name: "BRAND IDENTITY",
-    img: "https://images.unsplash.com/photo-1614036634955-ae5e90f9b9eb",
+    name: "facebook",
+    img: "../assets/fb.svg",
   },
   {
-    name: "FILMS",
-    img: "https://images.unsplash.com/photo-1542204165-65bf26472b9b",
+    name: "instagram",
+    img: "../assets/insta.svg",
   },
   {
-    name: "LOGOS",
-    img: "https://images.unsplash.com/photo-1618556658017-fd9c732d1360?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1528&q=80",
+    name: "google",
+    img: "../assets/google.svg",
   },
   {
-    name: "PROMOS",
-    img: "https://images.unsplash.com/photo-1579543401509-594bf0e610e4",
+    name: "twitter",
+    img:"../assets/x.svg",
   },
   {
-    name: "POSTERS",
-    img: "https://images.unsplash.com/photo-1508161773455-3ada8ed2bbec",
+    name: "youtube",
+    img: "../assets/yt.svg",
   },
   {
-    name: "COVER DESIGNS",
-    img: "https://images.unsplash.com/photo-1452639608291-23cd58f6864d",
+    name: "thread",
+    img: "../assets/th.svg",
   },
 ];
 
@@ -50,91 +43,99 @@ const testimonials = [
   },
 ];
 
-const dummyImgs = [
+const blog = [
   {
-    name: "facebook",
-    img: fb,
+    name: "The Art of Cooking",
+    date: "2023-10-31",
+    author: "Chef Alice",
+    content:
+      "In this blog, I'll share some of my favorite cooking tips and recipes.",
+    image:
+      "https://images.unsplash.com/photo-1698734387189-b90c7dacef27?auto=format&fit=crop&q=80&w=1470&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
-    name: "instagram",
-    img: insta,
+    name: "Traveling Adventures",
+    date: "2023-10-30",
+    author: "Wanderlust Explorer",
+    content:
+      "Join me on a journey to discover the world's hidden gems and beautiful destinations.",
+    image:
+      "https://images.unsplash.com/photo-1698734387189-b90c7dacef27?auto=format&fit=crop&q=80&w=1470&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
-    name: "google",
-    img: google,
+    name: "Tech Trends 2023",
+    date: "2023-10-29",
+    author: "Tech Guru",
+    content:
+      "Stay updated on the latest technology trends and innovations that are shaping our future.",
+    image:
+      "https://images.unsplash.com/photo-1698734387189-b90c7dacef27?auto=format&fit=crop&q=80&w=1470&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
-    name: "twitter",
-    img: x,
+    name: "Fitness and Health",
+    date: "2023-10-28",
+    author: "Fitness Enthusiast",
+    content:
+      "Get motivated and learn about the best fitness routines and health tips for a healthier lifestyle.",
+    image:
+      "https://images.unsplash.com/photo-1698734387189-b90c7dacef27?auto=format&fit=crop&q=80&w=1470&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
-    name: "youtube",
-    img: yt,
+    name: "Wildlife Photography",
+    date: "2023-10-27",
+    author: "Nature Lover",
+    content:
+      "Explore the wonders of nature through stunning wildlife photography and stories from the wild.",
+    image:
+      "https://images.unsplash.com/photo-1698734387189-b90c7dacef27?auto=format&fit=crop&q=80&w=1470&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
-    name: "thread",
-    img: th,
+    name: "Financial Insights",
+    date: "2023-10-26",
+    author: "Financial Advisor",
+    content:
+      "Gain valuable insights into managing your finances, investments, and achieving your financial goals.",
+    image:
+      "https://images.unsplash.com/photo-1698734387189-b90c7dacef27?auto=format&fit=crop&q=80&w=1470&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  },
+  {
+    name: "Home Improvement Tips",
+    date: "2023-10-25",
+    author: "DIY Enthusiast",
+    content:
+      "Discover practical tips and DIY projects to enhance your home's comfort and style.",
+    image:
+      "https://images.unsplash.com/photo-1698734387189-b90c7dacef27?auto=format&fit=crop&q=80&w=1470&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  },
+  {
+    name: "Fashion Trends 2023",
+    date: "2023-10-24",
+    author: "Fashionista",
+    content:
+      "Stay in vogue with the latest fashion trends and style inspiration for every season.",
+    image:
+      "https://images.unsplash.com/photo-1698734387189-b90c7dacef27?auto=format&fit=crop&q=80&w=1470&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  },
+  {
+    name: "Gaming World",
+    date: "2023-10-23",
+    author: "Gamer Pro",
+    content:
+      "Dive into the exciting world of gaming with reviews, updates, and strategies for your favorite games.",
+    image:
+      "https://images.unsplash.com/photo-1698734387189-b90c7dacef27?auto=format&fit=crop&q=80&w=1470&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  },
+  {
+    name: "Movie Buff Corner",
+    date: "2023-10-22",
+    author: "Cinephile",
+    content:
+      "Explore the world of cinema with movie reviews, classics, and recommendations for film enthusiasts.",
+    image:
+      "https://images.unsplash.com/photo-1698734387189-b90c7dacef27?auto=format&fit=crop&q=80&w=1470&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
 ];
 
-const dataArrr = [
-  {
-    name: "BRAND IDENTITY",
-    img: "https://images.unsplash.com/photo-1614036634955-ae5e90f9b9eb",
-  },
-  {
-    name: "FILMS",
-    img: "https://images.unsplash.com/photo-1542204165-65bf26472b9b",
-  },
-  {
-    name: "LOGOS",
-    img: "https://images.unsplash.com/photo-1618556658017-fd9c732d1360",
-  },
-  {
-    name: "PROMOS",
-    img: "https://images.unsplash.com/photo-1579543401509-594bf0e610e4",
-  },
-  {
-    name: "POSTERS",
-    img: "https://images.unsplash.com/photo-1508161773455-3ada8ed2bbec",
-  },
-  {
-    name: "COVER DESIGNS",
-    img: "https://images.unsplash.com/photo-1452639608291-23cd58f6864d",
-  },
-  {
-    name: "BRAND IDENTITY",
-    img: "https://images.unsplash.com/photo-1614036634955-ae5e90f9b9eb",
-  },
-  {
-    name: "FILMS",
-    img: "https://images.unsplash.com/photo-1542204165-65bf26472b9b",
-  },
-  {
-    name: "LOGOS",
-    img: "https://images.unsplash.com/photo-1618556658017-fd9c732d1360",
-  },
-  {
-    name: "PROMOS",
-    img: "https://images.unsplash.com/photo-1579543401509-594bf0e610e4",
-  },
-  {
-    name: "POSTERS",
-    img: "https://images.unsplash.com/photo-1508161773455-3ada8ed2bbec",
-  },
-  {
-    name: "COVER DESIGNS",
-    img: "https://images.unsplash.com/photo-1452639608291-23cd58f6864d",
-  },
-];
-
-const userData = [
-  { n: "Name", value: "sudarshan", editable: true },
-  { n: "User Id", value: "xxxxxxxxxx", editable: false },
-  { n: "userName", value: "defaultName", editable: false },
-  { n: "Password", value: "1!2@3#4$5%6^7&8*", editable: true },
-  { n: "E-mail", value: "test1234@gmail.com", editable: true },
-];
 
 const userPurchasehistory = [
   { n: "xyz_product", date: "dd/mm/yyyy", total: 100, PaymentType: "paypal" },
@@ -154,111 +155,4 @@ const userPurchasehistory = [
   },
 ];
 
-const userDownloads = [
-  {
-    name: "fav_name",
-    img: "https://images.unsplash.com/photo-1614036634955-ae5e90f9b9eb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80",
-    purchased: true,
-  },
-  {
-    name: "fav_name",
-    img: "https://images.unsplash.com/photo-1542204165-65bf26472b9b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80",
-    purchased: true,
-  },
-  {
-    name: "fav_name",
-    img: "https://images.unsplash.com/photo-1618556658017-fd9c732d1360?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1528&q=80",
-    purchased: true,
-  },
-];
-
-const userFav = [
-  {
-    name: "fav_name",
-    img: "https://images.unsplash.com/photo-1614036634955-ae5e90f9b9eb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80",
-  },
-  {
-    name: "fav_name",
-    img: "https://images.unsplash.com/photo-1542204165-65bf26472b9b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80",
-  },
-  {
-    name: "fav_name",
-    img: "https://images.unsplash.com/photo-1618556658017-fd9c732d1360?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1528&q=80",
-  },
-  {
-    name: "fav_name",
-    img: "https://images.unsplash.com/photo-1614036634955-ae5e90f9b9eb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80",
-  },
-  {
-    name: "fav_name",
-    img: "https://images.unsplash.com/photo-1542204165-65bf26472b9b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80",
-  },
-  {
-    name: "fav_name",
-    img: "https://images.unsplash.com/photo-1618556658017-fd9c732d1360?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1528&q=80",
-  },
-];
-
-
-// const itemData = [
-//   {
-//     img: 'https://images.unsplash.com/photo-1549388604-817d15aa0110',
-//     title: 'Bed',
-//   },
-//   {
-//     img: 'https://images.unsplash.com/photo-1525097487452-6278ff080c31',
-//     title: 'Books',
-//   },
-//   {
-//     img: 'https://images.unsplash.com/photo-1523413651479-597eb2da0ad6',
-//     title: 'Sink',
-//   },
-//   {
-//     img: 'https://images.unsplash.com/photo-1563298723-dcfebaa392e3',
-//     title: 'Kitchen',
-//   },
-//   {
-//     img: 'https://images.unsplash.com/photo-1588436706487-9d55d73a39e3',
-//     title: 'Blinds',
-//   },
-//   {
-//     img: 'https://images.unsplash.com/photo-1574180045827-681f8a1a9622',
-//     title: 'Chairs',
-//   },
-//   {
-//     img: 'https://images.unsplash.com/photo-1530731141654-5993c3016c77',
-//     title: 'Laptop',
-//   },
-//   {
-//     img: 'https://images.unsplash.com/photo-1481277542470-605612bd2d61',
-//     title: 'Doors',
-//   },
-//   {
-//     img: 'https://images.unsplash.com/photo-1517487881594-2787fef5ebf7',
-//     title: 'Coffee',
-//   },
-//   {
-//     img: 'https://images.unsplash.com/photo-1516455207990-7a41ce80f7ee',
-//     title: 'Storage',
-//   },
-//   {
-//     img: 'https://images.unsplash.com/photo-1597262975002-c5c3b14bbd62',
-//     title: 'Candle',
-//   },
-//   {
-//     img: 'https://images.unsplash.com/photo-1519710164239-da123dc03ef4',
-//     title: 'Coffee table',
-//   },
-// ];
-
-export {
-  dataArr,
-  dataArrr,
-  testimonials,
-  dummyImgs,
-  userData,
-  userPurchasehistory,
-  userDownloads,
-  userFav,
-
-};
+export { blog, dummyImgs, testimonials, userPurchasehistory };

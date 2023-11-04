@@ -55,6 +55,7 @@ const initialState = {
     savedItems: [],
     purchasedItems: [],
     singleProduct: [],
+    categoryProducts: [],
     // save:false,
 
     product: [],
@@ -340,10 +341,10 @@ const ContextProvider = ({ children }) => {
 
         try {
             const { data } = await authFetch.get(`/api/getProduct/${id}`);
-            const { singleproduct } = data;
+            const { singleproduct, productsInCategory } = data;
             dispatch({
                 type: GET_SINGLE_PRODUCT_SUCCESS,
-                payload: { singleproduct },
+                payload: { singleproduct, productsInCategory },
             });
             // dispatch({ type: CLEAR_VALUES });
         } catch (error) {
