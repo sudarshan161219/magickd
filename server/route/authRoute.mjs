@@ -67,7 +67,7 @@ router.get(
   (req, res) => {
     const Access_Token = req.user.createAccess_TokenJWT();
     attachCookie({ res, Access_Token });
-    res.redirect("http://localhost:5173"); 
+    res.redirect("https://magickd.onrender.com/"); 
   }
 );
 
