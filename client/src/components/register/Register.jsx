@@ -42,9 +42,14 @@ const Register = () => {
         setIsMember(!isMember)
     }
 
+    // const handleGoogle = () => {
+    //     window.open("http://localhost:5000/api/user/auth/google/callback", "_self")
+    // }
+
     const handleGoogle = () => {
-        window.open("http://localhost:5000/api/user/auth/google/callback", "_self")
+        window.open("https://magickd.onrender.com/api/user/auth/google/callback", "_self")
     }
+
 
     // const handleFacebook = () => {
     //     window.open("http://localhost:5000/api/user/auth/oauth2/redirect/facebook", "_self")
