@@ -92,7 +92,7 @@ const InfoProduct = () => {
                 description: "Test Transaction",
                 image: logo,
                 order_id: order.id,
-                "callback_url": `http://localhost:5000/api/payment/verification/${id}`,
+                "callback_url": `https://magickd.onrender.com/api/payment/verification/${id}`,
                 prefill: {
                     name: user.name,
                     email: user.email,

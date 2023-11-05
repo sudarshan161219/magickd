@@ -173,7 +173,7 @@ const paymentVerification = async (req, res) => {
       }
 
       res.redirect(
-        `http://localhost:5173/payment_success?reference=${razorpay_payment_id}`
+        `https://magickd.onrender.com/payment_success?reference=${razorpay_payment_id}`
       );
     } else {
       console.error("Product not found or update failed.");
