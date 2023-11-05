@@ -36,11 +36,11 @@ const Profile = () => {
 
 
     return (
-        <Box sx={{ width: '100%', typography: 'body1' }} >
+        <Box sx={{ width: '100%', typography: 'body1', padding: '10px' }} >
             <TabContext value={value} >
-                <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                <Box sx={{ borderBottom: 1, borderColor: 'divider' ,}}>
                     <TabList centered onChange={handleChange} aria-label="lab API tabs example">
-                        <Tab label="User details" value="1" />
+                        <Tab  label="User details" value="1" />
                         <Tab onClick={handleTab1} label="Downloads" value="2" />
                         <Tab onClick={handleTab2} label="Saved" value="3" />
                     </TabList>

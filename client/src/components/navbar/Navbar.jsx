@@ -2,9 +2,14 @@ import { Link, useLocation } from "react-router-dom";
 import axios from 'axios';
 import styles from "./navbar.module.css"
 import { useEffect, useState } from "react"
-import logo from "../../assets/logo.png"
+import logov1 from "../../assets/logov1.webp"
+import logov2 from "../../assets/logov2.webp"
 import { useAppContext } from "../../context/Context";
 import { BiMenu } from "react-icons/bi"
+import {
+  BsSun,
+  BsMoon
+} from "react-icons/bs"
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Accordion from '@mui/material/Accordion';
@@ -12,21 +17,58 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { AiOutlineSearch } from "react-icons/ai"
-
+import { AiOutlineSearch, AiOutlineClose } from "react-icons/ai"
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
 const Navbar = () => {
-  const { toggleMenu, toggleProfileMenu, toggleAuthModalFn, toggleAuthModal, user, QlogoutUser } = useAppContext()
+  const { toggleMenu, toggleProfileMenu, toggleAuthModalFn, toggleAuthModal, user, toggleThemefn } = useAppContext()
   const [scrollPosition, setScrollPosition] = useState(0);
   const [anchorEl, setAnchorEl] = useState(null);
-  const [anchorEl1, setAnchorEl1] = useState(null);
   const [expanded, setExpanded] = useState(false);
   const [products, setProducts] = useState([]);
   const [search, setSearch] = useState('');
+  const [alignment, setAlignment] = useState('light');
+
+  const [colorScheme, setColorScheme] = useState(
+    window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+  );
+
+  const theme = localStorage.getItem("theme")
 
   const handleInputChange = (event) => {
     setSearch(event.target.value);
   };
+
+
+  const handleTChange = (event, newAlignment) => {
+    if (newAlignment !== null) {
+      setAlignment(newAlignment);
+      toggleThemefn(newAlignment)
+      console.log(newAlignment);
+    }
+  };
+
+  const handleClear = () => {
+    setSearch('')
+  }
+
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    setAlignment(theme)
+    const handleChange = (e) => {
+      setColorScheme(e.matches ? 'dark' : 'light');
+      toggleThemefn(e.matches ? 'dark' : 'light')
+    };
+    mediaQuery.addEventListener('change', handleChange);
+    if (!theme) {
+      toggleThemefn(mediaQuery.matches ? 'dark' : 'light')
+    }
+    return () => {
+      mediaQuery.removeEventListener('change', handleChange);
+    };
+  }, []);
 
   useEffect(() => {
     async function fetchProducts() {
@@ -42,11 +84,12 @@ const Navbar = () => {
     } else {
       setProducts([]);
     }
+
+
   }, [search]);
 
 
   const open = Boolean(anchorEl);
-  // const open1 = Boolean(anchorEl1);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -82,6 +125,10 @@ const Navbar = () => {
   const pathName3 = '/Cookie-Policy'
   const pathName4 = "/payment_success"
   const pathName5 = "/Blog"
+  const pathName6 = "/ContactUs"
+  const pathName7 = "/AboutUs"
+  const pathName8 = "/user-profile"
+
 
   if (location.pathname === pathName4) {
     return null
@@ -97,29 +144,40 @@ const Navbar = () => {
   }
 
   return (
-    // <nav
-    //   className={
-    //     `${scrollPosition > 100 ? ` ${styles.stickyNav}` : `${styles.container}`}`
-    //   }>
     <nav
       className={
         styles.container
       }>
       <div className={styles.LogoContainer}>
-        <Link to="/" ><img className={styles.logo} src={logo} alt="logo" /></Link>
+        <Link to="/" ><img className={styles.logo} src={theme === 'light' ? logov2 : logov1} alt="logo" /></Link>
       </div>
 
       {
-        location.pathname === pathName1 || location.pathname === pathName2 || location.pathname === pathName3 ||  location.pathName5? null :
+        location.pathname === pathName1 ||
+          location.pathname === pathName2 ||
+          location.pathname === pathName3 ||
+          location.pathname === pathName4 ||
+          location.pathname === pathName5 ||
+          location.pathname === pathName6 ||
+          location.pathname === pathName7 ||
+          location.pathname === pathName8 
+         
+          ? null :
           <div className={styles.search} >
             <AiOutlineSearch className={styles.icon} />
-            <input className={styles.input} type="text" onChange={handleInputChange} placeholder="Search Images" name="" id="" />
+            {search && <AiOutlineClose onClick={handleClear} className={styles.cicon} />}
+
+            <input className={styles.input} type="text" value={search} onChange={handleInputChange} placeholder="Search Images" />
             {products && products.length !== 0 ?
-              <div className={styles.searchItem} >
-                {products.map((item) => (
-                  <Link onClick={clearProducts} className={styles.links} to={`/explore/?category=${item.category}`} key={item._id}>{item.category}</Link>
-                ))}
-              </div>
+              (search &&
+                (
+                  <div className={styles.searchItem} >
+                    {products.map((item) => (
+                      <Link onClick={clearProducts} className={styles.links} to={`/explore/?category=${item.category}`} key={item._id}>{item.category}</Link>
+                    ))}
+                  </div>
+                )
+              )
               :
               null
             }
@@ -141,22 +199,22 @@ const Navbar = () => {
           <span className={styles.mdLinks} >|</span>
           <Link to="/explore" className={styles.mdLinks}>Explore</Link>
         </div>
-        <div className={styles.imgContainer}>
+
+        {user && Object.keys(user).length !== 0 && <div className={styles.imgContainer}>
           {user && Object.keys(user).length !== 0 &&
             <Link to='user-profile' className={styles.imgContainer}>
               <img className={styles.img} onClick={handleClick1} src={user.userImg} alt={user.name} />
             </Link>
           }
-        </div>
+        </div>}
         <div className={styles.mdContainer}>
 
-          <BiMenu id="basic-button"
+          <BiMenu
             aria-controls={open ? 'basic-menu' : undefined}
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined} onClick={handleClick} className={styles.icon} />
           <Menu
             sx={{ width: '50%', flexShrink: 0 }}
-            id="basic-menu"
             anchorEl={anchorEl}
             open={open}
             onClose={handleClose}
@@ -165,75 +223,154 @@ const Navbar = () => {
             }}
           >
 
-            <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+            <Accordion sx={{ backgroundColor: 'var(--softBg)', color: 'var(--softTextColor)' }} expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
               <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
+                expandIcon={<ExpandMoreIcon className={styles.eIcon} />}
                 aria-controls="panel4bh-content"
                 id="panel4bh-header"
               >
                 <Typography sx={{ width: '33%', flexShrink: 0 }}>Company</Typography>
               </AccordionSummary>
-              <AccordionDetails>
-                <MenuItem onClick={handleClose}>
+              <AccordionDetails sx={{
+                '& .css-sh22l5-MuiButtonBase-root-MuiAccordionSummary-root': {
+                  padding: '5px',
+                },
+              }}>
+                <MenuItem sx={{
+                  padding: '5px',
+                  '.css-1e9fcvw-MuiAccordionDetails-root': {
+                    padding: '5px',
+                  },
+                }} onClick={handleClose}>
                   <Link className={styles.link} to="/">Home</Link>
                 </MenuItem>
 
 
-                <MenuItem onClick={handleClose}>
+                <MenuItem sx={{
+                  padding: '5px',
+                  '.css-1e9fcvw-MuiAccordionDetails-root': {
+                    padding: '5px',
+                  },
+                }} onClick={handleClose}>
                   <Link className={styles.link} to="/AboutUs">About</Link>
                 </MenuItem>
 
 
-                <MenuItem onClick={handleClose}>
+                <MenuItem sx={{
+                  padding: '5px',
+                  '.css-1e9fcvw-MuiAccordionDetails-root': {
+                    padding: '5px',
+                  },
+                }} onClick={handleClose}>
                   <Link className={styles.link} to="/Blog"> Blog</Link>
                 </MenuItem>
 
-                {/* <MenuItem onClick={handleClose}>
-                  <Link className={styles.link} to="/Portfolio">portfolio</Link>
-                </MenuItem> */}
-                <MenuItem onClick={handleClose}>
+
+                <MenuItem sx={{
+                  padding: '5px',
+                  '.css-1e9fcvw-MuiAccordionDetails-root': {
+                    padding: '5px',
+                  },
+                }} onClick={handleClose}>
                   <Link className={styles.link} to="/ContactUs">Contact us</Link>
                 </MenuItem>
               </AccordionDetails>
             </Accordion>
 
-            <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
+            <Accordion sx={{ backgroundColor: 'var(--softBg)', color: 'var(--softTextColor)' }} expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
               <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
+                expandIcon={<ExpandMoreIcon className={styles.eIcon} />}
                 aria-controls="panel4bh-content"
                 id="panel4bh-header"
               >
                 <Typography sx={{ width: '33%', flexShrink: 0 }}>Product</Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <MenuItem onClick={handleClose}>
+                <MenuItem sx={{
+                  padding: '5px',
+                  '.css-1e9fcvw-MuiAccordionDetails-root': {
+                    padding: '5px',
+                  },
+                }} onClick={handleClose}>
                   <Link className={styles.link} to="/">Explore</Link>
                 </MenuItem>
               </AccordionDetails>
             </Accordion>
 
 
-            <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
+            <Accordion sx={{ backgroundColor: 'var(--softBg)', color: 'var(--softTextColor)' }} expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
               <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
+                expandIcon={<ExpandMoreIcon className={styles.eIcon} />}
                 aria-controls="panel4bh-content"
                 id="panel4bh-header"
               >
-                <Typography sx={{ width: '33%', flexShrink: 0 }}>Legal</Typography>
+                <Typography sx={{ width: '33%', flexShrink: 0, }}>Legal</Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <MenuItem onClick={handleClose}>
+                <MenuItem sx={{
+                  padding: '5px',
+
+                  '.css-1e9fcvw-MuiAccordionDetails-root': {
+                    padding: '5px',
+                  },
+                }} onClick={handleClose}>
                   <Link className={styles.link} to="/Privacy-Policy">Privacy & Policy</Link>
                 </MenuItem>
 
 
-                <MenuItem onClick={handleClose}>
+                <MenuItem sx={{
+                  padding: '5px',
+                  '.css-1e9fcvw-MuiAccordionDetails-root': {
+                    padding: '5px',
+                  },
+                }} onClick={handleClose}>
                   <Link className={styles.link} to="/Terms-and-Conditions ">Terms & Conditions</Link>
                 </MenuItem>
 
-                <MenuItem onClick={handleClose}>
+                <MenuItem sx={{
+                  padding: '5px',
+                  '.css-1e9fcvw-MuiAccordionDetails-root': {
+                    padding: '5px',
+                  },
+                }} onClick={handleClose}>
                   <Link className={styles.link} to="/Cookie-Policy">Cookie Policy</Link>
                 </MenuItem>
+              </AccordionDetails>
+            </Accordion>
+
+
+
+            <Accordion sx={{ backgroundColor: 'var(--softBg)', color: 'var(--softTextColor)' }} expanded={expanded === 'panel4'} onChange={handleChange('panel4')}>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon className={styles.eIcon} />}
+                aria-controls="panel4bh-content"
+                id="panel4bh-header"
+              >
+                <Typography sx={{ width: '33%', flexShrink: 0 }}>Appearance</Typography>
+              </AccordionSummary>
+              <AccordionDetails
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  padding: '0px 10px 10px 10px'
+                }}
+              >
+                <ToggleButtonGroup
+                  color="primary"
+                  value={alignment}
+                  exclusive
+                  onChange={handleTChange}
+                  aria-label="Platform"
+                  fullWidth
+                  sx={{
+                    display: 'flex',
+                    outline: '1px solid var(--softTextColor)',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <ToggleButton value="light"   ><BsSun className={styles.eIcon} /></ToggleButton>
+                  <ToggleButton value="dark" >< BsMoon className={styles.eIcon} /> </ToggleButton>
+                </ToggleButtonGroup>
               </AccordionDetails>
             </Accordion>
 

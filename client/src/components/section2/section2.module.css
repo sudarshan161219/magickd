@@ -9,6 +9,14 @@
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
 }
 
+.card {
+  position: relative;
+  display: flex;
+  align-items: end;
+  justify-content: end;
+  height: 250px;
+}
+
 .img {
   width: 100%;
   height: 100%;
@@ -60,7 +68,7 @@
   display: grid;
   align-items: center;
   justify-content: center;
-  transition:ease 0.3s ;
+  transition: ease 0.3s;
 }
 
 .btn:hover .heart {
@@ -68,20 +76,17 @@
 }
 
 .btn:hover .download {
-  color:aqua;
+  color: aqua;
 }
 
-
-
-
-.dBtn{
+.dBtn {
   font-family: inherit;
   text-align: center;
   width: 200px;
   font-size: 15px;
   text-transform: capitalize;
-  background-color: var(--textColor);
   color: var(--bg);
+  background-color: var(--textColor);
   border: 1px solid #00000054;
   padding: 10px 20px;
   display: inline-block;
@@ -92,30 +97,29 @@
 
 .dBtn:hover {
   cursor: pointer;
+  background-color: var(--bg);
   color: var(--textColor);
-  background-color: transparent;
+  outline: 1px solid var(--softTextColor);
 }
 
-.btnContainer{
+.btnContainer {
   margin-top: 2rem;
   display: flex;
   justify-content: center;
 }
 
-.ImageList{
+.ImageList {
   column-count: 2;
 }
 
-@media screen and (min-width:700px) {
-  .ImageList{
+@media screen and (min-width: 700px) {
+  .ImageList {
     column-count: 3;
   }
 }
 
 @media screen and (min-width: 1024px) {
-
-  .ImageList{
+  .ImageList {
     column-count: 4;
   }
-
 }

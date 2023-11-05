@@ -21,9 +21,18 @@
 .icon {
   -webkit-tap-highlight-color: transparent;
   font-size: 1.4rem;
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 
+.cicon{
+  position: absolute;
+  right: 10px;
+  -webkit-tap-highlight-color: transparent;
+  font-size: 1rem;
+  cursor: pointer;
+  color:var(--softTextColor);
+
+}
 .stickyNav {
   position: -webkit-sticky;
   position: sticky;
@@ -93,9 +102,11 @@
   display: none;
 }
 
-.link {
-  color: var(--textColor);
+.link, .eIcon {
+  color: var(--softTextColor);
 }
+
+
 
 .plink {
   width: 35px;
@@ -140,6 +151,7 @@
   height: 30px;
   border-radius: 100%;
   overflow: hidden;
+
 }
 
 .flexContainer > .firstChild {
@@ -151,10 +163,10 @@
   display: flex;
   align-items: center;
   width: 80%;
-  outline: 1px solid #0000;
+  outline: 1px solid var(--softTextColor);
   border-radius: 24px;
   height: 40px;
-  background-color: #eee;
+  background-color: var(--softBg);
   gap: 5px;
   padding-left: 10px;
 }
@@ -179,13 +191,14 @@
 .searchItem {
   position: absolute;
   width: 100%;
-  background-color: #fff;
+  background-color: var(--bg);
   top: 50px;
   left: 0;
   box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
     rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
   display: grid;
   border-radius: 5px;
+  outline: 1px solid var(--softTextColor);
 }
 
 .links {
@@ -208,6 +221,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  cursor: pointer;
 }
 
 @media screen and (min-width: 750px) {

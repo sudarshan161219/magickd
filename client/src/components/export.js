@@ -24,6 +24,8 @@ import Page_one from "./legalPages/Page_one.jsx";
 import Page_two from "./legalPages/Page_two.jsx";
 import Page_three from "./legalPages/Page_three.jsx";
 import Post from "./post/Post.jsx"
+import NotFound from "./notfound/NotFound.jsx";
+
 export {
   Navbar,
   Footer,
@@ -50,5 +52,6 @@ export {
   Page_two,
   Page_three,
   BlogCard,
-  Post
+  Post,
+  NotFound
 };

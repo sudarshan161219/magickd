@@ -64,10 +64,10 @@ app.use(passport.authenticate("session"));
 app.use(cookieParser());
 
 //* api routes
+app.use("/api/user", authRoute);
 app.use("/api", productRoute);
 app.use("/api/post", postRoute)
 app.use("/api/payment", auth, paymentRoute);
-app.use("/api/user", authRoute);
 
 // // //* HTTP GET Request
 app.get("*", (req, res) => {

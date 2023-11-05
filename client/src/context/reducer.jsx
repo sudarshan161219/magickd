@@ -49,6 +49,7 @@ import {
     PURCHASED_PRODUCT_BEGIN,
     PURCHASED_PRODUCT_SUCCESS,
     PURCHASED_PRODUCT_ERROR,
+    TOGGLE_THEME
 } from "./action"
 
 
@@ -91,7 +92,6 @@ const reducer = (state, action) => {
         }
     }
 
-
     if (action.type === TOGGLE_EDIT_USER_BEGIN) {
         return { ...state, isRLLoadin: true };
     }
@@ -131,7 +131,6 @@ const reducer = (state, action) => {
             msg: action.payload.msg
         };
     }
-
 
     if (action.type === REGISTER_USER_BEGIN) {
         return { ...state, isRLLoading: true };
@@ -173,7 +172,6 @@ const reducer = (state, action) => {
             isRLLoading: false,
         };
     }
-
 
     if (action.type === REGISTER_ADMIN_BEGIN) {
         return { ...state, isAdminLoading: true };
@@ -304,7 +302,6 @@ const reducer = (state, action) => {
         };
     }
 
-
     if (action.type === GET_PRODUCT_BEGIN) {
         return { ...state, isLoading: true };
     }
@@ -322,8 +319,6 @@ const reducer = (state, action) => {
     if (action.type === GET_PRODUCT_ERROR) {
         return { ...state, isLoading: true, showAlert: false };
     }
-
-
 
     if (action.type === SAVED_PRODUCT_BEGIN) {
         return { ...state, isLoading: true };
@@ -357,8 +352,6 @@ const reducer = (state, action) => {
         return { ...state, isLoading: false };
     }
 
-
-
     if (action.type === GET_SINGLE_PRODUCT_BEGIN) {
         return { ...state, isLoading: true };
     }
@@ -368,7 +361,7 @@ const reducer = (state, action) => {
             ...state,
             isLoading: false,
             singleProduct: action.payload.singleproduct,
-            categoryProducts: action.payload.productsInCategory
+            categoryProducts: action.payload.productsInCategory,
         };
     }
 
@@ -376,7 +369,12 @@ const reducer = (state, action) => {
         return { ...state, isLoading: false };
     }
 
-
+    if (action.type === TOGGLE_THEME) {
+        return {
+            ...state,
+            theme: action.payload.mode
+        }
+    }
 
     throw new Error(`no such action : ${action.type}`);
 }

@@ -49,7 +49,7 @@ const Contact = () => {
     <div className={styles.container}>
       <div className={styles.titleContainer} >
         <h1 className={styles.title}>Contact Us</h1>
-        <p className={styles.desc}>Any question or remarks? Just write us a message!</p>
+        <p className={styles.descs}>Any question or remarks? Just write us a message!</p>
       </div>
       <div className={styles.formContainer} >
         <form ref={form} onSubmit={sendEmail} className={styles.section_one}>

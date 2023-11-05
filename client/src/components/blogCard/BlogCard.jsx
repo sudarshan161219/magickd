@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import axios from "axios"
+import moment from "moment";
 import styles from "./blogcard.module.css"
 import { AiOutlineDelete } from "react-icons/ai"
 import Card from '@mui/material/Card';
@@ -14,8 +14,9 @@ const BlogCard = ({ item }) => {
 
 
     // eslint-disable-next-line react/prop-types
-    const { _id, name, description, coverImg, authorName, content, tags, category } = item
-
+    const { _id, name, description, coverImg, authorName, content, tags, category, createdAt } = item
+    const date = moment(createdAt);
+    let Fdate = date.startOf("hour").fromNow();
     return (
         <Card className={styles.card}>
             <CardMedia
@@ -23,15 +24,19 @@ const BlogCard = ({ item }) => {
                 image={coverImg}
                 title={name}
             />
-            <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                    {name}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                    {description}
-                </Typography>
+            <CardContent sx={{ backgroundColor: 'var(--bg)' }}>
+                <h1 className={styles.h1}>{name}</h1>
+                {/* <p className={styles.p}>  {description}</p> */}
             </CardContent>
-            <CardActions className={styles.actions}>
+            <div className={styles.spans}>
+                <span className={styles.span}>
+                    {authorName}
+                </span>
+                <span className={styles.span}>
+                    {Fdate}
+                </span>
+            </div>
+            <CardActions sx={{ backgroundColor: 'var(--bg)' }} className={styles.actions}>
                 <Link to={`/post/${item._id}`}><Button size="small">Read More</Button></Link>
             </CardActions>
         </Card>

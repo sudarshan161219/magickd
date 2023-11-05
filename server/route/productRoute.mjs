@@ -12,6 +12,7 @@ import {
   getpurchasedProduct,
   getsearchedItem,
   getProductCategory,
+  getPrice_category,
 } from "../controllers/productController.mjs";
 import auth from "../middlewares/auth.mjs";
 
@@ -27,5 +28,6 @@ router.route("/unsave/:Id").post(auth, unsaveItem);
 router.route("/search").get(getsearchedItem);
 router.route("/saved-items").get(auth, getSavedItem);
 router.route("/purchased-items").get(auth, getpurchasedProduct);
+router.route("/category_price").get(getPrice_category);
 
 export default router;

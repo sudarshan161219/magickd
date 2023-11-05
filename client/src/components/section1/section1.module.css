@@ -40,7 +40,8 @@
   width: 150px;
   font-size: 15px;
   text-transform: capitalize;
-  color: var(--textColor);
+  color: var(--bg);
+  background-color: var(--textColor);
   border: 1px solid #00000054;
   padding: 10px 20px;
   display: inline-block;
@@ -51,8 +52,9 @@
 
 .btn:hover {
   cursor: pointer;
-  background-color: var(--textColor);
-  color: var(--bg);
+  background-color: var(--bg);
+  color: var(--textColor);
+  outline: 1px solid var(--softTextColor);
 }
 
 /* --card_width: 250px;

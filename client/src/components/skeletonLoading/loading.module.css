@@ -8,7 +8,7 @@
 .postcard {
   display: grid;
   width: 100%;
-  background-color: #fff;
+  background-color: var(--bg);
   border-radius: 6px;
   overflow: hidden;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.12);
@@ -63,33 +63,20 @@
 }
 
 .img {
-  background-color: #ededed;
+  background-color: var(--softBg);
   background: linear-gradient(
       100deg,
       rgba(255, 255, 255, 0) 40%,
       rgba(255, 255, 255, 0.5) 50%,
       rgba(255, 255, 255, 0) 60%
     )
-    #ededed;
+    var(--softBg);
   background-size: 200% 100%;
   background-position-x: 180%;
   animation: 1s loader ease-in-out infinite;
 }
 
-.overlay,
-.topoverlay {
-  background-color: #141313;
-  background: linear-gradient(
-      100deg,
-      rgba(255, 255, 255, 0) 40%,
-      #3f3f3f 50%,
-      rgba(255, 255, 255, 0) 60%
-    )
-    #282828;
-  background-size: 200% 100%;
-  background-position-x: 180%;
-  animation: 1s loader ease-in-out infinite;
-}
+
 
 @keyframes loader {
     to {

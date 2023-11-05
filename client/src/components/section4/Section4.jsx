@@ -6,7 +6,7 @@ import {
     BiSolidQuoteAltRight
 }
     from "react-icons/bi"
-import { GrNext, GrPrevious } from "react-icons/gr"
+import { AiOutlineArrowRight, AiOutlineArrowLeft } from "react-icons/ai"
 const Section4 = () => {
   const [data, setData] = useState(testimonials)
   const [index, setIndex] = useState(0)
@@ -52,7 +52,11 @@ const Section4 = () => {
 
                 return (
                     <div key={idx} className={`card ${position}`} >
-                        <p className={text}> <BiSolidQuoteAltLeft className={styles.icon} /> {text} <BiSolidQuoteAltRight className={styles.icon} /></p>
+                        <p className={styles.text}> 
+                        <BiSolidQuoteAltLeft className={styles.icon} /> 
+                        {text} 
+                        <BiSolidQuoteAltRight className={styles.icon} />
+                        </p>
                         <div className={styles.spanContainer} >
                             <span className={styles.name}>-{name}</span>
                             <span className={styles.shopName}>{shopName}</span>
@@ -63,8 +67,8 @@ const Section4 = () => {
             }
             )}
             <div className={styles.btnContainer}>
-                <button onClick={() => setIndex(index - 1)} className={styles.btn}><GrPrevious className={styles.icons} /></button>
-                <button onClick={() => setIndex(index + 1)} className={styles.btn}><GrNext className={styles.icons} /></button>
+                <button onClick={() => setIndex(index - 1)} className={styles.btn}><AiOutlineArrowLeft className={styles.icons} /></button>
+                <button onClick={() => setIndex(index + 1)} className={styles.btn}><AiOutlineArrowRight className={styles.icons} /></button>
             </div>
         </div>
     </div>

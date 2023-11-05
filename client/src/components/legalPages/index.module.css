@@ -21,12 +21,15 @@
   font-size: 24px;
   line-height: 36px;
   font-weight: bold;
+  color: var(--textColor);
+
 }
 
 .containers > h4 {
   font-size: 18px;
   line-height: 30px;
   font-weight: bold;
+  color: var(--textColor);
 
 }
 
@@ -40,6 +43,8 @@
 .containers {
   display: grid;
   gap: 10px;
+  color: var(--textColor);
+
 }
 
 .ul {
@@ -47,18 +52,30 @@
   gap: 15px;
   font-size: 0.9rem;
   padding: 1rem;
+  color: var(--textColor);
+
 }
 
 .ul > li {
   list-style: disc;
   line-height: 150%;
+  color: var(--textColor);
+
 }
 .ul > li > p {
   margin: 0 0 16px;
+  color: var(--textColor);
+
 }
 .ul > li > p > strong {
   font-weight: bolder;
   margin-right: 0.3rem;
+  color: var(--textColor);
+
+}
+
+a{
+  color: var(--softTextColor);
 }
 
 @media screen and (min-width: 650px) {

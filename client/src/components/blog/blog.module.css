@@ -19,18 +19,20 @@
   justify-content: center;
   gap: 20px;
   text-align: center;
-  margin: 3rem 0;
+margin-bottom: 2rem;
 }
 
 .headingpContainer > h1 {
-  font-size: 2rem;
+  font-size: 2.3rem;
   font-style: 500;
+  color: var(--textColor);
 }
 
 .headingpContainer > p {
   font-size: 1.1rem;
   line-height: 150%;
   font-style: 400;
+  color: var(--softTextColor);
 }
 
 .title {

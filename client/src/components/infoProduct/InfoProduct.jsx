@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-
+import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { useParams, Link } from "react-router-dom";
 import { AiOutlineHeart, AiOutlineDownload, AiTwotoneHeart } from "react-icons/ai";
@@ -7,27 +6,34 @@ import { Chip } from '@mui/material';
 import { toast } from "react-hot-toast";
 import { useAppContext } from "../../context/Context";
 import Recommended from "../recommended/Recommended";
-import logo from "../../assets/logo.png"
+import logo from "../../assets/logo.png";
 import styles from "./infoproduct.module.css";
-import gif from "../../assets/loading.svg"
-import currencyFormatter from 'currency-formatter'
-import Card from "../cards/Card"
-
+import gif from "../../assets/loading.svg";
+import currencyFormatter from 'currency-formatter';
+import Card from "../cards/Card";
 
 const InfoProduct = () => {
-    const { getSingleProduct, singleProduct, user, isLoading, categoryProducts } = useAppContext();
+    const { getSingleProduct, singleProduct, user, isLoading, categoryProducts, toggleAuthModalFn } = useAppContext();
     const [saved, setSaved] = useState(false);
     const [isLOading, setIsLOading] = useState(false);
     const { id } = useParams();
 
+    const updateSavedStatus = useCallback(() => {
+        if (user && singleProduct && singleProduct.savedByUsers) {
+            if (singleProduct.savedByUsers.includes(user._id)) {
+                setSaved(true);
+            } else {
+                setSaved(false);
+            }
+        }
+    }, [user, singleProduct]);
 
     const saveProductFn = async () => {
         setIsLOading(true);
-
         try {
             await axios.post(`/api/save/${id}`);
+            setSaved(true); // Update the saved state immediately
             setIsLOading(false);
-            setSaved(true);
             toast.success("Item saved.....");
         } catch (error) {
             toast.error(error.response.data.msg);
@@ -37,11 +43,10 @@ const InfoProduct = () => {
 
     const unsaveProductFn = async () => {
         setIsLOading(true);
-
         try {
             await axios.post(`/api/unsave/${id}`);
+            setSaved(false); // Update the saved state immediately
             setIsLOading(false);
-            setSaved(false);
             toast.success("Item removed.....");
         } catch (error) {
             toast.error(error.response.data.msg);
@@ -57,27 +62,28 @@ const InfoProduct = () => {
         }
     };
 
-    const { imageUrl, name, description, category, tags, price, driveName, driveId, savedByUsers, purchaseByUser } = singleProduct;
+    const handleModal = () => {
+        toggleAuthModalFn()
+    }
+    useEffect(() => {
+        getSingleProduct(id);
+        updateSavedStatus();
+    }, [id]);
 
+    const { imageUrl, name, description, category, tags, price, driveName, driveId, purchaseByUser } = singleProduct;
 
     useEffect(() => {
-        getSingleProduct(id)
-    }, []);
+        updateSavedStatus();
+    }, [user, singleProduct]);
 
-
-
-    setTimeout(() => {
-        if (user?._id && savedByUsers && savedByUsers.includes(user._id)) {
-            setSaved(true)
-        }
-    }, 1000);
+    useEffect(() => {
+        getSingleProduct(id);
+    }, [id]);
 
     const handleDownload = async (price) => {
         try {
-            const { data: { key } } = await axios.get("/api/payment/get_key")
+            const { data: { key } } = await axios.get("/api/payment/get_key");
             const { data: { order } } = await axios.post('/api/payment/checkout', { price });
-
-
             const options = {
                 key: key,
                 amount: order.amount,
@@ -90,7 +96,6 @@ const InfoProduct = () => {
                 prefill: {
                     name: user.name,
                     email: user.email,
-                    // contact: "9000090000"
                 },
                 notes: {
                     "address": "Razorpay Corporate Office"
@@ -101,21 +106,18 @@ const InfoProduct = () => {
             };
             const rzp1 = new window.Razorpay(options);
             rzp1.open();
-
-
             toast.success("Item successfully .....");
         } catch (error) {
             toast.error(error.response.data.msg);
         }
-    }
-
+    };
 
     if (isLoading) {
         return (
             <div className={styles.loadingContainer}>
                 <img className={styles.gif} src={gif} alt="loading" />
             </div>
-        )
+        );
     }
 
     const inr = currencyFormatter.format(price, { code: 'INR' });
@@ -131,68 +133,82 @@ const InfoProduct = () => {
                         <h2>{name}</h2>
                         <p>{description}</p>
                     </div>
+                    <div className={styles.categoryContainer}>
+                        <Chip sx={{ color: 'var(--textColor)' }} label={category} variant="outlined" />
+                    </div>
 
-                    <div >
+                    <div className={styles.tagsContainer} >
+                        <div>
+                            {tags && tags.map((item) => (
+                                <Link className={styles.links} to={`/explore/?query=${item}`} key={item._id}>{item}</Link>
+                            ))}
+                        </div>
+                    </div>
+                    <div>
                         <h3 className={styles.price}>{inr}</h3>
                     </div>
-                    <div className={styles.categoryContainer}>
-                        <Chip label={category} variant="outlined" />
-                    </div>
+
                     <div className={styles.btnContainer}>
-                        {saved ? (
-                            <button onClick={handleSave}>
 
-                                {isLOading ?
-                                    <img src={gif} className={styles.btnGif} alt="loading" /> :
+                        {user && user.length === 0 ?
 
-                                    <AiTwotoneHeart className={`${styles.icon} ${styles.heart}`} />
-                                }
-
-                                {isLOading ? null : ' Saved'}
-
+                            <button onClick={handleModal}>
+                                <AiOutlineHeart className={styles.icon} />
                             </button>
-                        ) : (
-                            <button onClick={handleSave}>
-                                {isLOading ?
-                                    <img src={gif} className={styles.btnGif} alt="loading" /> :
+                            :
+                            (
+                                saved ? (
+                                    <button onClick={handleSave} >
+                                        {
+                                            isLOading ?
+                                                <img src={gif} className={styles.btnGif
+                                                } alt="loading" /> :
 
-                                    <AiOutlineHeart className={styles.icon} />
-                                }
+                                                <AiTwotoneHeart className={`${styles.icon} ${styles.heart}`
+                                                } />
+                                        }
+                                        {isLOading ? null : ' Saved'}
+                                    </button>
+                                ) : (
+                                    <button onClick={handleSave}>
+                                        {isLOading ?
+                                            <img src={gif} className={styles.btnGif} alt="loading" /> :
 
-                                {isLOading ? null : 'Save'}
+                                            <AiOutlineHeart className={styles.icon} />
+                                        }
+                                        {isLOading ? null : 'Save'}
+                                    </button>
+                                ))
+                        }
+
+
+                        {user && user.length === 0 ?
+                            <button onClick={handleModal}>
+                                Buy
                             </button>
-                        )}
-
-                        {user?._id && purchaseByUser && purchaseByUser.includes(user._id) ? <a
-                            className={styles.adownload}
-                            href={`https://drive.google.com/uc?export=download&id=${driveId}`}
-                            download={driveName}
-                        >
-                            <AiOutlineDownload className={styles.icon} />
-                            Download File
-                        </a> : <button onClick={() => handleDownload(price)}>
-                            Buy
-                        </button>}
+                            :
+                            (user?._id && purchaseByUser && purchaseByUser.includes(user._id) ?
+                                <a
+                                    className={styles.adownload}
+                                    href={`https://drive.google.com/uc?export=download&id=${driveId}`}
+                                    download={driveName}
+                                >
+                                    <AiOutlineDownload className={styles.icon} />
+                                    Download File
+                                </a> : <button onClick={() => handleDownload(price)}>
+                                    Buy
+                                </button>)
+                        }
 
                     </div>
                 </div>
             </div>
-            <div className={styles.tagsContainer}>
-                <h2>Tags</h2>
-                <div className={styles.tags}>
-                    {tags && tags.map((item, idx) => (
-                        <Chip key={idx} label={item} value={item} />
-                    ))}
-                </div>
-            </div>
 
-
-            {categoryProducts.length !== 0 &&
+            {
+                categoryProducts.length !== 0 &&
                 <div className={styles.RecommendedContainer} >
                     {categoryProducts.filter(item => item._id !== id).length === 0 ? null : <h2 className={styles.h2}>Recommended for you</h2>}
-                    {/* {categoryProducts.length === 0 ? null : <h2 className={styles.h2}>Recommended for you</h2>} */}
                     <div className={styles.cards}>
-
                         {categoryProducts
                             .filter(item => item._id !== id)
                             .map((item, idx) => (
@@ -202,7 +218,7 @@ const InfoProduct = () => {
                     </div>
                 </div>
             }
-        </div>
+        </div >
     );
 };
 

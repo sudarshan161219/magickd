@@ -7,7 +7,6 @@ import { useAppContext } from "../../context/Context";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
-import { BsArrowUpRight } from "react-icons/bs"
 // eslint-disable-next-line react/prop-types
 const Card = ({ item }) => {
     const { user, toggleAuthModalFn, } = useAppContext()
@@ -18,8 +17,6 @@ const Card = ({ item }) => {
     const handleModal = () => {
         toggleAuthModalFn()
     }
-
-
 
 
     const saveproductFn = async () => {
@@ -71,66 +68,61 @@ const Card = ({ item }) => {
 
 
     return (
-        <div className={styles.card}>
+        <div className={styles.container} >
+            <Link to={`/item/${item._id}`} className={styles.card}>
+                <img loading="lazy" className={styles.img} src={item.imageUrl} alt={item.name} />
+            </Link>
+            <div className={styles.infoContainer}>
 
-            <div className={styles.top1overlay}>{<h1 className={styles.name}>{item.name}</h1>}</div>
-            <Link  to={`/item/${item._id}`} className={styles.overlay}> <BsArrowUpRight  className={styles.icon }/></Link>
-            <div className={styles.topoverlay} >
+                <div className={styles.headingContainer}>
+                    <h1 className={styles.name}>{item.name}</h1>
+                </div>
 
-                {user && user.length === 0 ?
-                    <IconButton onClick={handleModal} color="primary" aria-label="add to shopping cart">
-                        <AiOutlineHeart className={styles.icon} />
-                    </IconButton>
-                    :
-
-
-                    (
-                        saved ?
-
-                            <IconButton onClick={handleSave} color="primary" aria-label="add to shopping cart">
-                                <AiTwotoneHeart className={`${styles.icon} ${styles.heart}`} />
-                            </IconButton>
-                            :
-
-                            <IconButton onClick={handleSave} color="primary" aria-label="add to shopping cart">
-                                <AiOutlineHeart className={styles.icon} />
-                            </IconButton>)
-
-                }
-
-                {user && user.length === 0 ?
-                    <IconButton onClick={handleModal} color="primary" aria-label="add to shopping cart">
-                        <AiOutlineDownload className={styles.icon} />
-                    </IconButton>
-                    :
-                    (
-                        // eslint-disable-next-line react/prop-types
-                        item.purchase && item.purchase ?
-                            <a
-                                // eslint-disable-next-line react/prop-types
-                                href={`https://drive.google.com/uc?export=download&id=${item.driveId}`}
-                                // eslint-disable-next-line react/prop-types
-                                download={item.driveName}
-                            >
-                                <IconButton color="primary" aria-label="add to shopping cart">
-                                    <AiOutlineDownload className={styles.icon} />
+                <div className={styles.actionContainer} >
+                    {user && user.length === 0 ?
+                        <IconButton onClick={handleModal} color="primary" aria-label="add to shopping cart">
+                            <AiOutlineHeart className={styles.icon} />
+                        </IconButton>
+                        :
+                        (
+                            saved ?
+                                <IconButton onClick={handleSave} color="primary" aria-label="add to shopping cart">
+                                    <AiTwotoneHeart className={`${styles.icon} ${styles.heart}`} />
                                 </IconButton>
-                            </a>
-
-                            :
+                                :
+                                <IconButton onClick={handleSave} color="primary" aria-label="add to shopping cart">
+                                    <AiOutlineHeart className={styles.icon} />
+                                </IconButton>)
+                    }
+                    {user && user.length === 0 ?
+                        <IconButton onClick={handleModal} color="primary" aria-label="add to shopping cart">
+                            <AiOutlineDownload className={styles.icon} />
+                        </IconButton>
+                        :
+                        (
                             // eslint-disable-next-line react/prop-types
-                            <Link to={`/item/${item._id}`} >
-                                <IconButton color="primary" aria-label="add to shopping cart">
-                                    <AiOutlineDownload className={styles.icon} />
-                                </IconButton>
-                            </Link>)
-                }
-
-
-
+                            item.purchase && item.purchase ?
+                                <a
+                                    // eslint-disable-next-line react/prop-types
+                                    href={`https://drive.google.com/uc?export=download&id=${item.driveId}`}
+                                    // eslint-disable-next-line react/prop-types
+                                    download={item.driveName}
+                                >
+                                    <IconButton color="primary" aria-label="add to shopping cart">
+                                        <AiOutlineDownload className={styles.icon} />
+                                    </IconButton>
+                                </a>
+                                :
+                                // eslint-disable-next-line react/prop-types
+                                <Link to={`/item/${item._id}`} >
+                                    <IconButton color="primary" aria-label="add to shopping cart">
+                                        <AiOutlineDownload className={styles.icon} />
+                                    </IconButton>
+                                </Link>)
+                    }
+                </div>
             </div>
-            <img className={styles.img} src={item.imageUrl} alt={item.name} />
-        </div >
+        </div>
     )
 }
 

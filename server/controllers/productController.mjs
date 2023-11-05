@@ -96,6 +96,66 @@ const getSavedItem = async (req, res) => {
   }
 };
 
+// const getallItem = async (req, res) => {
+//   try {
+//     const page = Number(req.query.page) || 1;
+//     const limit = Number(req.query.limit) || 15;
+//     const skip = (page - 1) * limit;
+
+//     const filter = {};
+
+//     if (req.query.search) {
+//       const searchQuery = new RegExp(req.query.search, "i");
+//       filter.$or = [{ name: searchQuery }, { description: searchQuery }];
+//     }
+
+//     const sortOptions = {};
+
+//     if (req.query.sortBy === "latest") {
+//       sortOptions.createdAt = -1;
+//     } else if (req.query.sortBy === "oldest") {
+//       sortOptions.createdAt = 1;
+//     }
+
+//     // Price filter: Filter products by a specific price value
+//     if (req.query.price) {
+//       filter.price = Number(req.query.price);
+//     }
+
+//     if (req.query.category) {
+//       filter.category = req.query.category;
+//     }
+
+//     if (req.query.tag) {
+//       filter.tags = req.query.tag;
+//     }
+
+//     const allProductPromise = Product.find(filter)
+//       .skip(skip)
+//       .limit(limit)
+//       .sort(sortOptions);
+
+//     const totalProductPromise = Product.countDocuments(filter);
+
+//     const [products, totalProducts] = await Promise.all([
+//       allProductPromise,
+//       totalProductPromise,
+//     ]);
+
+//     const numofPages = Math.ceil(totalProducts / limit);
+
+//     return res.status(StatusCodes.OK).json({
+//       products,
+//       totalProducts,
+//       numofPages,
+//     });
+//   } catch (error) {
+//     return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+//       error: "Server error",
+//     });
+//   }
+// };
+
 const getallItem = async (req, res) => {
   try {
     const page = Number(req.query.page) || 1;
@@ -106,7 +166,12 @@ const getallItem = async (req, res) => {
 
     if (req.query.search) {
       const searchQuery = new RegExp(req.query.search, "i");
-      filter.$or = [{ name: searchQuery }, { description: searchQuery }];
+      filter.$or = [
+        { name: searchQuery },
+        { description: searchQuery },
+        { category: searchQuery },
+        { tags: { $in: [searchQuery] } },
+      ];
     }
 
     const sortOptions = {};
@@ -117,25 +182,14 @@ const getallItem = async (req, res) => {
       sortOptions.createdAt = 1;
     }
 
-    // Price filter: Filter products by price range (minimum and maximum)
-    if (req.query.minPrice || req.query.maxPrice) {
-      filter.price = {}; // Create a sub-object for price filtering
-
-      if (req.query.minPrice) {
-        filter.price.$gte = Number(req.query.minPrice);
-      }
-
-      if (req.query.maxPrice) {
-        filter.price.$lte = Number(req.query.maxPrice);
-      }
-    }
-
-    if (req.query.category) {
+    // Category filter
+    if (req.query.category && req.query.category !== "all") {
       filter.category = req.query.category;
     }
 
-    if (req.query.tag) {
-      filter.tags = req.query.tag;
+    // Price filter: Filter products by a specific price value
+    if (req.query.price && !isNaN(req.query.price)) {
+      filter.price = Number(req.query.price);
     }
 
     const allProductPromise = Product.find(filter)
@@ -174,11 +228,16 @@ const getsearchedItem = async (req, res) => {
 
     if (req.query.search) {
       const searchQuery = new RegExp(req.query.search, "i");
-      filter.$or = [{ category:category }, { tags: searchQuery }];
+      filter.$or = [
+        { name: searchQuery },
+        { description: searchQuery },
+        { category: searchQuery },
+        { tags: { $in: [searchQuery] } },
+      ];
     }
 
     const allProductPromise = Product.find(filter)
-      .select("category _id")
+      .select("category _id tags")
       .skip(skip)
       .limit(limit);
 
@@ -202,19 +261,6 @@ const getsearchedItem = async (req, res) => {
     });
   }
 };
-
-// const getProduct = async (req, res) => {
-//   const { Id } = req.params;
-//   const singleproduct = await Product.findById({ _id: Id }).populate(
-//     "savedByUsers"
-//   );
-
-//   if (!singleproduct) {
-//     throw new NotFoundError(`No post with id : ${Id}`);
-//   }
-
-//   res.status(StatusCodes.OK).json({ singleproduct });
-// };
 
 const getProduct = async (req, res) => {
   const { Id } = req.params;
@@ -270,6 +316,20 @@ const getpurchasedProduct = async (req, res) => {
   }
 };
 
+const getPrice_category = async (req, res) => {
+  try {
+    const products = await Product.find().select({ category: 1, price: 1 });
+
+    return res.status(StatusCodes.OK).json({
+      products,
+    });
+  } catch (error) {
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+      error: "Error fetching data",
+    });
+  }
+};
+
 export {
   getItem,
   saveItem,
@@ -280,4 +340,5 @@ export {
   getpurchasedProduct,
   getsearchedItem,
   getProductCategory,
+  getPrice_category,
 };

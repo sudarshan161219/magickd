@@ -221,12 +221,14 @@ const Page_two = () => {
         <p>You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page.</p>
       </div>
 
+      <div className={styles.containers}>
+        <h2>Contact Us</h2>
+        <p>If you have any questions about this Privacy Policy, You can contact us:</p>
+        <ul>
+          <li>By email: <a href="/cdn-cgi/l/email-protection" className="__cf_email__" data-cfemail="731e12141a101817101c1e03121d0a33141e121a1f5d101c1e">magickdcompany@gmail.com</a></li>
+        </ul>
+      </div>
 
-      <h2>Contact Us</h2>
-      <p>If you have any questions about this Privacy Policy, You can contact us:</p>
-      <ul>
-        <li>By email: <a href="/cdn-cgi/l/email-protection" className="__cf_email__" data-cfemail="731e12141a101817101c1e03121d0a33141e121a1f5d101c1e">magickdcompany@gmail.com</a></li>
-      </ul>
     </div>
   )
 }

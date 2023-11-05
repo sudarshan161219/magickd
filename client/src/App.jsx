@@ -12,7 +12,8 @@ import {
   Page_one,
   Page_two,
   Page_three,
-  Post
+  Post,
+  NotFound
 } from "./components/export"
 import Main from "./main/Main";
 import Explore from "./Explore/Explore";
@@ -25,8 +26,8 @@ const App = () => {
   return (
     <>
       <Navbar />
-      <SidebarNav />
-      <ProfileSideBar />
+      {/* <SidebarNav />
+      <ProfileSideBar /> */}
       <Register />
       <Toaster
         position="top-center"
@@ -56,7 +57,7 @@ const App = () => {
           <Route path="downloads" element={<Downloads />} />
           <Route path="saved" element={<Saved />} />
         </Route>
-        <Route path="*" element={<h1>no page found</h1>} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
     </>

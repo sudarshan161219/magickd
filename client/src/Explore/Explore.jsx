@@ -1,22 +1,22 @@
-import { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from "./explore.module.css"
-import { BsSearch } from "react-icons/bs"
 import { Card } from "../components/export"
 import Loading from "../components/skeletonLoading/Loading"
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Tabs, { tabsClasses } from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-
+import Pagination from '@mui/material/Pagination';
+import currencyFormatter from 'currency-formatter';
+import usePagination from '@mui/material/usePagination';
 import { useLocation } from 'react-router-dom';
-import {
-    BiSolidDownArrow
-} from 'react-icons/bi'
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputLabel from '@mui/material/InputLabel';
+import InputAdornment from '@mui/material/InputAdornment';
+
 
 const Explore = () => {
 
@@ -25,22 +25,46 @@ const Explore = () => {
     const [sortBy, setSortBy] = useState('latest');
     const [category, setCategory] = useState('');
     const [tag, setTag] = useState('');
-    const [minPrice, setMinPrice] = useState('');
-    const [maxPrice, setMaxPrice] = useState('');
+    // const [minPrice, setMinPrice] = useState('');
+    // const [maxPrice, setMaxPrice] = useState('');
+    const [price, setPrice] = useState('')
     const [isLoading, setIsLoading] = useState(false)
     const [value, setValue] = useState(0);
+    const [value1, setValue1] = useState(0);
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
-    const searchQuery = searchParams.get('category');
+    const searchQuery = searchParams.get('query');
+    const [numOfPages, setNumOfPages] = useState('')
+    const [page, setPage] = useState(1);
+    const [pC, setpC] = useState([])
 
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
+        let text = event.target.innerText
+        let presult = text.slice(1);
+
+        const valueWithComma = presult;
+        const valueWithoutComma = parseInt(valueWithComma.replace(/,/g, ''), 10);
+        const num = Number(valueWithoutComma)
+        setPrice(num)
     };
 
-    const handleClick = (e) => {
-        setCategory(e.target.innerText)
+    const handleChange1 = (event, newValue) => {
+        setValue1(newValue);
+        let text = event.target.innerText;
+        let cresult = text.toLowerCase();
+        setCategory(cresult)
+    };
 
+    const fetchPc = async () => {
+        try {
+            const response = await axios.get('/api/category_price');
+            setpC(response.data.products)
+        } catch (error) {
+            setIsLoading(false)
+            console.error(error);
+        }
     }
 
     const fetchProducts = async () => {
@@ -52,67 +76,67 @@ const Explore = () => {
                     limit: 5,
                     search: searchQuery ? searchQuery : null,
                     sortBy,
-                    category: category ? category.toLowerCase() : null,
-                    tag,
-                    minPrice,
-                    maxPrice,
+                    category: category ? category : null,
+                    tag: searchQuery ? searchQuery : null,
+                    price: price ? price : null,
                 },
             });
             setIsLoading(false)
             setProducts(response.data.products);
+            setNumOfPages(response.data.numofPages)
         } catch (error) {
             setIsLoading(false)
             console.error(error);
         }
     };
 
+    const handlepChange = (event, value) => {
+        setPage(value);
+    };
+
+    useEffect(() => {
+        fetchPc()
+    }, []);
+
     useEffect(() => {
         fetchProducts();
-    }, [search, sortBy, category, tag, searchQuery]);
+    }, [search, sortBy, category, tag, searchQuery, price]);
+
+
+    const uniqueCategories = {}; // Use an object as a lookup for unique categories
+    const uniqueCategoryItems = pC.filter((item) => {
+        if (!uniqueCategories[item.category]) {
+            uniqueCategories[item.category] = true;
+            return true;
+        }
+        return false;
+    });
 
 
     return (
         <div className={styles.container}>
-            {/* <div className={styles.inputSelectContainer}>
-
-                <TextField
-                    fullWidth
-                    label="Search"
-                    id="outlined-size-small"
-                    defaultValue={search}
-                    size="small"
-                    onChange={(e) => setSearch(e.target.value)}
-                />
-
-                <FormControl sx={{ minWidth: 120 }} size="small">
-                    <Select
-                        value={sortBy}
-                        onChange={(e) => setSortBy(e.target.value)}
-                        displayEmpty
-                        inputProps={{ 'aria-label': 'Without label' }}
-                    >
-                        <MenuItem value={'latest'}>Latest</MenuItem>
-                        <MenuItem value={'oldest'}>Oldest</MenuItem>
-                    </Select>
-                </FormControl>
-
-            </div> */}
-
-
             <div className={styles.headingContainer}>
                 <h1>{searchQuery ? searchQuery : 'Explore'}</h1>
-                <FormControl sx={{ minWidth: 120 }} size="small">
-                    <Select
-                        value={sortBy}
-                        onChange={(e) => setSortBy(e.target.value)}
-                        displayEmpty
-                        inputProps={{ 'aria-label': 'Without label' }}
-                    >
-                        <MenuItem value={'latest'}>Latest</MenuItem>
-                        <MenuItem value={'oldest'}>Oldest</MenuItem>
-                    </Select>
-                </FormControl>
+
+
+                <div className={styles.formContainer}>
+
+                    <FormControl sx={{ width: 100 }} size="small">
+                        <Select
+                            value={sortBy}
+                            onChange={(e) => setSortBy(e.target.value)}
+                            displayEmpty
+                            inputProps={{ 'aria-label': 'Without label' }}
+                        >
+                            <MenuItem value={'latest'}>Latest</MenuItem>
+                            <MenuItem value={'oldest'}>Oldest</MenuItem>
+                        </Select>
+                    </FormControl>
+
+                </div>
+
             </div>
+
 
 
             {isLoading ?
@@ -131,39 +155,51 @@ const Explore = () => {
                             scrollButtons
                             allowScrollButtonsMobile
                             aria-label="scrollable force tabs example"
+                            sx={{}}
                         >
-                            {/* {products.map((item) => (
-                                <Tab onClick={handleClick} key={item._id} label={item.category} />
-                            ))} */}
-
-
-                            <Tab  label='category' />
-                            <Tab  label='category' />
-                            <Tab  label='category' />
-                            <Tab  label='category' />
-                            <Tab  label='category' />
-                            <Tab  label='category' />
-                            <Tab  label='category' />
-                            <Tab  label='category' />
-                            <Tab  label='category' />
-                            <Tab  label='category' />
-                            <Tab  label='category' />
-
-
+                            <Tab label='All' />
+                            {uniqueCategoryItems.map((item) => {
+                                const inr = currencyFormatter.format(item.price, { code: 'INR' });
+                                return (
+                                    <Tab key={item._id} label={inr} />
+                                )
+                            })}
                         </Tabs>
                     </Box>
 
+
+                    <Box className={styles.tabs} sx={{ bgcolor: 'background.paper' }}>
+                        <Tabs
+                            value={value1}
+                            onChange={handleChange1}
+                            variant="scrollable"
+                            scrollButtons
+                            allowScrollButtonsMobile
+                            aria-label="scrollable force tabs example"
+                            sx={{}}
+                        >
+                            <Tab label='All' />
+                            {uniqueCategoryItems.map((item) => (
+                                <Tab key={item._id} label={item.category} />
+
+                            ))}
+                        </Tabs>
+                    </Box>
+                    <div>
+
+                    </div>
                     <div className={styles.cards}>
                         {products.map((item) => (
                             <Card key={item._id} item={item} />
                         ))}
                     </div>
                 </>
-
-
             }
-
-
+            {numOfPages > 1 &&
+                <div className={styles.page}>
+                    <Pagination sx={{ color: 'var(--textColor)', backgroundColor: 'var(--bg)' }} size="large" page={page} count={Number(numOfPages)} onChange={handlepChange} />
+                </div>
+            }
         </div>
     )
 }

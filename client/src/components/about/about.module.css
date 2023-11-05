@@ -37,7 +37,8 @@
 .title {
   font-size: 2.2rem;
   font-weight: 500;
-  color: var(--bg);
+  /* color: var(--); */
+  color: whitesmoke;
 }
 
 .desc {
@@ -113,9 +114,10 @@
 }
 
 .span {
-  background-color: black;
+  background-color: var(--textColor);
   padding: 0.1rem 0.2rem;
-  color: var(--bg);
+  color: var(--softBg);
+  font-weight: 500;
 }
 
 .iimg {

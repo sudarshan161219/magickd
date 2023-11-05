@@ -6,14 +6,17 @@ import { AiOutlineEye, AiOutlineEyeInvisible, AiOutlineCloseCircle } from "react
 import { useAppContext } from "../../context/Context"
 import loading from "../../assets/loading.svg"
 import { Ripple } from '../export'
-import logo from "../../assets/logo.png"
+import logov1 from "../../assets/logov1.webp"
+import logov2 from "../../assets/logov2.webp"
+
+
 
 const Register = () => {
     const { loginFn, registerFn, toggleAuthModal, toggleAuthModalFn,  isRLLoading } = useAppContext()
     const [show, setShow] = useState(false)
     const [isMember, setIsMember] = useState(false)
 
-
+    const theme = localStorage.getItem("theme")
 
     const handleShowPassword = () => {
         setShow(!show)
@@ -43,9 +46,9 @@ const Register = () => {
         window.open("http://localhost:5000/api/user/auth/google/callback", "_self")
     }
 
-    const handleFacebook = () => {
-        window.open("http://localhost:5000/api/user/auth/oauth2/redirect/facebook", "_self")
-    }
+    // const handleFacebook = () => {
+    //     window.open("http://localhost:5000/api/user/auth/oauth2/redirect/facebook", "_self")
+    // }
 
 
     return (
@@ -59,7 +62,7 @@ const Register = () => {
 
                     <div className={styles.formContainer} >
                         <div className={styles.iconContainer}>
-                            <img src={logo} className={styles.logo} alt="magickd" />
+                        <img className={styles.logo} src={theme === 'light' ? logov2 : logov1} alt="magickd" />
                             <Ripple ><AiOutlineCloseCircle onClick={toggleAuthModalFn} className={styles.icon} /></Ripple> </div>
                         <h1 className={styles.title}> {isMember ? "Welcome Back!" : "Create Account"}</h1>
                         <div className={styles.authGoogle_faceBook} >

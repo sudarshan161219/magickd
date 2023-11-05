@@ -19,11 +19,17 @@
 .desc {
   font-size: 1rem;
   font-weight: 400;
-  color: var(--softTextColor);
+  color: var(--bg);
 }
-
+.descs{
+  font-size: 1rem;
+  font-weight: 400;
+  color:var(--textColor)
+}
 .formContainer {
   margin-top: 2rem;
+  background-color: var(--softBg);
+  color: var(--softTextColor);
 }
 
 .group {

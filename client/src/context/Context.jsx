@@ -39,7 +39,13 @@ import {
     PURCHASED_PRODUCT_BEGIN,
     PURCHASED_PRODUCT_SUCCESS,
     PURCHASED_PRODUCT_ERROR,
+    TOGGLE_THEME
 } from "./action"
+
+
+const theme = localStorage.getItem("theme")
+const themeState = localStorage.getItem("toggleState")
+const parsedData = JSON.parse(themeState)
 
 
 const initialState = {
@@ -56,8 +62,8 @@ const initialState = {
     purchasedItems: [],
     singleProduct: [],
     categoryProducts: [],
-    // save:false,
-
+    toggleTheme: parsedData && parsedData,
+    theme: theme && theme,
     product: [],
     search: '',
     category: 'all',
@@ -118,76 +124,6 @@ const ContextProvider = ({ children }) => {
     const toggleSearchFn = () => {
         dispatch({ type: TOGGLE_SEARCH })
     }
-
-
-    const qAuthFn = async () => {
-        dispatch({ type: QAUTH_BEGIN });
-        try {
-            const { data } = await authFetch.get(
-                "/api/user/login/success", { withCredentials: true }
-            );
-
-            if (data) {
-                const { user } = data;
-                dispatch({
-                    type: QAUTH_SUCCESS,
-                    payload: { user },
-                });
-            }
-        } catch (error) {
-
-            dispatch({
-                type: QAUTH_ERROR,
-                payload: { error },
-            });
-        }
-    };
-
-    const qFbAuthFn = async () => {
-        dispatch({ type: QAUTH_BEGIN });
-        try {
-            const { data } = await authFetch.get(
-                "/api/user/login/fb/success", { withCredentials: true }
-            );
-
-            if (data) {
-                const { user } = data;
-                dispatch({
-                    type: QAUTH_SUCCESS,
-                    payload: { user },
-                });
-            }
-        } catch (error) {
-
-            dispatch({
-                type: QAUTH_ERROR,
-                payload: { error },
-            });
-        }
-    };
-
-    const qQAuthFn = async () => {
-        dispatch({ type: QAUTH_BEGIN });
-        try {
-            const { data } = await authFetch.get(
-                "/api/user/getQuser", { signal }
-            );
-
-            if (data) {
-                const { user } = data;
-                dispatch({
-                    type: QAUTH_SUCCESS,
-                    payload: { user },
-                });
-            }
-        } catch (error) {
-
-            dispatch({
-                type: QAUTH_ERROR,
-                payload: { error },
-            });
-        }
-    };
 
     //> user register _ login
     const registerFn = async (userData) => {
@@ -273,7 +209,6 @@ const ContextProvider = ({ children }) => {
         }
     };
 
-
     const QlogoutUser = async () => {
         try {
             await authFetch.get("/api/user/qauth_logout");
@@ -283,8 +218,6 @@ const ContextProvider = ({ children }) => {
         }
     };
 
-
-
     const getProductFn = async () => {
         dispatch({ type: GET_PRODUCT_BEGIN });
         try {
@@ -293,15 +226,13 @@ const ContextProvider = ({ children }) => {
             dispatch({
                 type: GET_PRODUCT_SUCCESS,
                 payload: { products, totalProducts, numofPages },
-            });
-            // dispatch({ type: CLEAR_VALUES });
+            })
         } catch (error) {
             dispatch({
                 type: GET_PRODUCT_ERROR,
             });
         }
     }
-
 
     const getSavedProductFn = async () => {
         dispatch({ type: SAVED_PRODUCT_BEGIN });
@@ -318,7 +249,6 @@ const ContextProvider = ({ children }) => {
             });
         }
     }
-
 
     const getPurchasedProductFn = async () => {
         dispatch({ type: PURCHASED_PRODUCT_BEGIN });
@@ -354,13 +284,37 @@ const ContextProvider = ({ children }) => {
         }
     }
 
+    const toggleThemefn = (mode) => {
+        dispatch({ type: TOGGLE_THEME, payload: { mode } })
+        themeFn()
+    }
+
+    const themeFn = () => {
+        if (state.theme === "dark") {
+            document.body.className = 'dark';
+            localStorage.setItem("theme", "dark");
+        }
+
+        if (state.theme === "light") {
+            document.body.className = 'light';
+            localStorage.setItem("theme", "light");
+        }
+
+    }
+
     useEffect(() => {
         getCurrentUser();
     }, [])
 
+    useEffect(() => {
+        document.body.className = state.theme === null ? "light" : state.theme;
+        localStorage.setItem("theme", state.theme === null ? "light" : state.theme)
+    }, [state.toggleTheme, state.theme]);
+
+
 
     return (
-        <Context.Provider value={{ ...state, toggleMenuFn, toggleSearchFn, loginFn, registerFn, logoutUser, toggleAdminMenuFn, toggleProfileMenuFn, toggleAuthModalFn, QlogoutUser, getProductFn, getSavedProductFn, getSingleProduct, getPurchasedProductFn }} >
+        <Context.Provider value={{ ...state, toggleMenuFn, toggleSearchFn, loginFn, registerFn, logoutUser, toggleAdminMenuFn, toggleProfileMenuFn, toggleAuthModalFn, QlogoutUser, getProductFn, getSavedProductFn, getSingleProduct, getPurchasedProductFn, toggleThemefn }} >
             {children}
         </Context.Provider>
     )
