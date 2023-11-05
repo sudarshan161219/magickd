@@ -28,4 +28,22 @@ router.route("/proxy-razorpay").get((req, res) => {
   });
 });
 
+
+router.route('/proxy-razorpay').get((req, res) => {
+  // Define the URL of the Razorpay SDK
+  const razorpayURL = 'https://checkout.razorpay.com/v1/checkout.js';
+
+  // Make a request to the Razorpay SDK URL
+  request(razorpayURL, (error, response, body) => {
+    if (!error && response.statusCode === 200) {
+      // Set the Content-Type header to indicate JavaScript
+      res.setHeader('Content-Type', 'application/javascript');
+      res.send(body);
+    } else {
+      // Handle errors as needed
+      res.status(500).send('Error fetching Razorpay SDK');
+    }
+  });
+});
+
 export default router;
