@@ -86,8 +86,9 @@ const transporter = nodemailer.createTransport({
   secure: true,
   auth: {
     user: "godhustler90956@gmail.com", // Replace with your email
-    pass: "pqvg jlcn gykl wlpo", // Replace with your email password
-  },
+    pass: "jndj zwek psui ltvp", // Replace with your email password
+  }
+
 });
 
 const sendPaymentConfirmationEmail = (recipientEmail) => {
@@ -95,7 +96,7 @@ const sendPaymentConfirmationEmail = (recipientEmail) => {
     from: "godhustler90956@gmail.com",
     to: recipientEmail,
     subject: "Payment Confirmation",
-    text: "Thank you for your payment. Your payment was successful.",
+    text: "Thank you for your payment. Your payment was successfull.",
   };
 
   transporter.sendMail(mailOptions, (error, info) => {
