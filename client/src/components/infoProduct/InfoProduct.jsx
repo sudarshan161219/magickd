@@ -92,7 +92,7 @@ const InfoProduct = () => {
                 description: "Test Transaction",
                 image: logo,
                 order_id: order.id,
-                "callback_url": `https://magickd.onrender.com/api/payment/verification/${id}`,
+                callback_url: `https://magickd.onrender.com/api/payment/verification/${id}`,
                 prefill: {
                     name: user.name,
                     email: user.email,
@@ -106,9 +106,10 @@ const InfoProduct = () => {
             };
             const rzp1 = new window.Razorpay(options);
             rzp1.open();
-            toast.success("Item successfully .....");
+            toast.success("successfully .....");
         } catch (error) {
-            toast.error(error.response.data.msg);
+            // toast.error(error.response.data.msg);
+            console.log(error);
         }
     };
 
