@@ -41,8 +41,8 @@ app.use(
       useDefaults: true,
       directives: {
         defaultSrc: ["'self'"],
-        "img-src": ["'self'", "https: data:"],
-        "script-src": ["'self'", "https://magickd.onrender.com"],
+        "img-src": ["'self'", "https:", "data:"],
+        "script-src": ["'self'", "https://magickd.onrender.com", "https://checkout.razorpay.com"],
       },
     },
   })
