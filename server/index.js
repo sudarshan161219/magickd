@@ -38,13 +38,22 @@ app.use(helmet());
 app.use(
   helmet({
     contentSecurityPolicy: {
+      useDefaults: true,
       directives: {
         defaultSrc: ["'self'"],
         "img-src": ["'self'", "https: data:"],
+        "script-src": ["'self'", "https://magickd.onrender.com"],
       },
     },
   })
 );
+
+// helmet({
+//   contentSecurityPolicy: {
+//     useDefaults: true,
+//     directives: { "script-src": ["'self'", "https://magickd.onrender.com"] },
+//   },
+// });
 
 app.use(xss());
 app.use(mongoSanitize());
@@ -66,7 +75,7 @@ app.use(cookieParser());
 //* api routes
 app.use("/api/user", authRoute);
 app.use("/api", productRoute);
-app.use("/api/post", postRoute)
+app.use("/api/post", postRoute);
 app.use("/api/payment", auth, paymentRoute);
 
 // // //* HTTP GET Request
