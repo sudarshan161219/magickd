@@ -18,6 +18,11 @@ import InputLabel from '@mui/material/InputLabel';
 import InputAdornment from '@mui/material/InputAdornment';
 
 
+const sxS = {
+    backgroundColor: 'var(--softBg)',
+    color: ['var(--softTextColor)']
+}
+
 const Explore = () => {
 
     const [products, setProducts] = useState([]);
@@ -121,15 +126,16 @@ const Explore = () => {
 
                 <div className={styles.formContainer}>
 
-                    <FormControl sx={{ width: 100 }} size="small">
+                    <FormControl sx={sxS} size="small">
                         <Select
                             value={sortBy}
                             onChange={(e) => setSortBy(e.target.value)}
                             displayEmpty
                             inputProps={{ 'aria-label': 'Without label' }}
+                            sx={sxS}
                         >
-                            <MenuItem value={'latest'}>Latest</MenuItem>
-                            <MenuItem value={'oldest'}>Oldest</MenuItem>
+                            <MenuItem  value={'latest'}>Latest</MenuItem>
+                            <MenuItem  value={'oldest'}>Oldest</MenuItem>
                         </Select>
                     </FormControl>
 

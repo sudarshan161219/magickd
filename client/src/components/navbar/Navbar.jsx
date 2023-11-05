@@ -21,6 +21,20 @@ import { AiOutlineSearch, AiOutlineClose } from "react-icons/ai"
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
+
+const sxS = {
+  // backgroundColor: 'var(--softBg)',
+  color: ['var(--softTextColor)'],
+  width: '50%', 
+  flexShrink: 0,
+  padding: '0'
+}
+
+const sxxs = {
+    backgroundColor: 'var(--softBg)',
+    color: ['var(--softTextColor)'],
+}
+
 const Navbar = () => {
   const { toggleMenu, toggleProfileMenu, toggleAuthModalFn, toggleAuthModal, user, toggleThemefn } = useAppContext()
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -214,7 +228,7 @@ const Navbar = () => {
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined} onClick={handleClick} className={styles.icon} />
           <Menu
-            sx={{ width: '50%', flexShrink: 0 }}
+            sx={sxS}
             anchorEl={anchorEl}
             open={open}
             onClose={handleClose}
@@ -223,7 +237,7 @@ const Navbar = () => {
             }}
           >
 
-            <Accordion sx={{ backgroundColor: 'var(--softBg)', color: 'var(--softTextColor)' }} expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+            <Accordion sx={sxxs} expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon className={styles.eIcon} />}
                 aria-controls="panel4bh-content"
@@ -277,7 +291,7 @@ const Navbar = () => {
               </AccordionDetails>
             </Accordion>
 
-            <Accordion sx={{ backgroundColor: 'var(--softBg)', color: 'var(--softTextColor)' }} expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
+            <Accordion sx={sxxs} expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon className={styles.eIcon} />}
                 aria-controls="panel4bh-content"
@@ -298,7 +312,7 @@ const Navbar = () => {
             </Accordion>
 
 
-            <Accordion sx={{ backgroundColor: 'var(--softBg)', color: 'var(--softTextColor)' }} expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
+            <Accordion sx={sxxs} expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon className={styles.eIcon} />}
                 aria-controls="panel4bh-content"
@@ -340,7 +354,7 @@ const Navbar = () => {
 
 
 
-            <Accordion sx={{ backgroundColor: 'var(--softBg)', color: 'var(--softTextColor)' }} expanded={expanded === 'panel4'} onChange={handleChange('panel4')}>
+            <Accordion sx={sxxs} expanded={expanded === 'panel4'} onChange={handleChange('panel4')}>
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon className={styles.eIcon} />}
                 aria-controls="panel4bh-content"

@@ -15,6 +15,11 @@ import TabPanel from '@mui/lab/TabPanel';
 import { useAppContext } from "../context/Context"
 
 
+const sxS = {
+    backgroundColor: 'var(--softBg)',
+    color: ['var(--softTextColor)']
+}
+
 const Profile = () => {
     const { getPurchasedProductFn, getSavedProductFn, savedItems, purchasedItems, isLoading } = useAppContext()
 
@@ -38,11 +43,11 @@ const Profile = () => {
     return (
         <Box sx={{ width: '100%', typography: 'body1', padding: '10px' }} >
             <TabContext value={value} >
-                <Box sx={{ borderBottom: 1, borderColor: 'divider' ,}}>
-                    <TabList centered onChange={handleChange} aria-label="lab API tabs example">
-                        <Tab  label="User details" value="1" />
-                        <Tab onClick={handleTab1} label="Downloads" value="2" />
-                        <Tab onClick={handleTab2} label="Saved" value="3" />
+                <Box sx={sxS}>
+                    <TabList sx={sxS} centered onChange={handleChange} aria-label="lab API tabs example">
+                        <Tab sx={sxS} label="User details" value="1" />
+                        <Tab sx={sxS} onClick={handleTab1} label="Downloads" value="2" />
+                        <Tab sx={sxS} onClick={handleTab2} label="Saved" value="3" />
                     </TabList>
                 </Box>
                 <TabPanel value="1"><Profile_1 /></TabPanel>

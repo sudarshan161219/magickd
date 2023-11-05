@@ -295,50 +295,50 @@ ul.css-6hp17o-MuiList-root-MuiMenu-list {
 }
 
 ul.css-6hp17o-MuiList-root-MuiMenu-list {
-  background-color: var(--softBg);
+  background-color: var(--softBg) !important;
 }
 
 .css-wjh20t-MuiPagination-ul > li > button {
-  background-color: var(--softBg);
-  color: var(--textColor);
+  background-color: var(--softBg) !important;
+  color: var(--textColor) !important;
 }
 
 .css-wjh20t-MuiPagination-ul
   > li
   > .css-rppfq7-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
-  background-color: var(--softTextColor);
-  color: var(--bg);
+  background-color: var(--softTextColor) !important;
+  color: var(--bg) !important;
 }
 
 .css-tkn350-MuiTabs-root {
-  background-color: var(--softBg);
-  color: var(--textColor);
+  background-color: var(--softBg) !important;
+  color: var(--textColor) !important;
 }
 .css-tkn350-MuiTabs-root > 
 .css-69z67c-MuiTabs-scroller >  
 .css-heg063-MuiTabs-flexContainer > button {
-  color: var(--textColor);
+  color: var(--textColor) !important;
 }
 
 .css-3dzjca-MuiPaper-root-MuiPopover-paper-MuiMenu-paper > ul{
-  background-color: var(--softBg);
-  color: var(--textColor);
+  background-color: var(--softBg) !important;
+  color: var(--textColor) !important;
 }
 
 
 .css-pe0pe4-MuiFormControl-root{
-  background-color: var(--softBg);
-  color: var(--textColor);
+  background-color: var(--softBg) !important;
+  color: var(--textColor) !important;
 }
 
 .css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root{
-  background-color: var(--softBg);
-  color: var(--textColor);
+  background-color: var(--softBg) !important;
+  color: var(--textColor) !important;
 }
 
 .css-jedpe8-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-jedpe8-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-jedpe8-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input{
-  background-color: var(--softBg);
-  color: var(--textColor);
+  background-color: var(--softBg) !important;
+  color: var(--textColor) !important;
 }
 
 .css-hfutr2-MuiSvgIcon-root-MuiSelect-icon{
@@ -346,14 +346,14 @@ ul.css-6hp17o-MuiList-root-MuiMenu-list {
 
 }
 
-/* .MuiBox-root .css-1gsv261 > 
+.MuiBox-root .css-1gsv261 > 
 .css-1ujnqem-MuiTabs-root  > 
 .css-1ujnqem-MuiTabs-root
 >.css-1wf8b0h-MuiTabs-flexContainer > button
 {
-  background-color: var(--softBg);
-  color: var(--textColor);
-} */
+  background-color: var(--softBg) !important;
+  color: var(--textColor) !important;
+}
 
 .css-w8dmq8 > 
 .css-1gsv261 > 
@@ -361,23 +361,23 @@ ul.css-6hp17o-MuiList-root-MuiMenu-list {
 .css-jpln7h-MuiTabs-scroller >
 .css-1wf8b0h-MuiTabs-flexContainer >
 .css-1h9z7r5-MuiButtonBase-root-MuiTab-root{
-  /* background-color: var(--softBg) !important; */
+  background-color: var(--softBg) !important;
   color: var(--textColor) !important;
 }
 
 .css-bhp9pd-MuiPaper-root-MuiCard-root {
-  background-color: var(--softBg);
-  color: var(--textColor);
+  background-color: var(--softBg) !important;
+  color: var(--textColor) !important;
 }
 
 .css-1k9ek97{
   background-color: var(--softBg)  !important;
-  color: var(--textColor);
+  color: var(--textColor) !important;
 }
 
 
 ._tabs_9ieo0_181 .MuiBox-root .css-1k9ek97{
-  background-color: var(--softBg);
-  color: var(--textColor);
+  background-color: var(--softBg) !important;
+  color: var(--textColor) !important;
 }
 
