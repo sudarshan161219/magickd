@@ -25,18 +25,18 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 const sxS = {
   // backgroundColor: 'var(--softBg)',
   color: ['var(--softTextColor)'],
-  width: '50%', 
+  width: '50%',
   flexShrink: 0,
   padding: '0'
 }
 
 const sxxs = {
-    backgroundColor: 'var(--softBg)',
-    color: ['var(--softTextColor)'],
+  backgroundColor: 'var(--softBg)',
+  color: ['var(--softTextColor)'],
 }
 
 const Navbar = () => {
-  const { toggleMenu, toggleProfileMenu, toggleAuthModalFn, toggleAuthModal, user, toggleThemefn } = useAppContext()
+  const { toggleMenu, toggleProfileMenu, toggleAuthModalFn, toggleAuthModal, user, toggleThemefn, toggleMenuFn } = useAppContext()
   const [scrollPosition, setScrollPosition] = useState(0);
   const [anchorEl, setAnchorEl] = useState(null);
   const [expanded, setExpanded] = useState(false);
@@ -157,6 +157,8 @@ const Navbar = () => {
     setProducts([])
   }
 
+
+
   return (
     <nav
       className={
@@ -174,8 +176,8 @@ const Navbar = () => {
           location.pathname === pathName5 ||
           location.pathname === pathName6 ||
           location.pathname === pathName7 ||
-          location.pathname === pathName8 
-         
+          location.pathname === pathName8
+
           ? null :
           <div className={styles.search} >
             <AiOutlineSearch className={styles.icon} />
@@ -226,17 +228,9 @@ const Navbar = () => {
           <BiMenu
             aria-controls={open ? 'basic-menu' : undefined}
             aria-haspopup="true"
-            aria-expanded={open ? 'true' : undefined} onClick={handleClick} className={styles.icon} />
-          <Menu
-            sx={sxS}
-            anchorEl={anchorEl}
-            open={open}
-            onClose={handleClose}
-            MenuListProps={{
-              'aria-labelledby': 'basic-button',
-            }}
-          >
+            aria-expanded={open ? 'true' : undefined} onClick={toggleMenuFn} className={styles.icon} />
 
+          <div className={`${toggleMenu ? `${styles.showModal}  ${styles.menuModal}` : `${styles.menuModal}`}`}>
             <Accordion sx={sxxs} expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon className={styles.eIcon} />}
@@ -246,50 +240,22 @@ const Navbar = () => {
                 <Typography sx={{ width: '33%', flexShrink: 0 }}>Company</Typography>
               </AccordionSummary>
               <AccordionDetails sx={{
+                display: 'grid',
+                gap: '10px',
                 '& .css-sh22l5-MuiButtonBase-root-MuiAccordionSummary-root': {
-                  padding: '5px',
                 },
               }}>
-                <MenuItem sx={{
-                  padding: '5px',
-                  '.css-1e9fcvw-MuiAccordionDetails-root': {
-                    padding: '5px',
-                  },
-                }} onClick={handleClose}>
-                  <Link className={styles.link} to="/">Home</Link>
-                </MenuItem>
+                <Link className={styles.link} onClick={ toggleMenuFn}  to="/">Home</Link>
 
+                <Link className={styles.link} onClick={ toggleMenuFn}  to="/AboutUs">About</Link>
 
-                <MenuItem sx={{
-                  padding: '5px',
-                  '.css-1e9fcvw-MuiAccordionDetails-root': {
-                    padding: '5px',
-                  },
-                }} onClick={handleClose}>
-                  <Link className={styles.link} to="/AboutUs">About</Link>
-                </MenuItem>
+                <Link className={styles.link} onClick={ toggleMenuFn}  to="/Blog"> Blog</Link>
 
+                <Link className={styles.link} onClick={ toggleMenuFn}  to="/ContactUs">Contact us</Link>
 
-                <MenuItem sx={{
-                  padding: '5px',
-                  '.css-1e9fcvw-MuiAccordionDetails-root': {
-                    padding: '5px',
-                  },
-                }} onClick={handleClose}>
-                  <Link className={styles.link} to="/Blog"> Blog</Link>
-                </MenuItem>
-
-
-                <MenuItem sx={{
-                  padding: '5px',
-                  '.css-1e9fcvw-MuiAccordionDetails-root': {
-                    padding: '5px',
-                  },
-                }} onClick={handleClose}>
-                  <Link className={styles.link} to="/ContactUs">Contact us</Link>
-                </MenuItem>
               </AccordionDetails>
             </Accordion>
+
 
             <Accordion sx={sxxs} expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
               <AccordionSummary
@@ -300,14 +266,7 @@ const Navbar = () => {
                 <Typography sx={{ width: '33%', flexShrink: 0 }}>Product</Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <MenuItem sx={{
-                  padding: '5px',
-                  '.css-1e9fcvw-MuiAccordionDetails-root': {
-                    padding: '5px',
-                  },
-                }} onClick={handleClose}>
-                  <Link className={styles.link} to="/">Explore</Link>
-                </MenuItem>
+                <Link onClick={toggleMenuFn} className={styles.link} to="/Explore">Explore</Link>
               </AccordionDetails>
             </Accordion>
 
@@ -320,35 +279,19 @@ const Navbar = () => {
               >
                 <Typography sx={{ width: '33%', flexShrink: 0, }}>Legal</Typography>
               </AccordionSummary>
-              <AccordionDetails>
-                <MenuItem sx={{
-                  padding: '5px',
-
-                  '.css-1e9fcvw-MuiAccordionDetails-root': {
-                    padding: '5px',
-                  },
-                }} onClick={handleClose}>
-                  <Link className={styles.link} to="/Privacy-Policy">Privacy & Policy</Link>
-                </MenuItem>
+              <AccordionDetails sx={{
+                display: 'grid',
+                gap: '10px',
+              }}>
+                <Link className={styles.link} onClick={toggleMenuFn} to="/Privacy-Policy">Privacy & Policy</Link>
 
 
-                <MenuItem sx={{
-                  padding: '5px',
-                  '.css-1e9fcvw-MuiAccordionDetails-root': {
-                    padding: '5px',
-                  },
-                }} onClick={handleClose}>
-                  <Link className={styles.link} to="/Terms-and-Conditions ">Terms & Conditions</Link>
-                </MenuItem>
 
-                <MenuItem sx={{
-                  padding: '5px',
-                  '.css-1e9fcvw-MuiAccordionDetails-root': {
-                    padding: '5px',
-                  },
-                }} onClick={handleClose}>
-                  <Link className={styles.link} to="/Cookie-Policy">Cookie Policy</Link>
-                </MenuItem>
+                <Link className={styles.link} onClick={toggleMenuFn} to="/Terms-and-Conditions ">Terms & Conditions</Link>
+
+
+                <Link className={styles.link} onClick={toggleMenuFn} to="/Cookie-Policy">Cookie Policy</Link>
+
               </AccordionDetails>
             </Accordion>
 
@@ -382,8 +325,8 @@ const Navbar = () => {
                     justifyContent: 'center',
                   }}
                 >
-                  <ToggleButton value="light"   ><BsSun className={styles.eIcon} /></ToggleButton>
-                  <ToggleButton value="dark" >< BsMoon className={styles.eIcon} /> </ToggleButton>
+                  <ToggleButton value="light" onClick={toggleMenuFn}><BsSun className={styles.eIcon} /></ToggleButton>
+                  <ToggleButton value="dark" onClick={toggleMenuFn}>< BsMoon className={styles.eIcon} /> </ToggleButton>
                 </ToggleButtonGroup>
               </AccordionDetails>
             </Accordion>
@@ -395,7 +338,7 @@ const Navbar = () => {
                     <button className={styles.authBtn} onClick={toggleAuthModalFn}>Log In</button>
                   </MenuItem>
                 </div>}
-          </Menu>
+          </div>
         </div>
       </div>
 

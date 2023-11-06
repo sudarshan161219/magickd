@@ -24,14 +24,13 @@
   /* cursor: pointer; */
 }
 
-.cicon{
+.cicon {
   position: absolute;
   right: 10px;
   -webkit-tap-highlight-color: transparent;
   font-size: 1rem;
   cursor: pointer;
-  color:var(--softTextColor);
-
+  color: var(--softTextColor);
 }
 .stickyNav {
   position: -webkit-sticky;
@@ -102,11 +101,22 @@
   display: none;
 }
 
-.link, .eIcon {
+.link,
+.eIcon {
   color: var(--softTextColor);
 }
 
+.link{
+  font-size: 1rem;
+  padding: 5px 0;
+  font-weight: 500;
+}
 
+.link:hover{
+  background-color: var(--softBg);
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
 
 .plink {
   width: 35px;
@@ -151,7 +161,6 @@
   height: 30px;
   border-radius: 100%;
   overflow: hidden;
-
 }
 
 .flexContainer > .firstChild {
@@ -222,6 +231,27 @@
   align-items: center;
   gap: 10px;
   cursor: pointer;
+  position: relative;
+}
+
+.menuModal {
+  position: absolute;
+  width: 200px;
+  height: auto;
+  background-color: var(--softBg);
+  left: -172px;
+  top: 39px;
+  outline: var(--softTextColor) 1px solid;
+  z-index: -1;
+  border-radius: 5px;
+  overflow: hidden;
+  transition: 0.3s ease-in;
+  opacity: 0;
+}
+
+.showModal {
+  opacity: 1;
+  z-index: 10;
 }
 
 @media screen and (min-width: 750px) {

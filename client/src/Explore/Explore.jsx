@@ -19,8 +19,16 @@ import InputAdornment from '@mui/material/InputAdornment';
 
 
 const sxS = {
+    // backgroundColor: 'var(--softBg)',
+    color: ['var(--softTextColor)'],
+
+}
+
+const sx = {
+    bgcolor: 'background.paper',
     backgroundColor: 'var(--softBg)',
-    color: ['var(--softTextColor)']
+    // outline: '1px solid var(--softTextColor)',
+    margin: '10px 0'
 }
 
 const Explore = () => {
@@ -120,6 +128,28 @@ const Explore = () => {
 
     return (
         <div className={styles.container}>
+
+            <Box className={styles.tabs} sx={sx}>
+                <Tabs
+                    value={value}
+                    onChange={handleChange}
+                    variant="scrollable"
+                    scrollButtons
+                    allowScrollButtonsMobile
+                    aria-label="scrollable force tabs example"
+                    sx={sxS}
+                >
+                    <Tab sx={sxS} label='All' />
+                    {uniqueCategoryItems.map((item) => {
+                        const inr = currencyFormatter.format(item.price, { code: 'INR' });
+                        return (
+                            <Tab sx={sxS} key={item._id} label={inr} />
+                        )
+                    })}
+                </Tabs>
+            </Box>
+
+
             <div className={styles.headingContainer}>
                 <h1>{searchQuery ? searchQuery : 'Explore'}</h1>
 
@@ -134,8 +164,8 @@ const Explore = () => {
                             inputProps={{ 'aria-label': 'Without label' }}
                             sx={sxS}
                         >
-                            <MenuItem  value={'latest'}>Latest</MenuItem>
-                            <MenuItem  value={'oldest'}>Oldest</MenuItem>
+                            <MenuItem value={'latest'}>Latest</MenuItem>
+                            <MenuItem value={'oldest'}>Oldest</MenuItem>
                         </Select>
                     </FormControl>
 
@@ -143,7 +173,48 @@ const Explore = () => {
 
             </div>
 
+            {/* <div className={styles.boxes}>
+                <Box className={styles.tabs} sx={sx}>
+                    <Tabs
+                        value={value}
+                        onChange={handleChange}
+                        variant="scrollable"
+                        scrollButtons
+                        allowScrollButtonsMobile
+                        aria-label="scrollable force tabs example"
+                        sx={sxS}
+                    >
+                        <Tab sx={sxS} label='All' />
+                        {uniqueCategoryItems.map((item) => {
+                            const inr = currencyFormatter.format(item.price, { code: 'INR' });
+                            return (
+                                <Tab sx={sxS} key={item._id} label={inr} />
+                            )
+                        })}
+                    </Tabs>
+                </Box>
 
+
+
+                <Box className={styles.tabs} sx={{ bgcolor: 'background.paper' }}>
+                    <Tabs
+                        value={value1}
+                        onChange={handleChange1}
+                        variant="scrollable"
+                        scrollButtons
+                        allowScrollButtonsMobile
+                        aria-label="scrollable force tabs example"
+                        sx={sxS}
+                    >
+                        <Tab sx={sxS} label='All' />
+                        {uniqueCategoryItems.map((item) => (
+                            <Tab sx={sxS} key={item._id} label={item.category} />
+
+                        ))}
+                    </Tabs>
+                </Box>
+
+            </div> */}
 
             {isLoading ?
                 <div className={styles.container}>
@@ -153,47 +224,7 @@ const Explore = () => {
                 </div>
                 :
                 <>
-                    <Box className={styles.tabs} sx={{ bgcolor: 'background.paper' }}>
-                        <Tabs
-                            value={value}
-                            onChange={handleChange}
-                            variant="scrollable"
-                            scrollButtons
-                            allowScrollButtonsMobile
-                            aria-label="scrollable force tabs example"
-                            sx={sxS}
-                        >
-                            <Tab  sx={sxS} label='All' />
-                            {uniqueCategoryItems.map((item) => {
-                                const inr = currencyFormatter.format(item.price, { code: 'INR' });
-                                return (
-                                    <Tab  sx={sxS} key={item._id} label={inr} />
-                                )
-                            })}
-                        </Tabs>
-                    </Box>
 
-
-                    <Box className={styles.tabs} sx={{ bgcolor: 'background.paper' }}>
-                        <Tabs
-                            value={value1}
-                            onChange={handleChange1}
-                            variant="scrollable"
-                            scrollButtons
-                            allowScrollButtonsMobile
-                            aria-label="scrollable force tabs example"
-                            sx={sxS}
-                        >
-                            <Tab  sx={sxS} label='All' />
-                            {uniqueCategoryItems.map((item) => (
-                                <Tab  sx={sxS} key={item._id} label={item.category} />
-
-                            ))}
-                        </Tabs>
-                    </Box>
-                    <div>
-
-                    </div>
                     <div className={styles.cards}>
                         {products.map((item) => (
                             <Card key={item._id} item={item} />
@@ -206,6 +237,7 @@ const Explore = () => {
                     <Pagination sx={{ color: 'var(--textColor)', backgroundColor: 'var(--bg)' }} size="large" page={page} count={Number(numOfPages)} onChange={handlepChange} />
                 </div>
             }
+
         </div>
     )
 }
