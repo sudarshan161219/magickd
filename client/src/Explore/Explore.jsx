@@ -161,13 +161,13 @@ const Explore = () => {
                             scrollButtons
                             allowScrollButtonsMobile
                             aria-label="scrollable force tabs example"
-                            sx={{}}
+                            sx={sxS}
                         >
-                            <Tab label='All' />
+                            <Tab  sx={sxS} label='All' />
                             {uniqueCategoryItems.map((item) => {
                                 const inr = currencyFormatter.format(item.price, { code: 'INR' });
                                 return (
-                                    <Tab key={item._id} label={inr} />
+                                    <Tab  sx={sxS} key={item._id} label={inr} />
                                 )
                             })}
                         </Tabs>
@@ -182,11 +182,11 @@ const Explore = () => {
                             scrollButtons
                             allowScrollButtonsMobile
                             aria-label="scrollable force tabs example"
-                            sx={{}}
+                            sx={sxS}
                         >
-                            <Tab label='All' />
+                            <Tab  sx={sxS} label='All' />
                             {uniqueCategoryItems.map((item) => (
-                                <Tab key={item._id} label={item.category} />
+                                <Tab  sx={sxS} key={item._id} label={item.category} />
 
                             ))}
                         </Tabs>
