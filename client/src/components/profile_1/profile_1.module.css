@@ -18,7 +18,7 @@
 .userInfo {
   display: grid;
   gap: 20px;
-  outline: 1px solid #00000038;
+  outline: 1px solid var(--softTextColor);
   padding: 10px;
   border-radius: 5px;
 }
